@@ -33,6 +33,19 @@
     overflow-x: hidden;
   }
 
+  a,
+  button,
+  [role="button"],
+  summary,
+  select {
+    cursor: none !important;
+  }
+
+  input,
+  textarea {
+    cursor: text;
+  }
+
   /* Fallback to default cursor on mobile/touch devices */
   @media (pointer: coarse) {
     body {
@@ -84,7 +97,7 @@
   }
 
   .filter-button {
-    @apply border border-border px-4 py-3 font-mono text-[11px] uppercase tracking-[0.18em] text-secondary transition-colors duration-300 hover:border-primary hover:text-primary;
+    @apply border border-border px-4 py-3 font-mono text-[12px] uppercase tracking-[0.18em] text-secondary transition-colors duration-300 hover:border-primary hover:text-primary;
   }
 
   .filter-button-active {
@@ -178,19 +191,53 @@
     brutalCursor 1.05s steps(1) 0.6s infinite;
 }
 
-.custom-cursor::before,
-.custom-cursor::after {
-  content: "";
-  position: absolute;
-  inset: -7px;
-  border: 1px solid rgb(204 255 0 / 0.45);
-  animation: cursorPulse 1.2s steps(4) infinite;
+.custom-cursor {
+  position: relative;
+  border-radius: 9999px;
 }
 
-.custom-cursor::after {
-  inset: -13px;
-  opacity: 0.35;
-  animation-delay: 0.2s;
+.custom-cursor-dot {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: #ccff00;
+  box-shadow: 0 0 18px rgb(204 255 0 / 0.55);
+}
+
+.custom-cursor-cross {
+  position: absolute;
+  inset: 0;
+  display: none;
+}
+
+.custom-cursor-pointer .custom-cursor-dot {
+  opacity: 0;
+}
+
+.custom-cursor-pointer .custom-cursor-cross {
+  display: block;
+  animation: cursorCrossSpin 4.8s linear infinite;
+}
+
+.custom-cursor-line {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1.65rem;
+  height: 2.5px;
+  border-radius: 9999px;
+  background: #ccff00;
+  box-shadow: 0 0 14px rgb(204 255 0 / 0.35);
+  transform-origin: center;
+}
+
+.custom-cursor-line-a {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.custom-cursor-line-b {
+  transform: translate(-50%, -50%) rotate(-45deg);
 }
 
 .hero-grid,
@@ -235,6 +282,50 @@
 .project-visual {
   background-color: #080808;
   isolation: isolate;
+}
+
+.project-visual-media {
+  background-color: transparent;
+}
+
+.project-media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.stage-placeholder {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #333333;
+  background:
+    radial-gradient(circle at 50% 50%, rgb(204 255 0 / 0.08), transparent 58%),
+    linear-gradient(90deg, rgb(237 237 237 / 0.05) 1px, transparent 1px),
+    #050505;
+  background-size:
+    auto,
+    20px 100%;
+}
+
+.stage-placeholder::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgb(237 237 237 / 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(237 237 237 / 0.04) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.65;
+}
+
+.stage-placeholder-tall {
+  min-height: 22rem;
+}
+
+.stage-placeholder-wide {
+  min-height: 16rem;
 }
 
 .visual-placeholder-shell {
@@ -339,7 +430,7 @@
   border: 1px solid rgb(204 255 0 / 0.35);
   padding: 0.85rem 1rem;
   font-family: "Geist Mono", monospace;
-  font-size: 0.68rem;
+  font-size: 0.78rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: #ccff00;
@@ -350,6 +441,30 @@
   border-color: #ccff00;
   background: #ccff00;
   color: #050505;
+}
+
+.showcase-description {
+  display: -webkit-box;
+  max-width: 42rem;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.showcase-filter-button {
+  font-size: 0.81rem;
+}
+
+.showcase-skip-button-local {
+  font-size: 0.81rem;
+}
+
+.showcase-meta-copy {
+  font-family: "Geist Mono", monospace;
+  font-size: 0.92rem;
+  line-height: 1.75;
+  color: #ededed;
 }
 
 .showcase-card {
@@ -488,6 +603,11 @@
   overflow-wrap: anywhere;
 }
 
+html[lang="es"] .machine-cell span {
+  font-size: clamp(1.3rem, 2.25vw, 3.1rem);
+  letter-spacing: -0.07em;
+}
+
 .machine-cell p {
   font-family: "Geist Mono", monospace;
   font-size: 0.82rem;
@@ -517,6 +637,8 @@
   background:
     linear-gradient(180deg, rgb(12 12 12 / 0.94), rgb(5 5 5 / 0.94));
   padding: 1.25rem;
+  font-size: 0.95rem;
+  line-height: 1.65;
 }
 
 .availability-status {
@@ -561,7 +683,7 @@
 
 .availability-card p {
   max-width: 14ch;
-  font-size: clamp(1.1rem, 2vw, 1.6rem);
+  font-size: clamp(1.2rem, 2.15vw, 1.8rem);
   font-weight: 800;
   line-height: 1.02;
   letter-spacing: -0.04em;
@@ -642,14 +764,13 @@
   }
 }
 
-@keyframes cursorPulse {
-  0% {
-    opacity: 0.85;
-    transform: scale(0.85);
+@keyframes cursorCrossSpin {
+  from {
+    transform: rotate(0deg);
   }
-  70%, 100% {
-    opacity: 0;
-    transform: scale(1.65);
+
+  to {
+    transform: rotate(360deg);
   }
 }
 

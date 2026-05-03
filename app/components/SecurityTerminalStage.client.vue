@@ -1,9 +1,6 @@
 <template>
-  <div ref="stageRef" class="seraphim-stage" aria-hidden="true">
-    <canvas ref="canvasRef" class="seraphim-canvas" />
-    <div class="seraphim-vignette" />
-    <div class="seraphim-grid" />
-    <div class="seraphim-scan" />
+  <div ref="stageRef" class="terminal-stage" aria-hidden="true">
+    <canvas ref="canvasRef" class="terminal-canvas" />
   </div>
 </template>
 
@@ -24,14 +21,13 @@ import {
   Scene,
   SRGBColorSpace,
   Vector3,
-  Vector2,
   WebGLRenderer,
 } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { onMounted, onUnmounted, ref, watch } from "vue";
-import { useModelPreloader } from "~/composables/useModelPreloader";
 import { useSiteLoader } from "~/composables/useSiteLoader";
-import { SERAPHIM_MODEL_URL } from "~/utils/modelUrls";
+import { useModelPreloader } from "~/composables/useModelPreloader";
+import { TERMINAL_MODEL_URL } from "~/utils/modelUrls";
 
 const canvasRef = ref<HTMLCanvasElement | null>(null);
 const stageRef = ref<HTMLElement | null>(null);
@@ -49,9 +45,7 @@ const { preloadModel } = useModelPreloader();
 
 const disposeMaterial = (material: Material | Material[]) => {
   const materials = Array.isArray(material) ? material : [material];
-  for (const item of materials) {
-    item.dispose();
-  }
+  for (const item of materials) item.dispose();
 };
 
 const createAccentMaterial = (sourceMaterial: Material | Material[]) => {
@@ -60,19 +54,21 @@ const createAccentMaterial = (sourceMaterial: Material | Material[]) => {
     map?: MeshPhysicalMaterial["map"];
     normalMap?: MeshPhysicalMaterial["normalMap"];
     roughnessMap?: MeshPhysicalMaterial["roughnessMap"];
+    aoMap?: MeshPhysicalMaterial["aoMap"];
   };
 
   const material = new MeshPhysicalMaterial({
     map: texturedSource.map ?? null,
     normalMap: texturedSource.normalMap ?? null,
     roughnessMap: texturedSource.roughnessMap ?? null,
-    color: new Color("#d4dccb"),
-    roughness: 0.42,
-    metalness: 0.04,
+    aoMap: texturedSource.aoMap ?? null,
+    color: new Color("#cfd7c5"),
+    roughness: 0.5,
+    metalness: 0.16,
     emissive: new Color("#ccff00"),
-    emissiveIntensity: 0.12,
-    clearcoat: 0.72,
-    clearcoatRoughness: 0.3,
+    emissiveIntensity: 0.11,
+    clearcoat: 0.64,
+    clearcoatRoughness: 0.36,
   });
 
   material.onBeforeCompile = (shader) => {
@@ -85,16 +81,16 @@ const createAccentMaterial = (sourceMaterial: Material | Material[]) => {
       "#include <color_fragment>",
       `#include <color_fragment>
       float grayValue = dot(diffuseColor.rgb, vec3(0.299, 0.587, 0.114));
-      diffuseColor.rgb = mix(vec3(grayValue), vec3(grayValue) * accentColor, 0.74);`,
+      diffuseColor.rgb = mix(vec3(grayValue), vec3(grayValue) * accentColor, 0.68);`,
     );
     shader.fragmentShader = shader.fragmentShader.replace(
       "#include <emissivemap_fragment>",
       `#include <emissivemap_fragment>
-      float rimAccent = pow(1.0 - abs(dot(normalize(vNormal), normalize(vViewPosition))), 2.0);
-      totalEmissiveRadiance += accentColor * rimAccent * 0.34;`,
+      float rimAccent = pow(1.0 - abs(dot(normalize(vNormal), normalize(vViewPosition))), 2.15);
+      totalEmissiveRadiance += accentColor * rimAccent * 0.32;`,
     );
   };
-  material.customProgramCacheKey = () => "accent-luminance-material";
+  material.customProgramCacheKey = () => "security-terminal-accent-material";
 
   return material;
 };
@@ -102,7 +98,6 @@ const createAccentMaterial = (sourceMaterial: Material | Material[]) => {
 const applyAccentMaterials = (model: Group) => {
   model.traverse((object) => {
     if (!(object instanceof Mesh)) return;
-
     const material = createAccentMaterial(object.material);
     disposeMaterial(object.material);
     object.material = material;
@@ -116,7 +111,7 @@ const buildAccentShell = (model: Group) => {
   const shellMaterial = new MeshBasicMaterial({
     color: new Color("#ccff00"),
     transparent: true,
-    opacity: 0.36,
+    opacity: 0.28,
     side: BackSide,
     depthWrite: false,
     blending: AdditiveBlending,
@@ -127,7 +122,7 @@ const buildAccentShell = (model: Group) => {
     object.material = shellMaterial;
   });
 
-  shell.scale.multiplyScalar(1.022);
+  shell.scale.multiplyScalar(1.018);
   return shell;
 };
 
@@ -138,8 +133,10 @@ const fitModel = (model: Group) => {
   bounds.getSize(size);
   bounds.getCenter(center);
 
-  const maxAxis = Math.max(size.x, size.y, size.z) || 1;
-  const scale = (3.2 / maxAxis) * 0.96;
+  const widthTarget = 4.8;
+  const heightTarget = 2.7;
+  const scale = Math.min(widthTarget / Math.max(size.x, 1), heightTarget / Math.max(size.y, 1)) * 0.88;
+
   model.scale.setScalar(scale);
   model.position.set(-center.x * scale, -center.y * scale, -center.z * scale);
 };
@@ -151,8 +148,8 @@ onMounted(async () => {
   const canvas = canvasRef.value;
 
   const scene = new Scene();
-  const camera = new PerspectiveCamera(34, 1, 0.1, 100);
-  camera.position.set(0, 0.08, 7.4);
+  const camera = new PerspectiveCamera(32, 1, 0.1, 100);
+  camera.position.set(0, 0, 8.8);
 
   renderer = new WebGLRenderer({
     canvas,
@@ -164,45 +161,37 @@ onMounted(async () => {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
   renderer.setClearColor(0x000000, 0);
 
-  scene.add(new AmbientLight(0xf3f6ed, 1.15));
+  scene.add(new AmbientLight(0xf3f6ed, 1.05));
 
-  const keyLight = new PointLight(0xffffff, 5.8, 18, 2);
-  keyLight.position.set(4.6, 4.2, 6.5);
+  const keyLight = new PointLight(0xffffff, 6.1, 18, 2);
+  keyLight.position.set(4.8, 4.1, 7.2);
   scene.add(keyLight);
 
-  const rimLight = new PointLight(0xccff00, 12.5, 14, 2);
-  rimLight.position.set(-5.2, 1.8, 3.4);
+  const rimLight = new PointLight(0xccff00, 13, 16, 2);
+  rimLight.position.set(-5.6, 2.4, 4.8);
   scene.add(rimLight);
 
-  const underLight = new PointLight(0xccff00, 4.8, 12, 2);
-  underLight.position.set(0, -4.8, 2.4);
+  const underLight = new PointLight(0xccff00, 5.2, 14, 2);
+  underLight.position.set(0, -4.6, 2.4);
   scene.add(underLight);
 
-  const modelRoot = new Group();
-  const rig = new Group();
-  modelRoot.add(rig);
-  scene.add(modelRoot);
+  const fillLight = new PointLight(0xc8fff0, 2.4, 14, 2);
+  fillLight.position.set(0, 1.6, 6.4);
+  scene.add(fillLight);
+
+  const rotationPivot = new Group();
+  scene.add(rotationPivot);
 
   const loader = new GLTFLoader();
-  const gltf = await preloadModel("seraphim-model", () => loader.loadAsync(SERAPHIM_MODEL_URL));
+  const gltf = await preloadModel("terminal-model", () => loader.loadAsync(TERMINAL_MODEL_URL));
   const model = gltf.scene;
   applyAccentMaterials(model);
   fitModel(model);
-  model.rotation.set(-0.08, 0, 0);
-  rig.add(buildAccentShell(model));
-  rig.add(model);
-
-  const pointer = new Vector2(0, 0);
-  const smoothPointer = new Vector2(0, 0);
-
-  const updatePointerFromClientPosition = (clientX: number, clientY: number) => {
-    const rect = stage.getBoundingClientRect();
-    const centerX = rect.left + rect.width * 0.5;
-    const centerY = rect.top + rect.height * 0.5;
-    pointer.x = ((clientX - centerX) / Math.max(rect.width * 0.5, 1)) * 1.35;
-    pointer.y = ((clientY - centerY) / Math.max(rect.height * 0.5, 1)) * 1.35;
-    pointer.clampScalar(-1.4, 1.4);
-  };
+  const shell = buildAccentShell(model);
+  model.rotation.set(0, 0, 0);
+  shell.rotation.copy(model.rotation);
+  rotationPivot.add(shell);
+  rotationPivot.add(model);
 
   const resize = () => {
     if (!renderer) return;
@@ -211,35 +200,11 @@ onMounted(async () => {
     renderer.setSize(width, height, false);
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
-
-    const currentPointer = (window as Window & { __rkPointer?: { x: number; y: number } }).__rkPointer;
-    if (currentPointer) {
-      updatePointerFromClientPosition(currentPointer.x, currentPointer.y);
-      smoothPointer.copy(pointer);
-    }
-  };
-
-  const handlePointerMove = (event: PointerEvent | MouseEvent) => {
-    updatePointerFromClientPosition(event.clientX, event.clientY);
-  };
-
-  const resetPointer = () => {
-    pointer.set(0, 0);
   };
 
   resizeObserver = new ResizeObserver(resize);
   resizeObserver.observe(stage);
   resize();
-
-  const currentPointer = (window as Window & { __rkPointer?: { x: number; y: number } }).__rkPointer;
-  if (currentPointer) {
-    updatePointerFromClientPosition(currentPointer.x, currentPointer.y);
-    smoothPointer.copy(pointer);
-  }
-
-  window.addEventListener("pointermove", handlePointerMove, { passive: true });
-  window.addEventListener("blur", resetPointer);
-  window.addEventListener("mouseleave", resetPointer);
 
   const startLoop = () => {
     if (rafId || !stageVisible || prefersReducedMotion || !isExperienceReady.value) return;
@@ -258,16 +223,7 @@ onMounted(async () => {
       return;
     }
 
-    smoothPointer.lerp(pointer, 0.18);
-
-    const drift = time * 0.001;
-    const targetYaw = smoothPointer.x * 0.56;
-    const targetPitch = smoothPointer.y * 0.28;
-
-    rig.rotation.y += (targetYaw - rig.rotation.y) * 0.14;
-    rig.rotation.x += (targetPitch - rig.rotation.x) * 0.14;
-    modelRoot.rotation.z = Math.sin(drift * 0.7) * 0.035;
-    modelRoot.position.y = Math.sin(drift * 1.25) * 0.08;
+    rotationPivot.rotation.y = time * 0.00042;
 
     renderer?.render(scene, camera);
 
@@ -285,11 +241,8 @@ onMounted(async () => {
     (entries) => {
       const entry = entries[0];
       stageVisible = Boolean(entry?.isIntersecting);
-      if (stageVisible) {
-        startLoop();
-      } else {
-        stopLoop();
-      }
+      if (stageVisible) startLoop();
+      else stopLoop();
     },
     { threshold: 0.14 },
   );
@@ -297,11 +250,8 @@ onMounted(async () => {
 
   const handleVisibilityChange = () => {
     stageVisible = !document.hidden;
-    if (stageVisible) {
-      startLoop();
-    } else {
-      stopLoop();
-    }
+    if (stageVisible) startLoop();
+    else stopLoop();
   };
 
   document.addEventListener("visibilitychange", handleVisibilityChange);
@@ -311,11 +261,8 @@ onMounted(async () => {
     resizeObserver = null;
     stageObserver?.disconnect();
     stageObserver = null;
-    window.removeEventListener("pointermove", handlePointerMove);
-    window.removeEventListener("blur", resetPointer);
-    window.removeEventListener("mouseleave", resetPointer);
     document.removeEventListener("visibilitychange", handleVisibilityChange);
-    modelRoot.traverse((object) => {
+    rotationPivot.traverse((object) => {
       if (!(object instanceof Mesh)) return;
       object.geometry.dispose();
       disposeMaterial(object.material);
@@ -341,61 +288,19 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-.seraphim-stage {
+.terminal-stage {
   position: relative;
   min-height: 30rem;
   overflow: hidden;
-  background:
-    radial-gradient(circle at 50% 50%, rgb(204 255 0 / 0.12), transparent 14rem),
-    linear-gradient(180deg, #060606 0%, #050505 100%);
   isolation: isolate;
 }
 
-.seraphim-canvas {
+.terminal-canvas {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   display: block;
   z-index: 1;
-}
-
-.seraphim-vignette,
-.seraphim-grid,
-.seraphim-scan,
-.seraphim-frame {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.seraphim-vignette {
-  z-index: 2;
-  background:
-    radial-gradient(circle at 50% 50%, transparent 0%, transparent 28%, rgb(5 5 5 / 0.16) 58%, rgb(5 5 5 / 0.82) 100%),
-    linear-gradient(90deg, rgb(5 5 5 / 0.72) 0%, transparent 24%, transparent 76%, rgb(5 5 5 / 0.72) 100%);
-}
-
-.seraphim-grid {
-  z-index: 3;
-  background:
-    linear-gradient(90deg, rgb(237 237 237 / 0.028) 1px, transparent 1px),
-    linear-gradient(rgb(237 237 237 / 0.028) 1px, transparent 1px);
-  background-size: 20px 20px;
-  opacity: 0.44;
-}
-
-.seraphim-scan {
-  z-index: 4;
-  background:
-    repeating-linear-gradient(
-      180deg,
-      rgb(237 237 237 / 0.042) 0,
-      rgb(237 237 237 / 0.042) 1px,
-      transparent 1px,
-      transparent 4px
-    );
-  mix-blend-mode: soft-light;
-  opacity: 0.16;
 }
 </style>

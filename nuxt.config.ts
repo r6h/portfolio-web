@@ -1,11 +1,25 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
-  devtools: { enabled: true },
-  modules: ["@nuxtjs/tailwindcss"],
+  devtools: { enabled: false },
+  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/i18n"],
   css: ["~/assets/css/main.css"],
+  i18n: {
+    strategy: "no_prefix",
+    defaultLocale: "en",
+    detectBrowserLanguage: false,
+    locales: [
+      { code: "en", file: "en.ts", language: "en-US", name: "English" },
+      { code: "es", file: "es.ts", language: "es-ES", name: "Español" },
+    ],
+    langDir: "../app/locales",
+    vueI18n: "./i18n.config.ts",
+  },
   app: {
     head: {
+      htmlAttrs: {
+        lang: "en",
+      },
       title: "Roger Kernel | Systems & Security Engineer",
       meta: [
         { charset: "utf-8" },

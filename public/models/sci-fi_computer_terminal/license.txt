@@ -1,0 +1,11 @@
+Model Information:
+* title:	Sci-fi Computer Terminal
+* source:	https://sketchfab.com/3d-models/sci-fi-computer-terminal-e03a14fc845e4e2d9573b95e00f79ef4
+* author:	Pedro Silva (https://sketchfab.com/pxdrosilva)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Sci-fi Computer Terminal" (https://sketchfab.com/3d-models/sci-fi-computer-terminal-e03a14fc845e4e2d9573b95e00f79ef4) by Pedro Silva (https://sketchfab.com/pxdrosilva) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

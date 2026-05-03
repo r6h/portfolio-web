@@ -12,7 +12,7 @@
       <div class="relative z-10 grid w-full grid-cols-12 gap-4">
         <div class="col-span-12">
           <p class="mb-5 font-mono text-xs uppercase tracking-[0.32em] text-accent md:text-sm">
-            [ Systems / Security / Backend ]
+            {{ t("hero.eyebrow") }}
           </p>
           <h1
             class="hero-title max-w-[15ch] text-[18vw] font-black uppercase leading-[0.76] tracking-[-0.085em] text-primary md:text-[12.4vw]"
@@ -32,17 +32,17 @@
           class="col-span-12 mt-8 border-t border-border pt-5 md:col-span-5 md:mt-10"
         >
           <p class="font-mono text-xs uppercase leading-relaxed tracking-[0.16em] text-secondary md:whitespace-nowrap md:text-[0.73rem] md:leading-none md:tracking-[0.24em]">
-            Software Engineer focused on Systems and Security
+            {{ t("hero.role") }}
           </p>
         </div>
 
         <div class="col-span-12 mt-4 md:col-span-5 md:col-start-8 md:mt-10">
           <p class="max-w-xl text-xl leading-snug text-primary md:text-3xl">
-            I design and build complex software systems, and understand how they break before others do.
+            {{ t("hero.intro") }}
           </p>
           <div class="mt-8 flex flex-wrap gap-3 font-mono text-xs uppercase tracking-[0.22em]">
-            <a class="blueprint-button" href="#work">View Showcase</a>
-            <a class="blueprint-button blueprint-button-accent" href="#contact">Contact</a>
+            <a class="blueprint-button" href="#work">{{ t("hero.ctaShowcase") }}</a>
+            <a class="blueprint-button blueprint-button-accent" href="#contact">{{ t("hero.ctaContact") }}</a>
           </div>
         </div>
       </div>
@@ -52,31 +52,35 @@
       <div class="grid grid-cols-12 gap-4">
         <div class="col-span-12 md:col-span-3">
           <p class="font-mono text-xs uppercase tracking-[0.28em] text-secondary">
-            [ 00 / Operating Model ]
+            {{ t("intro.eyebrow") }}
           </p>
-          <SeraphimStage class="mt-8" />
+          <div ref="seraphimMountTrigger" class="mt-8">
+            <SeraphimStage v-if="isSeraphimStageMounted" />
+            <div v-else class="stage-placeholder stage-placeholder-tall" aria-hidden="true" />
+          </div>
         </div>
         <div
           class="col-span-12 space-y-8 text-2xl leading-tight text-primary md:col-span-8 md:col-start-5 md:text-5xl"
         >
-          <div class="overflow-hidden">
+          <div class="overflow-hidden pb-[0.12em]">
             <p class="intro-text will-change-transform">
-              I am a software engineer with experience across
-              <span class="text-accent">systems programming</span>,
-              <span class="text-accent">backend development</span>, and
-              <span class="text-accent">applied security</span>.
+              {{ t("intro.line1") }}
+              <span class="text-accent">{{ t("intro.line1Accent1") }}</span>,
+              <span class="text-accent">{{ t("intro.line1Accent2") }}</span>,
+              {{ t("intro.line1Join") }}
+              <span class="text-accent">{{ t("intro.line1Accent3") }}</span>.
             </p>
           </div>
-          <div class="overflow-hidden">
+          <div class="overflow-hidden pb-[0.12em]">
             <p class="intro-text text-secondary will-change-transform">
-              My work ranges from parsers, virtual machines, and terminal tools to
-              <span class="intro-mark">production systems, microservices, data pipelines, and security research.</span>
+              {{ t("intro.line2") }}
+              <span class="intro-mark">{{ t("intro.line2Highlight") }}</span>
             </p>
           </div>
-          <div class="overflow-hidden">
+          <div class="overflow-hidden pb-[0.12em]">
             <p class="intro-text will-change-transform">
-              I build software that is
-              <span class="intro-mark">functional, understandable, scalable, and resilient.</span>
+              {{ t("intro.line3") }}
+              <span class="intro-mark">{{ t("intro.line3Highlight") }}</span>
             </p>
           </div>
         </div>
@@ -91,32 +95,34 @@
       <div ref="showcasePinStage" class="showcase-pin-stage">
         <div class="mb-8 grid grid-cols-12 gap-4">
           <div class="col-span-12 md:col-span-4">
-            <p class="font-mono text-xs uppercase tracking-[0.28em] text-secondary">[ 01 / Project Showcase ]</p>
+            <p class="font-mono text-xs uppercase tracking-[0.28em] text-secondary">{{ t("showcase.eyebrow") }}</p>
             <h2 class="mt-5 text-5xl font-black uppercase leading-none tracking-[-0.06em] md:text-7xl">
-              Showcase
+              {{ t("showcase.title") }}
             </h2>
           </div>
           <div class="col-span-12 self-end md:col-span-8">
-            <p class="mb-5 max-w-xl font-mono text-xs uppercase leading-relaxed tracking-[0.18em] text-secondary">
-              Scroll to move sideways through selected work. Expand the full index only after the carousel.
-            </p>
-            <div class="showcase-filter-rail sticky top-16 z-20 flex flex-wrap items-center gap-2 bg-background/90 py-3 backdrop-blur">
-              <button
-                v-for="filter in filters"
-                :key="`showcase-${filter}`"
-                type="button"
-                class="filter-button"
-                :class="{ 'filter-button-active': showcaseFilter === filter }"
-                @click="setShowcaseFilter(filter)"
-              >
-                [ {{ filter }} ]
-              </button>
+            <div class="mb-5 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+              <p class="showcase-description max-w-xl font-mono text-xs uppercase leading-relaxed tracking-[0.18em] text-secondary">
+                {{ t("showcase.description") }}
+              </p>
               <button
                 type="button"
-                class="showcase-skip-button md:ml-auto"
+                class="showcase-skip-button showcase-skip-button-local shrink-0 md:self-start"
                 @click="skipShowcase"
               >
-                [ Skip Showcase ]
+                {{ t("showcase.skip") }}
+              </button>
+            </div>
+            <div class="showcase-filter-rail sticky top-16 z-20 flex flex-wrap items-center justify-between gap-x-6 gap-y-3 bg-background/90 py-3 backdrop-blur">
+              <button
+                v-for="filter in filters"
+                :key="`showcase-${filter.id}`"
+                type="button"
+                class="filter-button showcase-filter-button shrink-0"
+                :class="{ 'filter-button-active': showcaseFilter === filter.id }"
+                @click="setShowcaseFilter(filter.id)"
+              >
+                [ {{ filter.label }} ]
               </button>
             </div>
           </div>
@@ -140,10 +146,19 @@
               <div class="col-span-12 md:col-span-6 lg:col-span-7">
                 <div
                   class="project-visual group relative h-[44vh] min-h-72 overflow-hidden border border-border"
-                  :class="project.visual"
+                  :class="project.media ? 'project-visual-media' : project.visual"
                 >
-                  <template v-if="project.title === 'RAG Chatbot Engine'">
-                    <svg class="rag-svg" viewBox="0 0 900 520" role="img" aria-label="RAG retrieval graph">
+                  <template v-if="project.media">
+                    <img
+                      :src="project.media"
+                      :alt="project.title"
+                      class="project-media"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </template>
+                  <template v-else-if="project.key === 'ragChatbot'">
+                    <svg class="rag-svg" viewBox="0 0 900 520" role="img" :aria-label="t('projects.ragChatbot.svgLabel')">
                       <defs>
                         <linearGradient id="ragLine" x1="0" x2="1">
                           <stop offset="0%" stop-color="#ccff00" stop-opacity="0.95" />
@@ -190,7 +205,7 @@
                         <circle cx="612" cy="396" r="26" />
                         <text x="612" y="402">A</text>
                       </g>
-                      <text class="rag-label" x="64" y="468">CUSTOM RETRIEVAL PIPELINE / SORENSEN-DICE MATCHING</text>
+                      <text class="rag-label" x="64" y="468">{{ t("projects.ragChatbot.svgFooter") }}</text>
                     </svg>
                   </template>
                   <template v-else>
@@ -199,7 +214,7 @@
                         <span>{{ project.module }}</span>
                         <span>{{ project.metric }}</span>
                       </div>
-                      <div class="text-sm text-primary">[ Project visual placeholder ]</div>
+                      <div class="text-sm text-primary">{{ t("showcase.placeholder") }}</div>
                       <div class="text-[10px] leading-relaxed text-secondary">{{ project.caption }}</div>
                     </div>
                   </template>
@@ -211,31 +226,31 @@
                   {{ project.title }}
                 </h2>
                 <div class="mt-5 flex flex-wrap gap-3 font-mono text-xs uppercase tracking-[0.16em]">
-                  <span class="border border-border px-3 py-2 text-secondary">Track: {{ project.category }}</span>
-                  <span v-if="project.stack" class="border border-border px-3 py-2 text-accent">Stack: {{ project.stack }}</span>
+                  <span class="border border-border px-3 py-2 text-secondary">{{ t("showcase.track") }}: {{ project.categoryLabel }}</span>
+                  <span v-if="project.stack" class="border border-border px-3 py-2 text-accent">{{ t("showcase.stack") }}: {{ project.stack }}</span>
                 </div>
 
                 <p class="mt-8 max-w-xl text-lg leading-relaxed text-primary/88 md:text-xl">
                   {{ project.description }}
                 </p>
 
-                <div class="mt-10 grid gap-7 font-mono text-xs leading-relaxed text-primary/85 md:grid-cols-2">
-                  <div>
-                    <span class="mb-3 block border-b border-border pb-2 uppercase tracking-[0.22em] text-secondary">Role</span>
-                    <p>{{ project.role }}</p>
-                  </div>
-                  <div>
-                    <span class="mb-3 block border-b border-border pb-2 uppercase tracking-[0.22em] text-secondary">Focus</span>
-                    <p>{{ project.focus }}</p>
-                  </div>
+              <div class="mt-10 grid gap-7 font-mono text-xs leading-relaxed text-primary/85 md:grid-cols-2">
+                <div>
+                  <span class="mb-3 block border-b border-border pb-2 uppercase tracking-[0.22em] text-secondary">{{ t("showcase.role") }}</span>
+                  <p class="showcase-meta-copy">{{ project.role }}</p>
                 </div>
+                <div>
+                  <span class="mb-3 block border-b border-border pb-2 uppercase tracking-[0.22em] text-secondary">{{ t("showcase.focus") }}</span>
+                  <p class="showcase-meta-copy">{{ project.focus }}</p>
+                </div>
+              </div>
               </div>
             </article>
           </div>
         </div>
         <div class="mt-5 flex items-center justify-end gap-4">
-          <button type="button" class="showcase-skip-button" @click="skipShowcase">
-            [ Continue Below ]
+          <button type="button" class="showcase-skip-button showcase-skip-button-local" @click="skipShowcase">
+            {{ t("showcase.continueBelow") }}
           </button>
         </div>
       </div>
@@ -244,10 +259,10 @@
         <div class="grid gap-6 p-5 md:grid-cols-[minmax(0,1fr)_auto] md:items-end md:p-7">
           <div>
             <p class="font-mono text-[10px] uppercase tracking-[0.24em] text-secondary">
-              {{ filteredProjects.length }} projects in {{ showcaseFilter === "ALL" ? "the full index" : `${showcaseFilter.toLowerCase()} track` }}
+              {{ t("showcase.indexCount", { count: filteredProjects.length, track: activeTrackLabel }) }}
             </p>
             <p class="mt-3 max-w-2xl text-lg leading-relaxed text-primary md:text-2xl">
-              Finished the showcase? Expand the complete list here without interrupting the main gallery flow.
+              {{ t("showcase.indexDescription") }}
             </p>
           </div>
           <button
@@ -255,7 +270,7 @@
             class="blueprint-button justify-center md:min-w-56"
             @click="isAllWorkExpanded = !isAllWorkExpanded"
           >
-            {{ isAllWorkExpanded ? "Collapse Full Index" : "See All Work" }}
+            {{ isAllWorkExpanded ? t("showcase.collapse") : t("showcase.seeAll") }}
           </button>
         </div>
 
@@ -290,74 +305,80 @@
     >
       <div class="security-grid absolute inset-0 opacity-60" aria-hidden="true" />
       <div class="relative z-10 grid grid-cols-12 gap-4">
-        <p class="col-span-12 font-mono text-xs uppercase tracking-[0.28em] text-secondary md:col-span-3">
-          [ 02 / Security Case ]
-        </p>
-        <div class="col-span-12 md:col-span-8 md:col-start-5">
+        <div class="col-span-12 md:col-span-4 md:flex md:h-full md:flex-col">
+          <p class="font-mono text-xs uppercase tracking-[0.28em] text-secondary">
+            {{ t("security.eyebrow") }}
+          </p>
+          <div ref="securityMountTrigger" class="mt-8 flex flex-1 items-center justify-center md:mt-0">
+            <SecurityTerminalStage v-if="isSecurityStageMounted" class="w-full max-w-[22rem]" />
+            <div v-else class="stage-placeholder stage-placeholder-wide w-full max-w-[22rem]" aria-hidden="true" />
+          </div>
+        </div>
+        <div class="col-span-12 md:col-span-7 md:col-start-6">
           <div class="mb-8 inline-flex border border-accent/50 px-4 py-2 font-mono text-xs uppercase tracking-[0.28em] text-accent">
-            Private Vulnerability Disclosure Program
+            {{ t("security.badge") }}
           </div>
           <h2 class="decrypt-title text-5xl font-black uppercase leading-none tracking-[-0.06em] text-primary md:text-8xl">
-            Remote Code Execution Vulnerability
+            {{ t("security.title") }}
           </h2>
           <div class="security-panel mt-12 border border-border">
             <div class="grid gap-0 md:grid-cols-12">
               <aside class="border-b border-border p-5 md:col-span-4 md:border-b-0 md:border-r">
-                <p class="mb-6 font-mono text-xs uppercase tracking-[0.24em] text-secondary">Vector</p>
+                <p class="mb-6 font-mono text-xs uppercase tracking-[0.24em] text-secondary">{{ t("security.vector") }}</p>
                 <dl class="space-y-5 font-mono text-sm leading-relaxed text-primary/85">
                   <div>
-                    <dt class="text-[10px] uppercase tracking-[0.22em] text-secondary">Target</dt>
-                    <dd>NASA private vulnerability disclosure surface</dd>
+                    <dt class="text-[10px] uppercase tracking-[0.22em] text-secondary">{{ t("security.target") }}</dt>
+                    <dd>{{ t("security.targetValue") }}</dd>
                   </div>
                   <div>
-                    <dt class="text-[10px] uppercase tracking-[0.22em] text-secondary">Class</dt>
-                    <dd>Remote code execution in application context</dd>
+                    <dt class="text-[10px] uppercase tracking-[0.22em] text-secondary">{{ t("security.class") }}</dt>
+                    <dd>{{ t("security.classValue") }}</dd>
                   </div>
                   <div>
-                    <dt class="text-[10px] uppercase tracking-[0.22em] text-secondary">Recognition</dt>
-                    <dd>Reported through the private program and acknowledged in the NASA Hall of Fame.</dd>
+                    <dt class="text-[10px] uppercase tracking-[0.22em] text-secondary">{{ t("security.recognition") }}</dt>
+                    <dd>{{ t("security.recognitionValue") }}</dd>
                   </div>
                 </dl>
               </aside>
               <div class="p-5 md:col-span-8">
                 <p class="max-w-3xl text-lg leading-relaxed text-primary">
-                  I traced an input path that crossed a trust boundary, reduced it to a reproducible execution primitive, and packaged the finding in a way that made root cause, impact, and remediation path immediately defensible.
+                  {{ t("security.body") }}
                 </p>
                 <div class="mt-8 grid gap-8 md:grid-cols-2">
                   <div>
-                    <p class="mb-3 font-mono text-xs uppercase tracking-[0.24em] text-accent">Method</p>
+                    <p class="mb-3 font-mono text-xs uppercase tracking-[0.24em] text-accent">{{ t("security.method") }}</p>
                     <ul class="space-y-3 font-mono text-sm leading-relaxed text-primary/85">
-                      <li>/ Enumerated exposed handlers and mapped where user-controlled data entered execution flow.</li>
-                      <li>/ Reduced the issue to a minimal proof-of-concept so the exploit path was precise, not anecdotal.</li>
+                      <li>{{ t("security.methodItem1") }}</li>
+                      <li>{{ t("security.methodItem2") }}</li>
                     </ul>
                   </div>
                   <div>
-                    <p class="mb-3 font-mono text-xs uppercase tracking-[0.24em] text-accent">Outcome</p>
+                    <p class="mb-3 font-mono text-xs uppercase tracking-[0.24em] text-accent">{{ t("security.outcome") }}</p>
                     <ul class="space-y-3 font-mono text-sm leading-relaxed text-primary/85">
-                      <li>/ Confirmed the blast radius in a bounded environment and documented realistic attacker impact.</li>
-                      <li>/ Delivered the report through NASA's private program and received public Hall of Fame recognition after disclosure.</li>
+                      <li>{{ t("security.outcomeItem1") }}</li>
+                      <li>{{ t("security.outcomeItem2") }}</li>
                     </ul>
                   </div>
                 </div>
                 <div class="security-trace mt-8 grid gap-4 md:grid-cols-3">
                   <div class="security-trace-cell">
                     <span>01</span>
-                    <p>Attack surface mapping</p>
+                    <p>{{ t("security.trace1") }}</p>
                   </div>
                   <div class="security-trace-cell">
                     <span>02</span>
-                    <p>Exploit path reduction</p>
+                    <p>{{ t("security.trace2") }}</p>
                   </div>
                   <div class="security-trace-cell">
                     <span>03</span>
-                    <p>Disclosure and recognition</p>
+                    <p>{{ t("security.trace3") }}</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <a class="mt-8 inline-flex font-mono text-xs uppercase tracking-[0.26em] text-accent hover:text-primary" href="#contact">
-            Link to full writeup ↗
+            {{ t("security.fullWriteup") }}
           </a>
         </div>
       </div>
@@ -366,35 +387,35 @@
     <section class="approach-section blueprint-section border-b border-border px-5 py-20 md:px-12 md:py-28">
       <div class="grid grid-cols-12 gap-4">
         <div class="col-span-12 md:col-span-5">
-          <p class="font-mono text-xs uppercase tracking-[0.28em] text-secondary">[ 03 / Work Approach ]</p>
+          <p class="font-mono text-xs uppercase tracking-[0.28em] text-secondary">{{ t("approach.eyebrow") }}</p>
           <h2 class="mt-6 text-6xl font-black uppercase leading-[0.82] tracking-[-0.065em] md:text-8xl">
-            Build<br />Break<br />Harden
+            {{ t("approach.title.line1") }}<br />{{ t("approach.title.line2") }}<br />{{ t("approach.title.line3") }}
           </h2>
         </div>
         <div class="col-span-12 mt-10 md:col-span-7 md:mt-0">
           <div class="approach-machine">
             <div class="machine-rail">
-              <span>Construct</span>
-              <span>Stress</span>
-              <span>Verify</span>
+              <span>{{ t("approach.rail1") }}</span>
+              <span>{{ t("approach.rail2") }}</span>
+              <span>{{ t("approach.rail3") }}</span>
             </div>
             <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
               <div class="machine-cell">
-                <span>Build</span>
-                <p>Design the smallest understandable system that can carry the real workload.</p>
+                <span>{{ t("approach.build.title") }}</span>
+                <p>{{ t("approach.build.body") }}</p>
               </div>
               <div class="machine-cell machine-cell-accent">
-                <span>Break</span>
-                <p>Interrogate assumptions, abuse boundaries, and look for failure modes early.</p>
+                <span>{{ t("approach.break.title") }}</span>
+                <p>{{ t("approach.break.body") }}</p>
               </div>
               <div class="machine-cell md:col-span-2 xl:col-span-1">
-                <span>Harden</span>
-                <p>Document constraints, reduce ambiguity, and leave the system easier to operate.</p>
+                <span>{{ t("approach.harden.title") }}</span>
+                <p>{{ t("approach.harden.body") }}</p>
               </div>
             </div>
             <div class="mt-6 divide-y divide-border border-y border-border">
               <p v-for="proof in proofItems" :key="proof" class="py-5 font-mono text-sm uppercase tracking-[0.22em] text-primary">
-                / {{ proof }}
+                / {{ t(proof) }}
               </p>
             </div>
           </div>
@@ -408,11 +429,11 @@
     >
       <div class="grid grid-cols-12 gap-4">
         <div class="col-span-12 md:col-span-3">
-          <p class="font-mono text-xs uppercase tracking-[0.28em] text-secondary">[ Availability ]</p>
+          <p class="font-mono text-xs uppercase tracking-[0.28em] text-secondary">{{ t("contact.eyebrow") }}</p>
           <div class="availability-side mt-6">
-            <span class="availability-status">Currently Open</span>
+            <span class="availability-status">{{ t("contact.status") }}</span>
             <p class="mt-4 max-w-xs text-sm leading-relaxed text-primary/82">
-              Taking on work where system behavior, failure modes, and delivery quality matter.
+              {{ t("contact.statusBody") }}
             </p>
           </div>
         </div>
@@ -420,73 +441,74 @@
           <div class="availability-grid mb-12 grid gap-3 md:grid-cols-3">
             <div class="availability-card">
               <span>01</span>
-              <p>Freelance projects</p>
+              <p>{{ t("contact.card1") }}</p>
             </div>
             <div class="availability-card availability-card-accent">
               <span>02</span>
-              <p>Backend and systems roles</p>
+              <p>{{ t("contact.card2") }}</p>
             </div>
             <div class="availability-card">
               <span>03</span>
-              <p>Security-related work</p>
+              <p>{{ t("contact.card3") }}</p>
             </div>
           </div>
           <h2 class="max-w-4xl text-4xl font-black uppercase leading-[0.92] tracking-[-0.06em] text-primary md:text-6xl">
-            SEND THE PROBLEM,<br class="hidden md:block" /> CONSTRAINTS
+            {{ t("contact.titleLine1") }}<br class="hidden md:block" />{{ t("contact.titleLine2") }}
           </h2>
           <p class="mt-3 max-w-2xl font-mono text-sm tracking-[0.08em] text-secondary md:text-base">
-            and the failure mode you care about.
+            {{ t("contact.subtitle") }}
           </p>
           <div ref="magneticLinks" class="mt-8 flex flex-wrap gap-3">
             <a
               v-for="link in contactLinks"
-              :key="link.label"
+              :key="link.labelKey"
               class="contact-link-button magnetic-link inline-flex items-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.22em] text-primary transition-colors hover:border-accent hover:text-accent"
               :href="link.href"
             >
-              {{ link.label }}
+              {{ t(link.labelKey) }}
             </a>
           </div>
           <form class="inquiry-form mt-14 grid gap-3 font-mono" @submit.prevent="submitInquiry">
             <div class="grid gap-3 md:grid-cols-2">
               <label>
-                <span>Name</span>
+                <span>{{ t("contact.form.name") }}</span>
                 <input v-model="inquiry.name" required type="text" autocomplete="name" />
               </label>
               <label>
-                <span>Email</span>
+                <span>{{ t("contact.form.email") }}</span>
                 <input v-model="inquiry.email" required type="email" autocomplete="email" />
               </label>
             </div>
             <label>
-              <span>Project Type</span>
+              <span>{{ t("contact.form.projectType") }}</span>
               <select v-model="inquiry.type">
-                <option>Backend / systems build</option>
-                <option>Security review</option>
-                <option>Technical prototype</option>
-                <option>Other inquiry</option>
+                <option v-for="type in inquiryTypes" :key="type.id" :value="type.id">{{ type.label }}</option>
               </select>
             </label>
             <label>
-              <span>Inquiry</span>
-              <textarea v-model="inquiry.message" required rows="5" placeholder="Describe the system, constraints, timeline, and what can fail." />
+              <span>{{ t("contact.form.inquiry") }}</span>
+              <textarea v-model="inquiry.message" required rows="5" :placeholder="t('contact.form.placeholder')" />
             </label>
-            <button class="inquiry-submit" type="submit">Transmit Inquiry</button>
+            <button class="inquiry-submit" type="submit">{{ t("contact.form.submit") }}</button>
           </form>
         </div>
       </div>
       <p class="absolute bottom-5 left-5 right-5 font-mono text-[10px] uppercase tracking-[0.24em] text-secondary md:left-12 md:right-12">
-        (c) Roger Kernel // Built from first principles
+        {{ t("contact.footer") }}
       </p>
     </section>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, onMounted, onUnmounted, reactive, ref, watch } from "vue";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-import SeraphimStage from "~/components/SeraphimStage.client.vue";
+import { computed, defineAsyncComponent, nextTick, onMounted, onUnmounted, reactive, ref, watch } from "vue";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { useModelPreloader } from "~/composables/useModelPreloader";
+import { useSiteLoader } from "~/composables/useSiteLoader";
+import { SERAPHIM_MODEL_URL, TERMINAL_MODEL_URL } from "~/utils/modelUrls";
+
+const SeraphimStage = defineAsyncComponent(() => import("~/components/SeraphimStage.client.vue"));
+const SecurityTerminalStage = defineAsyncComponent(() => import("~/components/SecurityTerminalStage.client.vue"));
 
 const heroCanvas = ref<HTMLCanvasElement | null>(null);
 const heroSection = ref<HTMLElement | null>(null);
@@ -496,221 +518,202 @@ const showcaseSection = ref<HTMLElement | null>(null);
 const showcasePinStage = ref<HTMLElement | null>(null);
 const showcaseAfter = ref<HTMLElement | null>(null);
 const magneticLinks = ref<HTMLElement | null>(null);
+const seraphimMountTrigger = ref<HTMLElement | null>(null);
+const securityMountTrigger = ref<HTMLElement | null>(null);
+const isSeraphimStageMounted = ref(false);
+const isSecurityStageMounted = ref(false);
+const { t } = useI18n();
 const typedHero = reactive({
   roger: "",
   kernel: "",
 });
 
-const filters = ["ALL", "SYSTEMS / LOW-LEVEL", "BUSINESS", "SECURITY", "DATA / AI"];
-const showcaseFilter = ref("ALL");
+const showcaseFilter = ref("all");
 const isAllWorkExpanded = ref(false);
 
-const showcaseProjects = [
+const filterDefs = [
+  { id: "all", key: "showcase.filters.all" },
+  { id: "systems", key: "showcase.filters.systems" },
+  { id: "business", key: "showcase.filters.business" },
+  { id: "security", key: "showcase.filters.security" },
+  { id: "dataAi", key: "showcase.filters.dataAi" },
+] as const;
+
+const featuredProjectDefs = [
   {
-    title: "Fleet Management Platform",
-    category: "BUSINESS",
-    signal: "TELEMETRY LOCK",
-    module: "FleetOps / Live Ingest",
-    metric: "Multi-tenant",
-    caption: "Vehicle signals normalized into operational control surfaces.",
+    key: "fleetManagement",
+    category: "business",
     stack: "Laravel, Vue, Python, MongoDB, REST APIs",
-    description: "B2B system for real-time fleet monitoring and control.",
-    role: "Full-stack product and systems implementation.",
-    focus: "Operations, telemetry flow, and multi-tenant control surfaces.",
     visual: "visual-placeholder-shell",
   },
   {
-    title: "RAG Chatbot Engine",
-    category: "DATA / AI",
-    signal: "VECTOR MATCH",
-    module: "Retrieval / No Framework",
-    metric: "Custom Dice",
-    caption: "Retrieval behavior made inspectable without external orchestration frameworks.",
+    key: "ragChatbot",
+    category: "dataAi",
     stack: "Python, TypeScript, vector database concepts",
-    description: "Custom-built retrieval-augmented system for contextual responses.",
-    role: "From-scratch retrieval and serving pipeline.",
-    focus: "Matching logic visibility and sensitive-environment adaptability.",
     visual: "visual-rag",
   },
   {
-    title: "Threat Intelligence Graph",
-    category: "SECURITY",
-    signal: "CORRELATION",
-    module: "Intel / Entity Links",
-    metric: "Graph model",
-    caption: "Fragmented security events connected into a navigable relationship graph.",
+    key: "threatIntel",
+    category: "security",
     stack: "Python, data processing, graph modeling",
-    description: "Automated system for correlating cybersecurity events.",
-    role: "Collection, normalization, and graph modeling.",
-    focus: "Pattern detection, event linkage, and analyst context.",
     visual: "visual-placeholder-shell",
   },
   {
-    title: "Markdown Parser",
-    category: "SYSTEMS / LOW-LEVEL",
-    signal: "AST RENDER",
-    module: "Parser / C++17",
-    metric: "From scratch",
-    caption: "Tokenizer, syntax tree, and renderer designed as one controlled pipeline.",
+    key: "markdownParser",
+    category: "systems",
     stack: "C++17",
-    description: "A custom parsing engine implementing tokenizer, AST, and rendering pipeline.",
-    role: "Low-level language tooling from first principles.",
-    focus: "Parsing internals, structure, and rendering flow.",
+    visual: "visual-placeholder-shell",
+    media: "/projects/paser_cpp.png",
+  },
+  {
+    key: "vmExperiments",
+    category: "systems",
+    stack: "",
     visual: "visual-placeholder-shell",
   },
   {
-    title: "Virtual Machine Experiments",
-    category: "SYSTEMS / LOW-LEVEL",
-    signal: "STACK MODEL",
-    module: "Execution / VM",
-    metric: "Instruction sets",
-    caption: "Execution-model experiments around custom stack-based runtimes.",
+    key: "desmodus",
+    category: "business",
     stack: "",
-    description: "Exploration of instruction sets and execution models through a custom stack-based VM.",
-    role: "Runtime and instruction-set experimentation.",
-    focus: "Execution flow, architecture tradeoffs, and low-level behavior.",
     visual: "visual-placeholder-shell",
   },
   {
-    title: "CLI / TUI Tools",
-    category: "SYSTEMS / LOW-LEVEL",
-    signal: "TERMINAL SURFACE",
-    module: "CLI / TUI",
-    metric: "Operator tools",
-    caption: "Terminal-first tooling designed for speed, automation, and dense interaction.",
+    key: "writeups",
+    category: "security",
     stack: "",
-    description: "Terminal-based tools designed for performance, automation, and data interaction.",
-    role: "Utility design and workflow acceleration.",
-    focus: "Speed, ergonomics, and practical operator interfaces.",
     visual: "visual-placeholder-shell",
+    media: "/projects/writeups.png",
   },
   {
-    title: "Desmodus Landing",
-    category: "BUSINESS",
-    signal: "POSITIONING",
-    module: "Concept / Launch",
-    metric: "Deployed",
-    caption: "A deployed landing page for a software analysis and security platform concept.",
+    key: "quantBot",
+    category: "dataAi",
     stack: "",
-    description: "Product concept and deployed landing page for a software analysis and security platform.",
-    role: "Product framing and frontend execution.",
-    focus: "Narrative clarity, positioning, and shipping a public surface.",
     visual: "visual-placeholder-shell",
+    media: "/projects/quantbot.png",
   },
   {
-    title: "Bug Bounty Research",
-    category: "SECURITY",
-    signal: "ATTACK SURFACE",
-    module: "Research / Findings",
-    metric: "Real targets",
-    caption: "Real-world vulnerability research with exploitable impact and responsible disclosure.",
+    key: "tcgTerminal",
+    category: "dataAi",
     stack: "",
-    description: "Identified vulnerabilities in real-world systems, including RCE scenarios.",
-    role: "Offensive analysis and disclosure work.",
-    focus: "Attack surface mapping, exploitability, and reporting quality.",
-    visual: "visual-placeholder-shell",
-  },
-  {
-    title: "Writeups",
-    category: "SECURITY",
-    signal: "POSTMORTEM",
-    module: "Research / Notes",
-    metric: "Technical detail",
-    caption: "Detailed writeups explaining the path from weakness to verified impact.",
-    stack: "",
-    description: "Detailed analyses of exploitation processes and system weaknesses.",
-    role: "Technical documentation and research communication.",
-    focus: "Clarity, reproducibility, and depth of explanation.",
-    visual: "visual-placeholder-shell",
-  },
-  {
-    title: "Quant Trading Bot",
-    category: "DATA / AI",
-    signal: "MODEL LOOP",
-    module: "Markets / Automation",
-    metric: "Decision systems",
-    caption: "Automated decision flow over market data and model-driven strategies.",
-    stack: "",
-    description: "A system that analyzes market data and executes decision-making strategies using ML.",
-    role: "Signal processing and strategy automation.",
-    focus: "Data ingestion, decision loops, and execution logic.",
-    visual: "visual-placeholder-shell",
-  },
-  {
-    title: "TCG Market Terminal (TUI)",
-    category: "DATA / AI",
-    signal: "MARKET READOUT",
-    module: "Terminal / Markets",
-    metric: "Pricing",
-    caption: "Terminal-based market inspection for pricing, trends, and trading signals.",
-    stack: "",
-    description: "A terminal-based system for analyzing trading card markets, including pricing and trends.",
-    role: "Specialized data terminal design.",
-    focus: "Market visibility and operator-speed interaction.",
     visual: "visual-placeholder-shell",
   },
 ];
+
+const allProjectDefs = [
+  { key: "markdownParser", category: "systems" },
+  { key: "vmExperiments", category: "systems" },
+  { key: "cliTui", category: "systems" },
+  { key: "fleetManagement", category: "business" },
+  { key: "desmodus", category: "business" },
+  { key: "bugBounty", category: "security" },
+  { key: "writeups", category: "security" },
+  { key: "threatIntel", category: "security" },
+  { key: "quantBot", category: "dataAi" },
+  { key: "ragChatbot", category: "dataAi" },
+  { key: "tcgTerminal", category: "dataAi" },
+] as const;
 
 const proofItems = [
-  "eWPTX Certification",
-  "NASA VDP Recognition",
-  "Technical Writeups",
-  "Active GitHub Projects",
-];
-
-const allProjects = [
-  { title: "Markdown Parser (C++)", category: "SYSTEMS / LOW-LEVEL", description: "A custom parsing engine implementing tokenizer, AST, and rendering pipeline." },
-  { title: "Virtual Machine Experiments", category: "SYSTEMS / LOW-LEVEL", description: "Exploration of instruction sets and execution models through a custom stack-based VM." },
-  { title: "CLI / TUI Tools", category: "SYSTEMS / LOW-LEVEL", description: "Terminal-based tools designed for performance, automation, and data interaction." },
-  { title: "Fleet Management Platform", category: "BUSINESS", description: "B2B system for real-time fleet monitoring and control." },
-  { title: "Desmodus Landing", category: "BUSINESS", description: "Product concept and deployed landing page for a software analysis and security platform." },
-  { title: "Bug Bounty Research", category: "SECURITY", description: "Identified vulnerabilities in real-world systems, including RCE scenarios." },
-  { title: "Writeups", category: "SECURITY", description: "Detailed analyses of exploitation processes and system weaknesses." },
-  { title: "Threat Intelligence Graph", category: "SECURITY", description: "Automated system for correlating cybersecurity events." },
-  { title: "Quant Trading Bot", category: "DATA / AI", description: "A system that analyzes market data and executes decision-making strategies using ML." },
-  { title: "RAG Chatbot Engine", category: "DATA / AI", description: "Custom-built retrieval-augmented system for contextual responses." },
-  { title: "TCG Market Terminal (TUI)", category: "DATA / AI", description: "Terminal-based system for analyzing trading card markets, including pricing." },
-];
+  "approach.proofs.cert",
+  "approach.proofs.nasa",
+  "approach.proofs.writeups",
+  "approach.proofs.github",
+] as const;
 
 const contactLinks = [
-  { label: "Email", href: "mailto:hello@rogerkernel.dev" },
-  { label: "GitHub", href: "https://github.com/" },
-];
+  { labelKey: "contact.links.email", href: "mailto:hello@rogerkernel.dev" },
+  { labelKey: "contact.links.github", href: "https://github.com/" },
+] as const;
+
+const inquiryTypes = computed(() => [
+  { id: "backend", label: t("contact.form.types.backend") },
+  { id: "security", label: t("contact.form.types.security") },
+  { id: "prototype", label: t("contact.form.types.prototype") },
+  { id: "other", label: t("contact.form.types.other") },
+]);
 
 const inquiry = reactive({
   name: "",
   email: "",
-  type: "Backend / systems build",
+  type: "backend",
   message: "",
 });
 
+const filters = computed(() => filterDefs.map((filter) => ({
+  id: filter.id,
+  label: t(filter.key),
+})));
+
+const categoryLabel = (category: string) => t(`showcase.filters.${category}`);
+
+const featuredProjects = computed(() => featuredProjectDefs.map((project) => ({
+  ...project,
+  title: t(`projects.${project.key}.title`),
+  signal: t(`projects.${project.key}.signal`),
+  module: t(`projects.${project.key}.module`),
+  metric: t(`projects.${project.key}.metric`),
+  caption: t(`projects.${project.key}.caption`),
+  description: t(`projects.${project.key}.description`),
+  role: t(`projects.${project.key}.role`),
+  focus: t(`projects.${project.key}.focus`),
+  categoryLabel: categoryLabel(project.category),
+})));
+
+const allProjects = computed(() => allProjectDefs.map((project) => ({
+  ...project,
+  title: project.key === "markdownParser"
+    ? t("projects.markdownParser.indexTitle")
+    : t(`projects.${project.key}.title`),
+  description: t(`projects.${project.key}.description`),
+  categoryLabel: categoryLabel(project.category),
+})));
+
 const filteredFeaturedProjects = computed(() => {
-  if (showcaseFilter.value === "ALL") return showcaseProjects;
-  return showcaseProjects.filter((project) => project.category === showcaseFilter.value);
+  if (showcaseFilter.value === "all") return featuredProjects.value;
+  return featuredProjects.value.filter((project) => project.category === showcaseFilter.value);
 });
 
 const filteredProjects = computed(() => {
-  if (showcaseFilter.value === "ALL") return allProjects;
-  return allProjects.filter((project) => project.category === showcaseFilter.value);
+  if (showcaseFilter.value === "all") return allProjects.value;
+  return allProjects.value.filter((project) => project.category === showcaseFilter.value);
+});
+
+const activeTrackLabel = computed(() => {
+  if (showcaseFilter.value === "all") return t("showcase.fullIndex");
+  return t(`showcase.trackLabels.${showcaseFilter.value}`);
 });
 
 const setShowcaseFilter = async (filter: string) => {
+  const preserveScrollY = window.scrollY;
   showcaseFilter.value = filter;
   isAllWorkExpanded.value = false;
   await nextTick();
   if (showcaseScroller.value) {
     showcaseScroller.value.scrollLeft = 0;
   }
-  ScrollTrigger.refresh();
+  refreshScrollTrigger();
+  window.requestAnimationFrame(() => {
+    const lenis = (window as Window & {
+      __rkLenis?: {
+        scrollTo: (target: number, options?: Record<string, unknown>) => void;
+      };
+    }).__rkLenis;
+    if (lenis) {
+      lenis.scrollTo(preserveScrollY, { immediate: true, force: true });
+      return;
+    }
+    window.scrollTo({ top: preserveScrollY, left: 0, behavior: "auto" });
+  });
 };
 
 const submitInquiry = () => {
-  const subject = encodeURIComponent(`Portfolio inquiry: ${inquiry.type}`);
+  const inquiryTypeLabel = inquiryTypes.value.find((type) => type.id === inquiry.type)?.label ?? inquiry.type;
+  const subject = encodeURIComponent(`${t("contact.mail.subjectPrefix")}: ${inquiryTypeLabel}`);
   const body = encodeURIComponent(
     [
-      `Name: ${inquiry.name}`,
-      `Email: ${inquiry.email}`,
-      `Type: ${inquiry.type}`,
+      `${t("contact.mail.name")}: ${inquiry.name}`,
+      `${t("contact.mail.email")}: ${inquiry.email}`,
+      `${t("contact.mail.type")}: ${inquiryTypeLabel}`,
       "",
       inquiry.message,
     ].join("\n"),
@@ -719,31 +722,135 @@ const submitInquiry = () => {
   window.location.href = `mailto:hello@rogerkernel.dev?subject=${subject}&body=${body}`;
 };
 
-let ctx: gsap.Context | undefined;
+let ctx: { revert: () => void } | undefined;
 let heroRaf = 0;
 let heroTimeouts: number[] = [];
 let heroResizeHandler: (() => void) | undefined;
 let heroObserver: IntersectionObserver | null = null;
 let heroVisible = true;
-let showcaseMedia: gsap.MatchMedia | undefined;
+let showcaseMedia: { add: (...args: any[]) => any; revert: () => void } | undefined;
+let deferredStageObservers: IntersectionObserver[] = [];
+const SHOWCASE_HEADER_OFFSET = 96;
+let pageExperienceStarted = false;
+let heroAssetMarkedLoaded = false;
+let pageMotionMarkedLoaded = false;
+let gsapModule: typeof import("gsap")["default"] | null = null;
+let scrollTriggerModule: typeof import("gsap/ScrollTrigger")["default"] | null = null;
+
+const { isExperienceReady, isHeroIntroReady, markAssetsLoaded, registerAssets } = useSiteLoader();
+const { preloadModel } = useModelPreloader();
+
+const ensureGsap = async () => {
+  if (gsapModule && scrollTriggerModule) return;
+
+  const [{ default: gsapLib }, { default: scrollTriggerLib }] = await Promise.all([
+    import("gsap"),
+    import("gsap/ScrollTrigger"),
+  ]);
+
+  gsapLib.registerPlugin(scrollTriggerLib);
+  gsapModule = gsapLib;
+  scrollTriggerModule = scrollTriggerLib;
+};
+
+const refreshScrollTrigger = () => {
+  scrollTriggerModule?.refresh();
+};
+
+const updateScrollTrigger = () => {
+  scrollTriggerModule?.update();
+};
+
+const mountDeferredStage = (
+  target: HTMLElement | null,
+  flag: typeof isSeraphimStageMounted,
+) => {
+  if (!target || flag.value) {
+    flag.value = true;
+    return;
+  }
+
+  if (!("IntersectionObserver" in window)) {
+    flag.value = true;
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      if (!entries[0]?.isIntersecting) return;
+      flag.value = true;
+      observer.disconnect();
+    },
+    { rootMargin: "280px 0px" },
+  );
+
+  observer.observe(target);
+  deferredStageObservers.push(observer);
+};
 
 const skipShowcase = () => {
-  showcaseAfter.value?.scrollIntoView({ behavior: "smooth", block: "start" });
+  if (!showcaseAfter.value) return;
+
+  const targetTop = window.scrollY + showcaseAfter.value.getBoundingClientRect().top - SHOWCASE_HEADER_OFFSET;
+  const nextScrollTop = Math.max(targetTop, 0);
+  const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+  const lenis = (window as Window & {
+    __rkLenis?: {
+      stop: () => void;
+      start: () => void;
+      scrollTo: (target: number, options?: Record<string, unknown>) => void;
+    };
+  }).__rkLenis;
+
+  if (isDesktop && lenis) {
+    lenis.stop();
+    lenis.scrollTo(nextScrollTop, { immediate: true, force: true });
+    window.requestAnimationFrame(() => {
+      updateScrollTrigger();
+      lenis.start();
+    });
+    return;
+  }
+
+  if (lenis) {
+    lenis.scrollTo(nextScrollTop, { duration: 1, force: true });
+    return;
+  }
+
+  window.scrollTo({
+    top: nextScrollTop,
+    behavior: isDesktop ? "auto" : "smooth",
+  });
 };
 
 watch(filteredFeaturedProjects, async () => {
   await nextTick();
-  if (showcaseScroller.value) {
-    gsap.set(showcaseScroller.value, { x: 0 });
+  if (showcaseScroller.value && gsapModule) {
+    gsapModule.set(showcaseScroller.value, { x: 0 });
   }
-  ScrollTrigger.refresh();
+  refreshScrollTrigger();
 });
 
-onMounted(() => {
-  gsap.registerPlugin(ScrollTrigger);
+onMounted(async () => {
+  registerAssets(4);
+
+  void Promise.all([
+    preloadModel("seraphim-model", () => new GLTFLoader().loadAsync(SERAPHIM_MODEL_URL)),
+    preloadModel("terminal-model", () => new GLTFLoader().loadAsync(TERMINAL_MODEL_URL)),
+  ]).then(() => {
+    markAssetsLoaded(2);
+  });
+
+  mountDeferredStage(seraphimMountTrigger.value, isSeraphimStageMounted);
+  mountDeferredStage(securityMountTrigger.value, isSecurityStageMounted);
+
+  await ensureGsap();
+  if (!gsapModule) return;
+
+  const gsap = gsapModule;
   let renderTopology: ((time: number) => void) | null = null;
   const startHeroLoop = () => {
-    if (heroRaf || !heroVisible || !renderTopology) return;
+    if (heroRaf || !heroVisible || !renderTopology || !isExperienceReady.value) return;
     heroRaf = window.requestAnimationFrame(renderTopology);
   };
 
@@ -756,15 +863,20 @@ onMounted(() => {
     }
   };
 
-  typeSequence("Roger", "roger", 80);
-  typeSequence("Kernel", "kernel", 520);
+  const startPageExperience = () => {
+    if (pageExperienceStarted) return;
+    pageExperienceStarted = true;
+    typeSequence("Roger", "roger", 80);
+    typeSequence("Kernel", "kernel", 520);
+    startHeroLoop();
+  };
 
   if (heroCanvas.value) {
     const canvas = heroCanvas.value;
     const context = canvas.getContext("2d");
 
     if (context) {
-      const contourNodes = Array.from({ length: 5 }, () => ({
+      const contourNodes = Array.from({ length: 4 }, () => ({
         x: 0.1 + Math.random() * 0.8,
         y: 0.1 + Math.random() * 0.8,
         amplitude: 0.14 + Math.random() * 0.18,
@@ -774,14 +886,35 @@ onMounted(() => {
         speed: 0.65 + Math.random() * 0.75,
         phase: Math.random() * Math.PI * 2,
       }));
-      const thresholds = [-1.25, -0.85, -0.45, 0, 0.45, 0.85, 1.25];
+      const thresholds = [-1.05, -0.55, -0.05, 0.45, 0.95];
+      let renderWidth = 0;
+      let renderHeight = 0;
+      let gridSize = 20;
+      let cols = 0;
+      let rows = 0;
+      let fieldValues = new Float32Array(0);
+      let pixelRatioCap = 1.25;
 
       const resizeCanvas = () => {
-        const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
-        canvas.width = Math.floor(canvas.clientWidth * ratio);
-        canvas.height = Math.floor(canvas.clientHeight * ratio);
+        pixelRatioCap = window.matchMedia("(max-width: 767px)").matches ? 1.05 : 1.25;
+        const ratio = Math.min(window.devicePixelRatio || 1, pixelRatioCap);
+        renderWidth = Math.max(canvas.clientWidth, 1);
+        renderHeight = Math.max(canvas.clientHeight, 1);
+        gridSize = renderWidth > 1200 ? 28 : renderWidth > 720 ? 24 : 22;
+        cols = Math.ceil(renderWidth / gridSize) + 1;
+        rows = Math.ceil(renderHeight / gridSize) + 1;
+
+        const requiredCells = rows * cols;
+        if (fieldValues.length !== requiredCells) {
+          fieldValues = new Float32Array(requiredCells);
+        }
+
+        canvas.width = Math.floor(renderWidth * ratio);
+        canvas.height = Math.floor(renderHeight * ratio);
         context.setTransform(ratio, 0, 0, ratio, 0, 0);
       };
+
+      const fieldIndex = (row: number, col: number) => (row * cols) + col;
 
       const sampleField = (x: number, y: number, time: number, width: number, height: number) => {
         const nx = x / width;
@@ -858,9 +991,8 @@ onMounted(() => {
           return;
         }
 
-        const width = canvas.clientWidth;
-        const height = canvas.clientHeight;
-        const gridSize = width > 1200 ? 24 : width > 720 ? 22 : 20;
+        const width = renderWidth;
+        const height = renderHeight;
         const accentPulse = 0.14 + ((Math.sin(time * 0.0022) + 1) * 0.5) * 0.26;
 
         context.clearRect(0, 0, width, height);
@@ -868,13 +1000,9 @@ onMounted(() => {
         context.lineCap = "round";
         context.lineJoin = "round";
 
-        const cols = Math.ceil(width / gridSize) + 1;
-        const rows = Math.ceil(height / gridSize) + 1;
-        const values = Array.from({ length: rows }, () => Array<number>(cols).fill(0));
-
         for (let row = 0; row < rows; row += 1) {
           for (let col = 0; col < cols; col += 1) {
-            values[row][col] = sampleField(col * gridSize, row * gridSize, time, width, height);
+            fieldValues[fieldIndex(row, col)] = sampleField(col * gridSize, row * gridSize, time, width, height);
           }
         }
 
@@ -882,10 +1010,10 @@ onMounted(() => {
           for (let col = 0; col < cols - 1; col += 1) {
             const x = col * gridSize;
             const y = row * gridSize;
-            const topLeft = values[row][col];
-            const topRight = values[row][col + 1];
-            const bottomRight = values[row + 1][col + 1];
-            const bottomLeft = values[row + 1][col];
+            const topLeft = fieldValues[fieldIndex(row, col)];
+            const topRight = fieldValues[fieldIndex(row, col + 1)];
+            const bottomRight = fieldValues[fieldIndex(row + 1, col + 1)];
+            const bottomLeft = fieldValues[fieldIndex(row + 1, col)];
 
             for (let tIndex = 0; tIndex < thresholds.length; tIndex += 1) {
               const threshold = thresholds[tIndex];
@@ -958,7 +1086,10 @@ onMounted(() => {
       };
 
       resizeCanvas();
-      startHeroLoop();
+      if (!heroAssetMarkedLoaded) {
+        markAssetsLoaded(1);
+        heroAssetMarkedLoaded = true;
+      }
       heroResizeHandler = resizeCanvas;
       window.addEventListener("resize", heroResizeHandler);
     }
@@ -1083,6 +1214,29 @@ onMounted(() => {
       });
     }
   });
+
+  if (!pageMotionMarkedLoaded) {
+    markAssetsLoaded(1);
+    pageMotionMarkedLoaded = true;
+  }
+
+  watch(
+    isHeroIntroReady,
+    (ready) => {
+      if (!ready) return;
+      startPageExperience();
+    },
+    { immediate: true },
+  );
+
+  watch(
+    isExperienceReady,
+    (ready) => {
+      if (!ready) return;
+      refreshScrollTrigger();
+    },
+    { immediate: true },
+  );
 });
 
 onUnmounted(() => {
@@ -1097,6 +1251,10 @@ onUnmounted(() => {
   if (heroResizeHandler) {
     window.removeEventListener("resize", heroResizeHandler);
   }
+  for (const observer of deferredStageObservers) {
+    observer.disconnect();
+  }
+  deferredStageObservers = [];
   showcaseMedia?.revert();
   ctx?.revert();
 });

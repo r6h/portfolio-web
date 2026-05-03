@@ -1,24 +1,60 @@
-# Nuxt dev/build outputs
-.output
-.data
-.nuxt
-.nitro
-.cache
-dist
+# Dependency caches and runtimes
+node_modules/
+.bun/
+# Do not ignore bun.lock.json to ensure reproducible installs
+# bun.lock.json
 
-# Node dependencies
-node_modules
+# Nuxt / Vite / build outputs
+.nuxt/
+.output/
+dist/
+.vite/
+build/
+public/build/
+
+# Local development caches
+.cache/
+*.cache
 
 # Logs
-logs
 *.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files (do not commit secrets)
+.env
+.env.local
+.env.*
+
+# IDEs and editors
+.vscode/
+.idea/
+*.suo
+*.ntuser*
+*.user
+*.userosscache
+*.sln.docstates
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+Desktop.ini
+
+# Testing / coverage
+coverage/
+test-results/
 
 # Misc
-.DS_Store
-.fleet
-.idea
-
-# Local env files
-.env
-.env.*
-!.env.example
+.kdbx
+*.bak
+*.backup
+*.tmp
+*.temp
+.agents
+.codex
+.playwright*
+output/
