@@ -1,0 +1,475 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic:
+      - generic: VIEW
+    - banner [ref=e4]:
+      - generic [ref=e5]:
+        - generic [ref=e6]: RK
+        - navigation [ref=e7]:
+          - link "[Work]" [ref=e8] [cursor=pointer]:
+            - /url: "#index"
+          - link "[Security]" [ref=e9] [cursor=pointer]:
+            - /url: "#security"
+          - link "[Contact]" [ref=e10] [cursor=pointer]:
+            - /url: "#contact"
+    - main [ref=e11]:
+      - generic [ref=e12]:
+        - generic [ref=e15]:
+          - generic [ref=e16]:
+            - paragraph [ref=e17]: "[ Systems / Security / Backend ]"
+            - heading [level=1] [ref=e18]
+          - paragraph [ref=e23]: Software Engineer focused on Systems and Security
+          - generic [ref=e24]:
+            - paragraph [ref=e25]: I design and build complex software systems, and understand how they break before others do.
+            - generic [ref=e26]:
+              - link "View Work" [ref=e27] [cursor=pointer]:
+                - /url: "#index"
+              - link "Contact" [ref=e28] [cursor=pointer]:
+                - /url: "#contact"
+        - generic [ref=e30]:
+          - paragraph [ref=e32]: "[ 00 / Operating Model ]"
+          - generic [ref=e33]:
+            - paragraph [ref=e35]: I am a software engineer with experience across systems programming, backend development, and applied security.
+            - paragraph [ref=e37]: My work ranges from parsers, virtual machines, and terminal tools to production systems, microservices, data pipelines, and security research.
+            - paragraph [ref=e39]: I build software that is functional, understandable, scalable, and resilient.
+        - generic [ref=e41]:
+          - generic [ref=e42]:
+            - paragraph [ref=e43]: "[ 01 / Project Index ]"
+            - heading "Fluid Filter" [level=2] [ref=e44]
+          - generic [ref=e45]:
+            - generic [ref=e46]:
+              - button "[ ALL ]" [ref=e47] [cursor=pointer]
+              - button "[ SYSTEMS / LOW-LEVEL ]" [ref=e48] [cursor=pointer]
+              - button "[ BUSINESS ]" [ref=e49] [cursor=pointer]
+              - button "[ SECURITY ]" [ref=e50] [cursor=pointer]
+              - button "[ DATA / AI ]" [ref=e51] [cursor=pointer]
+            - generic [ref=e52]:
+              - link "Markdown Parser (C++) A custom parsing engine implementing tokenizer, AST, and rendering pipeline. ↗" [ref=e53] [cursor=pointer]:
+                - /url: "#contact"
+                - generic [ref=e54]: Markdown Parser (C++)
+                - generic [ref=e55]: A custom parsing engine implementing tokenizer, AST, and rendering pipeline.
+                - generic [ref=e56]: ↗
+              - link "Virtual Machine Experiments Exploration of instruction sets and execution models through a custom stack-based VM. ↗" [ref=e57] [cursor=pointer]:
+                - /url: "#contact"
+                - generic [ref=e58]: Virtual Machine Experiments
+                - generic [ref=e59]: Exploration of instruction sets and execution models through a custom stack-based VM.
+                - generic [ref=e60]: ↗
+              - link "CLI / TUI Tools Terminal-based tools designed for performance, automation, and data interaction. ↗" [ref=e61] [cursor=pointer]:
+                - /url: "#contact"
+                - generic [ref=e62]: CLI / TUI Tools
+                - generic [ref=e63]: Terminal-based tools designed for performance, automation, and data interaction.
+                - generic [ref=e64]: ↗
+              - link "Fleet Management Platform B2B system for real-time fleet monitoring and control. ↗" [ref=e65] [cursor=pointer]:
+                - /url: "#contact"
+                - generic [ref=e66]: Fleet Management Platform
+                - generic [ref=e67]: B2B system for real-time fleet monitoring and control.
+                - generic [ref=e68]: ↗
+              - link "Desmodus Landing Product concept and deployed landing page for a software analysis and security platform. ↗" [ref=e69] [cursor=pointer]:
+                - /url: "#contact"
+                - generic [ref=e70]: Desmodus Landing
+                - generic [ref=e71]: Product concept and deployed landing page for a software analysis and security platform.
+                - generic [ref=e72]: ↗
+              - link "Bug Bounty Research Identified vulnerabilities in real-world systems, including RCE scenarios. ↗" [ref=e73] [cursor=pointer]:
+                - /url: "#contact"
+                - generic [ref=e74]: Bug Bounty Research
+                - generic [ref=e75]: Identified vulnerabilities in real-world systems, including RCE scenarios.
+                - generic [ref=e76]: ↗
+              - link "Writeups Detailed analyses of exploitation processes and system weaknesses. ↗" [ref=e77] [cursor=pointer]:
+                - /url: "#contact"
+                - generic [ref=e78]: Writeups
+                - generic [ref=e79]: Detailed analyses of exploitation processes and system weaknesses.
+                - generic [ref=e80]: ↗
+              - link "Threat Intelligence Graph Automated system for correlating cybersecurity events. ↗" [ref=e81] [cursor=pointer]:
+                - /url: "#contact"
+                - generic [ref=e82]: Threat Intelligence Graph
+                - generic [ref=e83]: Automated system for correlating cybersecurity events.
+                - generic [ref=e84]: ↗
+              - link "Quant Trading Bot A system that analyzes market data and executes decision-making strategies using ML. ↗" [ref=e85] [cursor=pointer]:
+                - /url: "#contact"
+                - generic [ref=e86]: Quant Trading Bot
+                - generic [ref=e87]: A system that analyzes market data and executes decision-making strategies using ML.
+                - generic [ref=e88]: ↗
+              - link "RAG Chatbot Engine Custom-built retrieval-augmented system for contextual responses. ↗" [ref=e89] [cursor=pointer]:
+                - /url: "#contact"
+                - generic [ref=e90]: RAG Chatbot Engine
+                - generic [ref=e91]: Custom-built retrieval-augmented system for contextual responses.
+                - generic [ref=e92]: ↗
+              - link "TCG Market Terminal (TUI) Terminal-based system for analyzing trading card markets, including pricing. ↗" [ref=e93] [cursor=pointer]:
+                - /url: "#contact"
+                - generic [ref=e94]: TCG Market Terminal (TUI)
+                - generic [ref=e95]: Terminal-based system for analyzing trading card markets, including pricing.
+                - generic [ref=e96]: ↗
+        - generic [ref=e97]:
+          - generic [ref=e98]:
+            - generic [ref=e99]:
+              - paragraph [ref=e100]: "[ 02 / Project Showcase ]"
+              - heading "Showcase" [level=2] [ref=e101]
+            - generic [ref=e102]:
+              - paragraph [ref=e103]: Same filter state, manual horizontal scroll. Nothing advances unless you move it.
+              - generic [ref=e104]:
+                - button "[ ALL ]" [ref=e105] [cursor=pointer]
+                - button "[ SYSTEMS / LOW-LEVEL ]" [ref=e106] [cursor=pointer]
+                - button "[ BUSINESS ]" [ref=e107] [cursor=pointer]
+                - button "[ SECURITY ]" [ref=e108] [cursor=pointer]
+                - button "[ DATA / AI ]" [ref=e109] [cursor=pointer]
+          - generic [ref=e110]:
+            - article [ref=e111]:
+              - generic [ref=e112]:
+                - generic [ref=e113]: "[ Featured 01 ]"
+                - generic [ref=e114]: TELEMETRY LOCK
+              - generic [ref=e117]:
+                - generic [ref=e118]:
+                  - generic [ref=e119]: FleetOps / Live Ingest
+                  - generic [ref=e120]: Multi-tenant
+                - generic [ref=e121]: "[ Project visual placeholder ]"
+                - generic [ref=e122]: Vehicle signals normalized into operational control surfaces.
+              - generic [ref=e123]:
+                - heading "Fleet Management Platform" [level=2] [ref=e124]
+                - generic [ref=e125]:
+                  - generic [ref=e126]: "Track: BUSINESS"
+                  - generic [ref=e127]: "Stack: Laravel, Vue, Python, MongoDB, REST APIs"
+                - paragraph [ref=e128]: B2B system for real-time fleet monitoring and control.
+                - generic [ref=e129]:
+                  - generic [ref=e130]:
+                    - generic [ref=e131]: Role
+                    - paragraph [ref=e132]: Full-stack product and systems implementation.
+                  - generic [ref=e133]:
+                    - generic [ref=e134]: Focus
+                    - paragraph [ref=e135]: Operations, telemetry flow, and multi-tenant control surfaces.
+            - article [ref=e136]:
+              - generic [ref=e137]:
+                - generic [ref=e138]: "[ Featured 02 ]"
+                - generic [ref=e139]: VECTOR MATCH
+              - img "RAG retrieval graph" [ref=e142]:
+                - generic [ref=e150]: Q
+                - generic [ref=e153]: V
+                - generic [ref=e156]: D1
+                - generic [ref=e159]: D2
+                - generic [ref=e162]: D3
+                - generic [ref=e165]: A
+                - generic [ref=e166]: CUSTOM RETRIEVAL PIPELINE / SORENSEN-DICE MATCHING
+              - generic [ref=e167]:
+                - heading "RAG Chatbot Engine" [level=2] [ref=e168]
+                - generic [ref=e169]:
+                  - generic [ref=e170]: "Track: DATA / AI"
+                  - generic [ref=e171]: "Stack: Python, TypeScript, vector database concepts"
+                - paragraph [ref=e172]: Custom-built retrieval-augmented system for contextual responses.
+                - generic [ref=e173]:
+                  - generic [ref=e174]:
+                    - generic [ref=e175]: Role
+                    - paragraph [ref=e176]: From-scratch retrieval and serving pipeline.
+                  - generic [ref=e177]:
+                    - generic [ref=e178]: Focus
+                    - paragraph [ref=e179]: Matching logic visibility and sensitive-environment adaptability.
+            - article [ref=e180]:
+              - generic [ref=e181]:
+                - generic [ref=e182]: "[ Featured 03 ]"
+                - generic [ref=e183]: CORRELATION
+              - generic [ref=e186]:
+                - generic [ref=e187]:
+                  - generic [ref=e188]: Intel / Entity Links
+                  - generic [ref=e189]: Graph model
+                - generic [ref=e190]: "[ Project visual placeholder ]"
+                - generic [ref=e191]: Fragmented security events connected into a navigable relationship graph.
+              - generic [ref=e192]:
+                - heading "Threat Intelligence Graph" [level=2] [ref=e193]
+                - generic [ref=e194]:
+                  - generic [ref=e195]: "Track: SECURITY"
+                  - generic [ref=e196]: "Stack: Python, data processing, graph modeling"
+                - paragraph [ref=e197]: Automated system for correlating cybersecurity events.
+                - generic [ref=e198]:
+                  - generic [ref=e199]:
+                    - generic [ref=e200]: Role
+                    - paragraph [ref=e201]: Collection, normalization, and graph modeling.
+                  - generic [ref=e202]:
+                    - generic [ref=e203]: Focus
+                    - paragraph [ref=e204]: Pattern detection, event linkage, and analyst context.
+            - article [ref=e205]:
+              - generic [ref=e206]:
+                - generic [ref=e207]: "[ Featured 04 ]"
+                - generic [ref=e208]: AST RENDER
+              - generic [ref=e211]:
+                - generic [ref=e212]:
+                  - generic [ref=e213]: Parser / C++17
+                  - generic [ref=e214]: From scratch
+                - generic [ref=e215]: "[ Project visual placeholder ]"
+                - generic [ref=e216]: Tokenizer, syntax tree, and renderer designed as one controlled pipeline.
+              - generic [ref=e217]:
+                - heading "Markdown Parser" [level=2] [ref=e218]
+                - generic [ref=e219]:
+                  - generic [ref=e220]: "Track: SYSTEMS / LOW-LEVEL"
+                  - generic [ref=e221]: "Stack: C++17"
+                - paragraph [ref=e222]: A custom parsing engine implementing tokenizer, AST, and rendering pipeline.
+                - generic [ref=e223]:
+                  - generic [ref=e224]:
+                    - generic [ref=e225]: Role
+                    - paragraph [ref=e226]: Low-level language tooling from first principles.
+                  - generic [ref=e227]:
+                    - generic [ref=e228]: Focus
+                    - paragraph [ref=e229]: Parsing internals, structure, and rendering flow.
+            - article [ref=e230]:
+              - generic [ref=e231]:
+                - generic [ref=e232]: "[ Featured 05 ]"
+                - generic [ref=e233]: STACK MODEL
+              - generic [ref=e236]:
+                - generic [ref=e237]:
+                  - generic [ref=e238]: Execution / VM
+                  - generic [ref=e239]: Instruction sets
+                - generic [ref=e240]: "[ Project visual placeholder ]"
+                - generic [ref=e241]: Execution-model experiments around custom stack-based runtimes.
+              - generic [ref=e242]:
+                - heading "Virtual Machine Experiments" [level=2] [ref=e243]
+                - generic [ref=e245]: "Track: SYSTEMS / LOW-LEVEL"
+                - paragraph [ref=e246]: Exploration of instruction sets and execution models through a custom stack-based VM.
+                - generic [ref=e247]:
+                  - generic [ref=e248]:
+                    - generic [ref=e249]: Role
+                    - paragraph [ref=e250]: Runtime and instruction-set experimentation.
+                  - generic [ref=e251]:
+                    - generic [ref=e252]: Focus
+                    - paragraph [ref=e253]: Execution flow, architecture tradeoffs, and low-level behavior.
+            - article [ref=e254]:
+              - generic [ref=e255]:
+                - generic [ref=e256]: "[ Featured 06 ]"
+                - generic [ref=e257]: TERMINAL SURFACE
+              - generic [ref=e260]:
+                - generic [ref=e261]:
+                  - generic [ref=e262]: CLI / TUI
+                  - generic [ref=e263]: Operator tools
+                - generic [ref=e264]: "[ Project visual placeholder ]"
+                - generic [ref=e265]: Terminal-first tooling designed for speed, automation, and dense interaction.
+              - generic [ref=e266]:
+                - heading "CLI / TUI Tools" [level=2] [ref=e267]
+                - generic [ref=e269]: "Track: SYSTEMS / LOW-LEVEL"
+                - paragraph [ref=e270]: Terminal-based tools designed for performance, automation, and data interaction.
+                - generic [ref=e271]:
+                  - generic [ref=e272]:
+                    - generic [ref=e273]: Role
+                    - paragraph [ref=e274]: Utility design and workflow acceleration.
+                  - generic [ref=e275]:
+                    - generic [ref=e276]: Focus
+                    - paragraph [ref=e277]: Speed, ergonomics, and practical operator interfaces.
+            - article [ref=e278]:
+              - generic [ref=e279]:
+                - generic [ref=e280]: "[ Featured 07 ]"
+                - generic [ref=e281]: POSITIONING
+              - generic [ref=e284]:
+                - generic [ref=e285]:
+                  - generic [ref=e286]: Concept / Launch
+                  - generic [ref=e287]: Deployed
+                - generic [ref=e288]: "[ Project visual placeholder ]"
+                - generic [ref=e289]: A deployed landing page for a software analysis and security platform concept.
+              - generic [ref=e290]:
+                - heading "Desmodus Landing" [level=2] [ref=e291]
+                - generic [ref=e293]: "Track: BUSINESS"
+                - paragraph [ref=e294]: Product concept and deployed landing page for a software analysis and security platform.
+                - generic [ref=e295]:
+                  - generic [ref=e296]:
+                    - generic [ref=e297]: Role
+                    - paragraph [ref=e298]: Product framing and frontend execution.
+                  - generic [ref=e299]:
+                    - generic [ref=e300]: Focus
+                    - paragraph [ref=e301]: Narrative clarity, positioning, and shipping a public surface.
+            - article [ref=e302]:
+              - generic [ref=e303]:
+                - generic [ref=e304]: "[ Featured 08 ]"
+                - generic [ref=e305]: ATTACK SURFACE
+              - generic [ref=e308]:
+                - generic [ref=e309]:
+                  - generic [ref=e310]: Research / Findings
+                  - generic [ref=e311]: Real targets
+                - generic [ref=e312]: "[ Project visual placeholder ]"
+                - generic [ref=e313]: Real-world vulnerability research with exploitable impact and responsible disclosure.
+              - generic [ref=e314]:
+                - heading "Bug Bounty Research" [level=2] [ref=e315]
+                - generic [ref=e317]: "Track: SECURITY"
+                - paragraph [ref=e318]: Identified vulnerabilities in real-world systems, including RCE scenarios.
+                - generic [ref=e319]:
+                  - generic [ref=e320]:
+                    - generic [ref=e321]: Role
+                    - paragraph [ref=e322]: Offensive analysis and disclosure work.
+                  - generic [ref=e323]:
+                    - generic [ref=e324]: Focus
+                    - paragraph [ref=e325]: Attack surface mapping, exploitability, and reporting quality.
+            - article [ref=e326]:
+              - generic [ref=e327]:
+                - generic [ref=e328]: "[ Featured 09 ]"
+                - generic [ref=e329]: POSTMORTEM
+              - generic [ref=e332]:
+                - generic [ref=e333]:
+                  - generic [ref=e334]: Research / Notes
+                  - generic [ref=e335]: Technical detail
+                - generic [ref=e336]: "[ Project visual placeholder ]"
+                - generic [ref=e337]: Detailed writeups explaining the path from weakness to verified impact.
+              - generic [ref=e338]:
+                - heading "Writeups" [level=2] [ref=e339]
+                - generic [ref=e341]: "Track: SECURITY"
+                - paragraph [ref=e342]: Detailed analyses of exploitation processes and system weaknesses.
+                - generic [ref=e343]:
+                  - generic [ref=e344]:
+                    - generic [ref=e345]: Role
+                    - paragraph [ref=e346]: Technical documentation and research communication.
+                  - generic [ref=e347]:
+                    - generic [ref=e348]: Focus
+                    - paragraph [ref=e349]: Clarity, reproducibility, and depth of explanation.
+            - article [ref=e350]:
+              - generic [ref=e351]:
+                - generic [ref=e352]: "[ Featured 10 ]"
+                - generic [ref=e353]: MODEL LOOP
+              - generic [ref=e356]:
+                - generic [ref=e357]:
+                  - generic [ref=e358]: Markets / Automation
+                  - generic [ref=e359]: Decision systems
+                - generic [ref=e360]: "[ Project visual placeholder ]"
+                - generic [ref=e361]: Automated decision flow over market data and model-driven strategies.
+              - generic [ref=e362]:
+                - heading "Quant Trading Bot" [level=2] [ref=e363]
+                - generic [ref=e365]: "Track: DATA / AI"
+                - paragraph [ref=e366]: A system that analyzes market data and executes decision-making strategies using ML.
+                - generic [ref=e367]:
+                  - generic [ref=e368]:
+                    - generic [ref=e369]: Role
+                    - paragraph [ref=e370]: Signal processing and strategy automation.
+                  - generic [ref=e371]:
+                    - generic [ref=e372]: Focus
+                    - paragraph [ref=e373]: Data ingestion, decision loops, and execution logic.
+            - article [ref=e374]:
+              - generic [ref=e375]:
+                - generic [ref=e376]: "[ Featured 11 ]"
+                - generic [ref=e377]: MARKET READOUT
+              - generic [ref=e380]:
+                - generic [ref=e381]:
+                  - generic [ref=e382]: Terminal / Markets
+                  - generic [ref=e383]: Pricing
+                - generic [ref=e384]: "[ Project visual placeholder ]"
+                - generic [ref=e385]: Terminal-based market inspection for pricing, trends, and trading signals.
+              - generic [ref=e386]:
+                - heading "TCG Market Terminal (TUI)" [level=2] [ref=e387]
+                - generic [ref=e389]: "Track: DATA / AI"
+                - paragraph [ref=e390]: A terminal-based system for analyzing trading card markets, including pricing and trends.
+                - generic [ref=e391]:
+                  - generic [ref=e392]:
+                    - generic [ref=e393]: Role
+                    - paragraph [ref=e394]: Specialized data terminal design.
+                  - generic [ref=e395]:
+                    - generic [ref=e396]: Focus
+                    - paragraph [ref=e397]: Market visibility and operator-speed interaction.
+        - generic [ref=e400]:
+          - paragraph [ref=e401]: "[ 03 / Security Case ]"
+          - generic [ref=e402]:
+            - generic [ref=e403]: Private Vulnerability Disclosure Program
+            - heading "Remote Code Execution Vulnerability" [level=2] [ref=e404]
+            - generic [ref=e406]:
+              - complementary [ref=e407]:
+                - paragraph [ref=e408]: Vector
+                - generic [ref=e409]:
+                  - generic [ref=e410]:
+                    - term [ref=e411]: Target
+                    - definition [ref=e412]: NASA private vulnerability disclosure surface
+                  - generic [ref=e413]:
+                    - term [ref=e414]: Class
+                    - definition [ref=e415]: Remote code execution in application context
+                  - generic [ref=e416]:
+                    - term [ref=e417]: Recognition
+                    - definition [ref=e418]: Reported through the private program and acknowledged in the NASA Hall of Fame.
+              - generic [ref=e419]:
+                - paragraph [ref=e420]: I traced an input path that crossed a trust boundary, reduced it to a reproducible execution primitive, and packaged the finding in a way that made root cause, impact, and remediation path immediately defensible.
+                - generic [ref=e421]:
+                  - generic [ref=e422]:
+                    - paragraph [ref=e423]: Method
+                    - list [ref=e424]:
+                      - listitem [ref=e425]: / Enumerated exposed handlers and mapped where user-controlled data entered execution flow.
+                      - listitem [ref=e426]: / Reduced the issue to a minimal proof-of-concept so the exploit path was precise, not anecdotal.
+                  - generic [ref=e427]:
+                    - paragraph [ref=e428]: Outcome
+                    - list [ref=e429]:
+                      - listitem [ref=e430]: / Confirmed the blast radius in a bounded environment and documented realistic attacker impact.
+                      - listitem [ref=e431]: / Delivered the report through NASA's private program and received public Hall of Fame recognition after disclosure.
+                - generic [ref=e432]:
+                  - generic [ref=e433]:
+                    - generic [ref=e434]: "01"
+                    - paragraph [ref=e435]: Attack surface mapping
+                  - generic [ref=e436]:
+                    - generic [ref=e437]: "02"
+                    - paragraph [ref=e438]: Exploit path reduction
+                  - generic [ref=e439]:
+                    - generic [ref=e440]: "03"
+                    - paragraph [ref=e441]: Disclosure and recognition
+            - link "Link to full writeup ↗" [ref=e442] [cursor=pointer]:
+              - /url: "#contact"
+        - generic [ref=e444]:
+          - generic [ref=e445]:
+            - paragraph [ref=e446]: "[ 04 / Work Approach ]"
+            - heading "Build Break Harden" [level=2] [ref=e447]:
+              - text: Build
+              - text: Break
+              - text: Harden
+          - generic [ref=e449]:
+            - generic [ref=e450]:
+              - generic [ref=e451]: Construct
+              - generic [ref=e452]: Stress
+              - generic [ref=e453]: Verify
+            - generic [ref=e454]:
+              - generic [ref=e455]:
+                - generic [ref=e456]: Build
+                - paragraph [ref=e457]: Design the smallest understandable system that can carry the real workload.
+              - generic [ref=e458]:
+                - generic [ref=e459]: Break
+                - paragraph [ref=e460]: Interrogate assumptions, abuse boundaries, and look for failure modes early.
+              - generic [ref=e461]:
+                - generic [ref=e462]: Harden
+                - paragraph [ref=e463]: Document constraints, reduce ambiguity, and leave the system easier to operate.
+            - generic [ref=e464]:
+              - paragraph [ref=e465]: / eWPTX Certification
+              - paragraph [ref=e466]: / NASA VDP Recognition
+              - paragraph [ref=e467]: / Technical Writeups
+              - paragraph [ref=e468]: / Active GitHub Projects
+        - generic [ref=e469]:
+          - generic [ref=e470]:
+            - generic [ref=e471]:
+              - paragraph [ref=e472]: "[ Open To ]"
+              - list [ref=e473]:
+                - listitem [ref=e474]: / Freelance projects
+                - listitem [ref=e475]: / Backend and systems roles
+                - listitem [ref=e476]: / Security-related work
+            - generic [ref=e477]:
+              - heading "SEND THE PROBLEM, CONSTRAINTS" [level=2] [ref=e478]:
+                - text: SEND THE PROBLEM,
+                - text: CONSTRAINTS
+              - paragraph [ref=e479]: and the failure mode you care about.
+              - generic [ref=e480]:
+                - link "Email" [ref=e481] [cursor=pointer]:
+                  - /url: mailto:hello@rogerkernel.dev
+                - link "GitHub" [ref=e482] [cursor=pointer]:
+                  - /url: https://github.com/
+              - generic [ref=e483]:
+                - generic [ref=e484]:
+                  - generic [ref=e485]:
+                    - generic [ref=e486]: Name
+                    - textbox "Name" [ref=e487]
+                  - generic [ref=e488]:
+                    - generic [ref=e489]: Email
+                    - textbox "Email" [ref=e490]
+                - generic [ref=e491]:
+                  - generic [ref=e492]: Project Type
+                  - combobox "Project Type" [ref=e493]:
+                    - option "Backend / systems build" [selected]
+                    - option "Security review"
+                    - option "Technical prototype"
+                    - option "Other inquiry"
+                - generic [ref=e494]:
+                  - generic [ref=e495]: Inquiry
+                  - textbox "Inquiry" [ref=e496]:
+                    - /placeholder: Describe the system, constraints, timeline, and what can fail.
+                - button "Transmit Inquiry" [ref=e497] [cursor=pointer]
+          - paragraph [ref=e498]: (c) Roger Kernel // Built from first principles
+  - generic:
+    - img
+  - generic [ref=e499]:
+    - button "Toggle Nuxt DevTools" [ref=e500] [cursor=pointer]:
+      - img [ref=e501]
+    - generic "Page load time" [ref=e504]:
+      - generic [ref=e505]: "61"
+      - generic [ref=e506]: ms
+    - button "Toggle Component Inspector" [ref=e508] [cursor=pointer]:
+      - img [ref=e509]
