@@ -220,15 +220,21 @@
   animation: cursorCrossSpin 4.8s linear infinite;
 }
 
+.custom-cursor-pointer {
+  background: transparent !important;
+  box-shadow: none !important;
+  mix-blend-mode: difference;
+}
+
 .custom-cursor-line {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 1.65rem;
-  height: 2.5px;
+  width: 3.2rem;
+  height: 3px;
   border-radius: 9999px;
-  background: #ccff00;
-  box-shadow: 0 0 14px rgb(204 255 0 / 0.35);
+  background: #ffffff;
+  box-shadow: 0 0 14px rgb(255 255 255 / 0.3);
   transform-origin: center;
 }
 

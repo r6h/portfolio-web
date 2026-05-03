@@ -244,7 +244,7 @@ onMounted(async () => {
 
     const updateCursorMode = (x: number, y: number) => {
       const target = document.elementFromPoint(x, y) as HTMLElement | null;
-      isCursorPointerMode.value = Boolean(target?.closest("a, button"));
+      isCursorPointerMode.value = Boolean(target?.closest("button"));
     };
 
     const syncCursorPosition = (clientX: number, clientY: number) => {
