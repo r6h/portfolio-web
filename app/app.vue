@@ -70,10 +70,14 @@
     <div
       ref="cursorDot"
       class="custom-cursor absolute top-0 left-0 h-2.5 w-2.5 rounded-full bg-accent pointer-events-none z-[140] hidden md:block will-change-transform shadow-[0_0_18px_rgb(204_255_0_/_0.55)]"
-      :class="{ 'custom-cursor-pointer': isCursorPointerMode }"
+      :class="{
+        'custom-cursor-pointer': isCursorPointerMode,
+        'custom-cursor-text-mode': isCursorTextMode,
+      }"
       style="transform: translate(-50%, -50%)"
     >
       <span class="custom-cursor-dot" aria-hidden="true" />
+      <span class="custom-cursor-text" aria-hidden="true" />
       <span class="custom-cursor-cross" aria-hidden="true">
         <span class="custom-cursor-line custom-cursor-line-a" />
         <span class="custom-cursor-line custom-cursor-line-b" />
@@ -138,6 +142,7 @@ import { useSiteLoader } from "~/composables/useSiteLoader";
 
 const cursorDot = ref<HTMLElement | null>(null);
 const isCursorPointerMode = ref(false);
+const isCursorTextMode = ref(false);
 let lenis: Lenis;
 let removeCursorListeners: (() => void) | null = null;
 let lenisTickerCallback: ((time: number) => void) | null = null;
@@ -241,10 +246,40 @@ onMounted(async () => {
     const setCursorTop = gsapModule.quickSetter(cursorDot.value, "top", "px");
     const setCursorOpacity = gsapModule.quickSetter(cursorDot.value, "opacity");
     let cursorVisible = false;
-
+    const interactiveSelector = "a[href], button, [role='button'], summary, select, option";
+    const textSelector = [
+      "input",
+      "textarea",
+      "[contenteditable='true']",
+      "[role='textbox']",
+      "p",
+      "h1",
+      "h2",
+      "h3",
+      "h4",
+      "h5",
+      "h6",
+      "li",
+      "label",
+      "span",
+      "small",
+      "strong",
+      "em",
+      "blockquote",
+      "figcaption",
+      "code",
+      "pre",
+      "td",
+      "th",
+      "dt",
+      "dd",
+    ].join(", ");
     const updateCursorMode = (x: number, y: number) => {
       const target = document.elementFromPoint(x, y) as HTMLElement | null;
-      isCursorPointerMode.value = Boolean(target?.closest("button"));
+      const isInteractiveTarget = Boolean(target?.closest(interactiveSelector));
+      const textTarget = !isInteractiveTarget && Boolean(target?.closest(textSelector));
+      isCursorTextMode.value = textTarget;
+      isCursorPointerMode.value = isInteractiveTarget && !textTarget;
     };
 
     const syncCursorPosition = (clientX: number, clientY: number) => {
@@ -268,7 +303,7 @@ onMounted(async () => {
     const onScroll = () => {
       const pointer = (window as Window & { __rkPointer?: { x: number; y: number } }).__rkPointer;
       if (!pointer) return;
-       syncCursorPosition(pointer.x, pointer.y);
+      syncCursorPosition(pointer.x, pointer.y);
       updateCursorMode(pointer.x, pointer.y);
     };
 
@@ -347,10 +382,11 @@ onMounted(async () => {
 });
 
 onUnmounted(() => {
-  window.clearTimeout(loaderDismissTimeout);
-  window.clearTimeout(heroIntroTimeout);
-  isCursorPointerMode.value = false;
-  removeCursorListeners?.();
+      window.clearTimeout(loaderDismissTimeout);
+      window.clearTimeout(heroIntroTimeout);
+      isCursorPointerMode.value = false;
+      isCursorTextMode.value = false;
+      removeCursorListeners?.();
   removeCursorListeners = null;
   if (lenis) {
     lenis.destroy();
@@ -435,6 +471,13 @@ body {
 .language-switcher-button-active {
   border-color: #ccff00;
   background: #ccff00;
+  color: #050505;
+}
+
+.language-switcher-button-active:hover,
+.language-switcher-button-active:focus-visible,
+.filter-button-active:hover,
+.filter-button-active:focus-visible {
   color: #050505;
 }
 </style>

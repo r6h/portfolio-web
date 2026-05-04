@@ -202,7 +202,20 @@
   height: 100%;
   border-radius: inherit;
   background: #ccff00;
-  box-shadow: 0 0 18px rgb(204 255 0 / 0.55);
+  box-shadow: 0 0 24px rgb(204 255 0 / 0.7);
+}
+
+.custom-cursor-text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: none;
+  width: 0.18rem;
+  height: 1.35rem;
+  border-radius: 9999px;
+  background: #f5f5f5;
+  box-shadow: 0 0 12px rgb(245 245 245 / 0.18);
+  transform: translate(-50%, -50%);
 }
 
 .custom-cursor-cross {
@@ -220,6 +233,24 @@
   animation: cursorCrossSpin 4.8s linear infinite;
 }
 
+.custom-cursor-text-mode {
+  background: transparent !important;
+  box-shadow: none !important;
+  mix-blend-mode: normal;
+}
+
+.custom-cursor-text-mode .custom-cursor-dot {
+  opacity: 0;
+}
+
+.custom-cursor-text-mode .custom-cursor-text {
+  display: block;
+}
+
+.custom-cursor-text-mode .custom-cursor-cross {
+  display: none;
+}
+
 .custom-cursor-pointer {
   background: transparent !important;
   box-shadow: none !important;
@@ -230,8 +261,8 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 3.2rem;
-  height: 3px;
+  width: 2rem;
+  height: 1.5px;
   border-radius: 9999px;
   background: #ffffff;
   box-shadow: 0 0 14px rgb(255 255 255 / 0.3);
@@ -300,6 +331,9 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .stage-placeholder {
@@ -395,8 +429,8 @@
 .rag-label {
   fill: #ededed;
   font-family: "Geist Mono", monospace;
-  font-size: 18px;
-  letter-spacing: 0.16em;
+  font-size: 14px;
+  letter-spacing: 0.08em;
   text-anchor: middle;
 }
 
@@ -406,7 +440,7 @@
 
 .rag-label {
   fill: #ccff00;
-  font-size: 13px;
+  font-size: 12px;
   text-anchor: start;
 }
 
@@ -532,10 +566,7 @@
 
 .security-trace-cell {
   border: 1px solid #333333;
-  background:
-    linear-gradient(rgb(237 237 237 / 0.035) 1px, transparent 1px),
-    #070707;
-  background-size: 100% 20px;
+  background: #070707;
   padding: 1rem;
 }
 
@@ -592,10 +623,7 @@
   min-height: 16rem;
   border: 1px solid #333333;
   padding: 1rem;
-  background:
-    linear-gradient(rgb(237 237 237 / 0.04) 1px, transparent 1px),
-    #050505;
-  background-size: 100% 22px;
+  background: #050505;
 }
 
 .machine-cell span {
@@ -675,6 +703,10 @@ html[lang="es"] .machine-cell span {
     #070707;
   background-size: 100% 24px, 24px 100%, auto;
   padding: 1.25rem;
+}
+
+.availability-card-no-grid {
+  background: #070707;
 }
 
 .availability-card span {

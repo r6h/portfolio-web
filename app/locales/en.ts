@@ -22,7 +22,7 @@ export default {
     },
   },
   hero: {
-    eyebrow: "[ Systems / Security / Backend ]",
+    eyebrow: "[ Systems / Security / Web ]",
     role: "Software Engineer focused on Systems and Security",
     intro:
       "I design and build complex software systems, and understand how they break before others do.",
@@ -33,10 +33,11 @@ export default {
     eyebrow: "[ 00 / Operating Model ]",
     line1: "I am a software engineer with experience across",
     line1Accent1: "systems programming",
-    line1Accent2: "backend development",
+    line1Accent2: "web development",
     line1Join: "and",
     line1Accent3: "applied security",
-    line2: "My work ranges from parsers, virtual machines, and terminal tools to",
+    line2:
+      "My work ranges from parsers, virtual machines, and terminal tools to",
     line2Highlight:
       "production systems, microservices, data pipelines, and security research.",
     line3: "I build software that is",
@@ -88,8 +89,7 @@ export default {
     recognition: "Recognition",
     recognitionValue:
       "Reported through the private program and acknowledged in the NASA Hall of Fame.",
-    body:
-      "I traced an input path that crossed a trust boundary, reduced it to a reproducible execution primitive, and packaged the finding in a way that made root cause, impact, and remediation path immediately defensible.",
+    body: "I traced an input path that crossed a trust boundary, reduced it to a reproducible execution primitive, and packaged the finding in a way that made root cause, impact, and remediation path immediately defensible.",
     method: "Method",
     outcome: "Outcome",
     methodItem1:
@@ -155,7 +155,8 @@ export default {
       projectType: "Project Type",
       inquiry: "Inquiry",
       submit: "Transmit Inquiry",
-      placeholder: "Describe the system, constraints, timeline, and what can fail.",
+      placeholder:
+        "Describe the system, constraints, timeline, and what can fail.",
       types: {
         backend: "Backend / systems build",
         security: "Security review",
@@ -187,10 +188,13 @@ export default {
       signal: "VECTOR MATCH",
       module: "Retrieval / No Framework",
       metric: "Custom Dice",
-      caption: "Retrieval behavior made inspectable without external orchestration frameworks.",
-      description: "Custom-built retrieval-augmented system for contextual responses.",
+      caption:
+        "Retrieval behavior made inspectable without external orchestration frameworks.",
+      description:
+        "Custom-built retrieval-augmented system for contextual responses.",
       role: "From-scratch retrieval and serving pipeline.",
-      focus: "Matching logic visibility and sensitive-environment adaptability.",
+      focus:
+        "Matching logic visibility and sensitive-environment adaptability.",
       svgLabel: "RAG retrieval graph",
       svgFooter: "CUSTOM RETRIEVAL PIPELINE / SORENSEN-DICE MATCHING",
     },
@@ -199,7 +203,8 @@ export default {
       signal: "CORRELATION",
       module: "Intel / Entity Links",
       metric: "Graph model",
-      caption: "Fragmented security events connected into a navigable relationship graph.",
+      caption:
+        "Fragmented security events connected into a navigable relationship graph.",
       description: "Automated system for correlating cybersecurity events.",
       role: "Collection, normalization, and graph modeling.",
       focus: "Pattern detection, event linkage, and analyst context.",
@@ -209,8 +214,10 @@ export default {
       signal: "AST RENDER",
       module: "Parser / C++17",
       metric: "From scratch",
-      caption: "Tokenizer, syntax tree, and renderer designed as one controlled pipeline.",
-      description: "A custom parsing engine implementing tokenizer, AST, and rendering pipeline.",
+      caption:
+        "Tokenizer, syntax tree, and renderer designed as one controlled pipeline.",
+      description:
+        "A custom parsing engine implementing tokenizer, AST, and rendering pipeline.",
       role: "Low-level language tooling from first principles.",
       focus: "Parsing internals, structure, and rendering flow.",
       indexTitle: "Markdown Parser (C++)",
@@ -220,8 +227,10 @@ export default {
       signal: "STACK MODEL",
       module: "Execution / VM",
       metric: "Instruction sets",
-      caption: "Execution-model experiments around custom stack-based runtimes.",
-      description: "Exploration of instruction sets and execution models through a custom stack-based VM.",
+      caption:
+        "Execution-model experiments around custom stack-based runtimes.",
+      description:
+        "Exploration of instruction sets and execution models through a custom stack-based VM.",
       role: "Runtime and instruction-set experimentation.",
       focus: "Execution flow, architecture tradeoffs, and low-level behavior.",
     },
@@ -230,8 +239,10 @@ export default {
       signal: "TERMINAL SURFACE",
       module: "CLI / TUI",
       metric: "Operator tools",
-      caption: "Terminal-first tooling designed for speed, automation, and dense interaction.",
-      description: "Terminal-based tools designed for performance, automation, and data interaction.",
+      caption:
+        "Terminal-first tooling designed for speed, automation, and dense interaction.",
+      description:
+        "Terminal-based tools designed for performance, automation, and data interaction.",
       role: "Utility design and workflow acceleration.",
       focus: "Speed, ergonomics, and practical operator interfaces.",
     },
@@ -240,8 +251,10 @@ export default {
       signal: "POSITIONING",
       module: "Concept / Launch",
       metric: "Deployed",
-      caption: "A deployed landing page for a software analysis and security platform concept.",
-      description: "Product concept and deployed landing page for a software analysis and security platform.",
+      caption:
+        "A deployed landing page for a software analysis and security platform concept.",
+      description:
+        "Product concept and deployed landing page for a software analysis and security platform.",
       role: "Product framing and frontend execution.",
       focus: "Narrative clarity, positioning, and shipping a public surface.",
     },
@@ -250,8 +263,10 @@ export default {
       signal: "ATTACK SURFACE",
       module: "Research / Findings",
       metric: "Real targets",
-      caption: "Real-world vulnerability research with exploitable impact and responsible disclosure.",
-      description: "Identified vulnerabilities in real-world systems, including RCE scenarios.",
+      caption:
+        "Real-world vulnerability research with exploitable impact and responsible disclosure.",
+      description:
+        "Identified vulnerabilities in real-world systems, including RCE scenarios.",
       role: "Offensive analysis and disclosure work.",
       focus: "Attack surface mapping, exploitability, and reporting quality.",
     },
@@ -260,8 +275,10 @@ export default {
       signal: "POSTMORTEM",
       module: "Research / Notes",
       metric: "Technical detail",
-      caption: "Detailed writeups explaining the path from weakness to verified impact.",
-      description: "Detailed analyses of exploitation processes and system weaknesses.",
+      caption:
+        "Detailed writeups explaining the path from weakness to verified impact.",
+      description:
+        "Detailed analyses of exploitation processes and system weaknesses.",
       role: "Technical documentation and research communication.",
       focus: "Clarity, reproducibility, and depth of explanation.",
     },
@@ -270,8 +287,10 @@ export default {
       signal: "MODEL LOOP",
       module: "Markets / Automation",
       metric: "Decision systems",
-      caption: "Automated decision flow over market data and model-driven strategies.",
-      description: "A system that analyzes market data and executes decision-making strategies using ML.",
+      caption:
+        "Automated decision flow over market data and model-driven strategies.",
+      description:
+        "A system that analyzes market data and executes decision-making strategies using ML.",
       role: "Signal processing and strategy automation.",
       focus: "Data ingestion, decision loops, and execution logic.",
     },
@@ -280,8 +299,10 @@ export default {
       signal: "MARKET READOUT",
       module: "Terminal / Markets",
       metric: "Pricing",
-      caption: "Terminal-based market inspection for pricing, trends, and trading signals.",
-      description: "A terminal-based system for analyzing trading card markets, including pricing and trends.",
+      caption:
+        "Terminal-based market inspection for pricing, trends, and trading signals.",
+      description:
+        "A terminal-based system for analyzing trading card markets, including pricing and trends.",
       role: "Specialized data terminal design.",
       focus: "Market visibility and operator-speed interaction.",
     },

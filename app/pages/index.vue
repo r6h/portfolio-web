@@ -148,7 +148,21 @@
                   class="project-visual group relative h-[44vh] min-h-72 overflow-hidden border border-border"
                   :class="project.media ? 'project-visual-media' : project.visual"
                 >
-                  <template v-if="project.media">
+                  <template v-if="project.mediaType === 'video'">
+                    <video
+                      class="project-media"
+                      :src="project.media"
+                      :aria-label="project.title"
+                      autoplay
+                      muted
+                      loop
+                      playsinline
+                      preload="auto"
+                      disablepictureinpicture
+                      controlslist="nodownload noplaybackrate noremoteplayback"
+                    />
+                  </template>
+                  <template v-else-if="project.media">
                     <img
                       :src="project.media"
                       :alt="project.title"
@@ -172,10 +186,6 @@
                           </feMerge>
                         </filter>
                       </defs>
-                      <g class="rag-grid">
-                        <path v-for="x in [80, 180, 280, 380, 480, 580, 680, 780]" :key="`x-${x}`" :d="`M${x} 30V490`" />
-                        <path v-for="y in [70, 150, 230, 310, 390, 470]" :key="`y-${y}`" :d="`M40 ${y}H860`" />
-                      </g>
                       <g class="rag-links" filter="url(#ragGlow)">
                         <path d="M135 126 C260 80 340 168 438 214 S650 302 744 230" />
                         <path d="M156 374 C260 330 330 360 438 214 S612 130 770 132" />
@@ -183,27 +193,27 @@
                       </g>
                       <g class="rag-node rag-query">
                         <circle cx="135" cy="126" r="34" />
-                        <text x="135" y="132">Q</text>
+                        <text x="135" y="132">Ask</text>
                       </g>
                       <g class="rag-node">
                         <circle cx="438" cy="214" r="48" />
-                        <text x="438" y="220">V</text>
+                        <text x="438" y="220">Helper</text>
                       </g>
                       <g class="rag-node">
                         <circle cx="744" cy="230" r="30" />
-                        <text x="744" y="236">D1</text>
+                        <text x="744" y="236">Docs</text>
                       </g>
                       <g class="rag-node">
                         <circle cx="156" cy="374" r="26" />
-                        <text x="156" y="380">D2</text>
+                        <text x="156" y="380">Web</text>
                       </g>
                       <g class="rag-node">
                         <circle cx="770" cy="132" r="26" />
-                        <text x="770" y="138">D3</text>
+                        <text x="770" y="138">Notes</text>
                       </g>
                       <g class="rag-node">
                         <circle cx="612" cy="396" r="26" />
-                        <text x="612" y="402">A</text>
+                        <text x="612" y="402">Reply</text>
                       </g>
                       <text class="rag-label" x="64" y="468">{{ t("projects.ragChatbot.svgFooter") }}</text>
                     </svg>
@@ -439,7 +449,7 @@
         </div>
         <div class="col-span-12 mt-16 md:col-span-8 md:col-start-5 md:mt-0">
           <div class="availability-grid mb-12 grid gap-3 md:grid-cols-3">
-            <div class="availability-card">
+            <div class="availability-card availability-card-no-grid">
               <span>01</span>
               <p>{{ t("contact.card1") }}</p>
             </div>
@@ -447,7 +457,7 @@
               <span>02</span>
               <p>{{ t("contact.card2") }}</p>
             </div>
-            <div class="availability-card">
+            <div class="availability-card availability-card-no-grid">
               <span>03</span>
               <p>{{ t("contact.card3") }}</p>
             </div>
@@ -541,10 +551,20 @@ const filterDefs = [
 
 const featuredProjectDefs = [
   {
-    key: "fleetManagement",
-    category: "business",
-    stack: "Laravel, Vue, Python, MongoDB, REST APIs",
+    key: "tcgTerminal",
+    category: "dataAi",
+    stack: "Rust with Ratatui, Python with FastAPI, SQLite",
     visual: "visual-placeholder-shell",
+    media: "/projects/tcgterminal.mp4",
+    mediaType: "video",
+  },
+  {
+    key: "desmodus",
+    category: "business",
+    stack: "Nuxt.js, GSAP",
+    visual: "visual-placeholder-shell",
+    media: "/projects/desmoduslanding.mp4",
+    mediaType: "video",
   },
   {
     key: "ragChatbot",
@@ -553,10 +573,20 @@ const featuredProjectDefs = [
     visual: "visual-rag",
   },
   {
-    key: "threatIntel",
-    category: "security",
-    stack: "Python, data processing, graph modeling",
+    key: "fleetManagement",
+    category: "business",
+    stack: "Laravel, Vue, Python, MongoDB, REST APIs",
     visual: "visual-placeholder-shell",
+    media: "/projects/fleetmanager.mp4",
+    mediaType: "video",
+  },
+  {
+    key: "quantBot",
+    category: "dataAi",
+    stack: "Python, XGBoost, scikit-learn",
+    visual: "visual-placeholder-shell",
+    media: "/projects/quantbot.png",
+    mediaType: "image",
   },
   {
     key: "markdownParser",
@@ -564,38 +594,23 @@ const featuredProjectDefs = [
     stack: "C++17",
     visual: "visual-placeholder-shell",
     media: "/projects/paser_cpp.png",
+    mediaType: "image",
   },
   {
-    key: "vmExperiments",
-    category: "systems",
-    stack: "",
+    key: "threatIntel",
+    category: "security",
+    stack: "Python, data processing, graph modeling",
     visual: "visual-placeholder-shell",
-  },
-  {
-    key: "desmodus",
-    category: "business",
-    stack: "",
-    visual: "visual-placeholder-shell",
+    media: "/projects/intelgraph.png",
+    mediaType: "image",
   },
   {
     key: "writeups",
     category: "security",
-    stack: "",
+    stack: "Ruby on Rails, JavaScript, documentation",
     visual: "visual-placeholder-shell",
     media: "/projects/writeups.png",
-  },
-  {
-    key: "quantBot",
-    category: "dataAi",
-    stack: "",
-    visual: "visual-placeholder-shell",
-    media: "/projects/quantbot.png",
-  },
-  {
-    key: "tcgTerminal",
-    category: "dataAi",
-    stack: "",
-    visual: "visual-placeholder-shell",
+    mediaType: "image",
   },
 ];
 
@@ -731,6 +746,11 @@ let heroVisible = true;
 let showcaseMedia: { add: (...args: any[]) => any; revert: () => void } | undefined;
 let deferredStageObservers: IntersectionObserver[] = [];
 const SHOWCASE_HEADER_OFFSET = 96;
+const FEATURED_VIDEO_URLS = [
+  "/projects/tcgterminal.mp4",
+  "/projects/desmoduslanding.mp4",
+  "/projects/fleetmanager.mp4",
+] as const;
 let pageExperienceStarted = false;
 let heroAssetMarkedLoaded = false;
 let pageMotionMarkedLoaded = false;
@@ -739,6 +759,50 @@ let scrollTriggerModule: typeof import("gsap/ScrollTrigger")["default"] | null =
 
 const { isExperienceReady, isHeroIntroReady, markAssetsLoaded, registerAssets } = useSiteLoader();
 const { preloadModel } = useModelPreloader();
+const videoPromises = new Map<string, Promise<void>>();
+
+const preloadVideo = (src: string) => {
+  const existing = videoPromises.get(src);
+  if (existing) return existing;
+
+  const promise = new Promise<void>((resolve, reject) => {
+    if (typeof window === "undefined") {
+      resolve();
+      return;
+    }
+
+    const video = document.createElement("video");
+    video.preload = "auto";
+    video.muted = true;
+    video.playsInline = true;
+    video.loop = true;
+    video.src = src;
+
+    const cleanup = () => {
+      video.removeEventListener("canplaythrough", handleReady);
+      video.removeEventListener("loadeddata", handleReady);
+      video.removeEventListener("error", handleError);
+    };
+
+    const handleReady = () => {
+      cleanup();
+      resolve();
+    };
+
+    const handleError = () => {
+      cleanup();
+      reject(new Error(`Failed to preload video: ${src}`));
+    };
+
+    video.addEventListener("canplaythrough", handleReady, { once: true });
+    video.addEventListener("loadeddata", handleReady, { once: true });
+    video.addEventListener("error", handleError, { once: true });
+    video.load();
+  });
+
+  videoPromises.set(src, promise);
+  return promise;
+};
 
 const ensureGsap = async () => {
   if (gsapModule && scrollTriggerModule) return;
@@ -832,13 +896,19 @@ watch(filteredFeaturedProjects, async () => {
 });
 
 onMounted(async () => {
-  registerAssets(4);
+  registerAssets(7);
 
-  void Promise.all([
+  void Promise.allSettled([
     preloadModel("seraphim-model", () => new GLTFLoader().loadAsync(SERAPHIM_MODEL_URL)),
     preloadModel("terminal-model", () => new GLTFLoader().loadAsync(TERMINAL_MODEL_URL)),
-  ]).then(() => {
-    markAssetsLoaded(2);
+    ...FEATURED_VIDEO_URLS.map((src) => preloadVideo(src)),
+  ]).then((results) => {
+    for (const result of results) {
+      if (result.status === "rejected") {
+        console.warn(result.reason);
+      }
+    }
+    markAssetsLoaded(5);
   });
 
   mountDeferredStage(seraphimMountTrigger.value, isSeraphimStageMounted);

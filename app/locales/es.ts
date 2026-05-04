@@ -22,18 +22,18 @@ export default {
     },
   },
   hero: {
-    eyebrow: "[ Sistemas / Seguridad / Backend ]",
+    eyebrow: "[ Sistemas / Seguridad / Web ]",
     role: "Ingeniero de software enfocado en Sistemas y Seguridad",
     intro:
       "Diseño y construyo sistemas de software complejos, y entiendo cómo se rompen antes que otros.",
-    ctaShowcase: "Ver showcase",
+    ctaShowcase: "Ver galería",
     ctaContact: "Contacto",
   },
   intro: {
     eyebrow: "[ 00 / Modelo de trabajo ]",
     line1: "Soy un ingeniero de software con experiencia en",
     line1Accent1: "programación de sistemas",
-    line1Accent2: "desarrollo backend",
+    line1Accent2: "desarrollo web",
     line1Join: "y",
     line1Accent3: "seguridad aplicada",
     line2:
@@ -44,8 +44,8 @@ export default {
     line3Highlight: "funcional, comprensible, escalable y resistente.",
   },
   showcase: {
-    eyebrow: "[ 01 / Showcase de proyectos ]",
-    title: "Showcase",
+    eyebrow: "[ 01 / Galería de proyectos ]",
+    title: "Galería",
     description:
       "Desplázate lateralmente por el trabajo seleccionado. Expande el índice completo después del carrusel.",
     filters: {
@@ -63,7 +63,7 @@ export default {
       dataAi: "datos / ia",
     },
     featuredLabel: "Destacado",
-    skip: "[ Saltar showcase ]",
+    skip: "[ Saltar galería ]",
     continueBelow: "[ Continuar abajo ]",
     track: "Área",
     stack: "Stack",
@@ -72,7 +72,7 @@ export default {
     placeholder: "[ Placeholder visual del proyecto ]",
     indexCount: "{count} proyectos en {track}",
     indexDescription:
-      "¿Terminaste el showcase? Expande aquí la lista completa sin interrumpir el flujo principal de la galería.",
+      "¿Terminaste de ver la galería? Expande aquí la lista completa sin interrumpir el flujo principal de la galería.",
     collapse: "Ocultar índice completo",
     seeAll: "Ver todo el trabajo",
     fullIndex: "el índice completo",
