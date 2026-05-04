@@ -56,5 +56,5 @@ test-results/
 *.temp
 .agents
 .codex
-.playwright*
-output/
+.playwright-mcp
+output/*
