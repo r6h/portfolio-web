@@ -735,15 +735,6 @@
                 :placeholder="t('contact.form.placeholder')"
               />
             </label>
-            <label class="hidden" aria-hidden="true">
-              <span>Website</span>
-              <input
-                v-model="inquiry.honeypot"
-                tabindex="-1"
-                autocomplete="off"
-                type="text"
-              />
-            </label>
             <button
               class="inquiry-submit"
               type="submit"
@@ -799,6 +790,8 @@ const SeraphimStage = defineAsyncComponent(
 const SecurityTerminalStage = defineAsyncComponent(
   () => import("~/components/SecurityTerminalStage.client.vue"),
 );
+const CONTACT_API_URL =
+  "https://portfolio-web-contact.rogerpicar.workers.dev/api/contact";
 
 const heroCanvas = ref<HTMLCanvasElement | null>(null);
 const heroSection = ref<HTMLElement | null>(null);
@@ -944,7 +937,6 @@ const inquiry = reactive({
   email: "",
   type: "backend",
   message: "",
-  honeypot: "",
 });
 
 const filters = computed(() =>
@@ -1036,7 +1028,7 @@ const submitInquiry = async () => {
   contactSubmissionMessage.value = "";
 
   try {
-    const response = await fetch("/api/contact", {
+    const response = await fetch(CONTACT_API_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -1047,7 +1039,6 @@ const submitInquiry = async () => {
         type: inquiry.type,
         typeLabel: inquiryTypeLabel,
         message: inquiry.message.trim(),
-        honeypot: inquiry.honeypot,
       }),
     });
 
@@ -1063,7 +1054,6 @@ const submitInquiry = async () => {
     inquiry.email = "";
     inquiry.type = "backend";
     inquiry.message = "";
-    inquiry.honeypot = "";
     contactSubmissionState.value = "success";
     contactSubmissionMessage.value = t("contact.form.status.success");
   } catch (error) {
