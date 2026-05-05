@@ -143,8 +143,10 @@ export default {
     card1: "Proyectos freelance",
     card2: "Roles backend y de sistemas",
     card3: "Trabajo relacionado con seguridad",
-    titleLine1: "ENVÍA EL PROBLEMA,",
-    titleLine2: "LAS RESTRICCIONES",
+    titleLead: "ENVÍA EL",
+    titleAccent: "PROBLEMA",
+    titlePunct: ",",
+    titleTail: "LAS RESTRICCIONES",
     subtitle: "y el modo de fallo que te importa.",
     links: {
       email: "Email",

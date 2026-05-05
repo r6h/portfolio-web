@@ -134,21 +134,23 @@ export default {
       github: "Active GitHub Projects",
     },
   },
-  contact: {
-    eyebrow: "[ Availability ]",
-    status: "Currently Open",
-    statusBody:
-      "Taking on work where system behavior, failure modes, and delivery quality matter.",
+    contact: {
+      eyebrow: "[ Availability ]",
+      status: "Currently Open",
+      statusBody:
+        "Taking on work where system behavior, failure modes, and delivery quality matter.",
     card1: "Freelance projects",
     card2: "Backend and systems roles",
     card3: "Security-related work",
-    titleLine1: "SEND THE PROBLEM,",
-    titleLine2: "CONSTRAINTS",
-    subtitle: "and the failure mode you care about.",
-    links: {
-      email: "Email",
-      github: "GitHub",
-    },
+      titleLead: "SEND THE",
+      titleAccent: "PROBLEM",
+      titlePunct: ",",
+      titleTail: "CONSTRAINTS",
+      subtitle: "and the failure mode you care about.",
+      links: {
+        email: "Email",
+        github: "GitHub",
+      },
     form: {
       name: "Name",
       email: "Email",

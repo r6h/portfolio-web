@@ -596,8 +596,10 @@
           <h2
             class="mt-6 text-6xl font-black uppercase leading-[0.82] tracking-[-0.065em] md:text-8xl"
           >
-            {{ t("approach.title.line1") }}<br />{{ t("approach.title.line2")
-            }}<br />{{ t("approach.title.line3") }}
+            {{ t("approach.title.line1") }}<br /><span class="text-accent">{{
+              t("approach.title.line2")
+            }}</span
+            ><br />{{ t("approach.title.line3") }}
           </h2>
         </div>
         <div class="col-span-12 mt-10 md:col-span-7 md:mt-0">
@@ -671,9 +673,11 @@
           <h2
             class="max-w-4xl text-4xl font-black uppercase leading-[0.92] tracking-[-0.06em] text-primary md:text-6xl"
           >
-            {{ t("contact.titleLine1") }}<br class="hidden md:block" />{{
-              t("contact.titleLine2")
-            }}
+            <span>{{ t("contact.titleLead") }}&nbsp;</span
+            ><span class="text-accent">{{ t("contact.titleAccent") }}</span
+            >{{ t("contact.titlePunct") }}<br class="hidden md:block" /><span
+              >{{ t("contact.titleTail") }}</span
+            >
           </h2>
           <p
             class="mt-3 max-w-2xl font-mono text-sm tracking-[0.08em] text-secondary md:text-base"
@@ -746,8 +750,7 @@
               v-if="contactSubmissionMessage"
               class="inquiry-status"
               :class="{
-                'inquiry-status-success':
-                  contactSubmissionState === 'success',
+                'inquiry-status-success': contactSubmissionState === 'success',
                 'inquiry-status-error': contactSubmissionState === 'error',
               }"
               role="status"
@@ -911,7 +914,7 @@ const proofItems = [
 
 const contactLinks = [
   { labelKey: "contact.links.email", href: "mailto:contact@roger.ac" },
-  { labelKey: "contact.links.github", href: "https://github.com/" },
+  { labelKey: "contact.links.github", href: "https://github.com/r6h" },
 ] as const;
 
 const inquiryTypes = computed(() => [
@@ -1042,9 +1045,10 @@ const submitInquiry = async () => {
       }),
     });
 
-    const payload = (await response.json().catch(() => null)) as
-      | { ok?: boolean; error?: string }
-      | null;
+    const payload = (await response.json().catch(() => null)) as {
+      ok?: boolean;
+      error?: string;
+    } | null;
 
     if (!response.ok || !payload?.ok) {
       throw new Error(payload?.error ?? t("contact.form.status.error"));
