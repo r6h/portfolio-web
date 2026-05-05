@@ -1,21 +1,5 @@
 const ALLOWED_TYPES = new Set(["backend", "security", "prototype", "other"]);
 
-const CREATE_TABLE_SQL = `
-CREATE TABLE IF NOT EXISTS contact_submissions (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  created_at TEXT NOT NULL DEFAULT (datetime('now')),
-  name TEXT NOT NULL,
-  email TEXT NOT NULL,
-  project_type TEXT NOT NULL,
-  project_type_label TEXT NOT NULL,
-  message TEXT NOT NULL,
-  referrer TEXT,
-  user_agent TEXT
-);
-`;
-
-let schemaReady;
-
 const json = (data, status = 200) =>
   new Response(JSON.stringify(data), {
     status,
@@ -31,16 +15,8 @@ const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
 const clamp = (value, max) => value.slice(0, max);
 
-async function ensureSchema(db) {
-  if (!schemaReady) {
-    schemaReady = db.exec(CREATE_TABLE_SQL).then(() => undefined);
-  }
-
-  await schemaReady;
-}
-
-export async function onRequestPost(context) {
-  const db = context.env.CONTACTS_DB;
+async function handleContact(request, env) {
+  const db = env.CONTACTS_DB;
 
   if (!db) {
     return json(
@@ -54,7 +30,7 @@ export async function onRequestPost(context) {
 
   let body;
   try {
-    body = await context.request.json();
+    body = await request.json();
   } catch {
     return json(
       {
@@ -117,7 +93,6 @@ export async function onRequestPost(context) {
   }
 
   try {
-    await ensureSchema(db);
     await db
       .prepare(
         `
@@ -139,10 +114,8 @@ export async function onRequestPost(context) {
         type,
         typeLabel,
         message,
-        clamp(trimOrEmpty(context.request.headers.get("referer")), 500) ||
-          null,
-        clamp(trimOrEmpty(context.request.headers.get("user-agent")), 500) ||
-          null,
+        clamp(trimOrEmpty(request.headers.get("referer")), 500) || null,
+        clamp(trimOrEmpty(request.headers.get("user-agent")), 500) || null,
       )
       .run();
   } catch (error) {
@@ -160,3 +133,25 @@ export async function onRequestPost(context) {
 
   return json({ ok: true }, 201);
 }
+
+export default {
+  async fetch(request, env) {
+    const url = new URL(request.url);
+
+    if (url.pathname === "/api/contact") {
+      if (request.method !== "POST") {
+        return json(
+          {
+            ok: false,
+            error: "Method not allowed.",
+          },
+          405,
+        );
+      }
+
+      return handleContact(request, env);
+    }
+
+    return env.ASSETS.fetch(request);
+  },
+};

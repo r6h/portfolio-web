@@ -1069,7 +1069,10 @@ const submitInquiry = async () => {
   } catch (error) {
     console.error("Contact form submission failed:", error);
     contactSubmissionState.value = "error";
-    contactSubmissionMessage.value = t("contact.form.status.error");
+    contactSubmissionMessage.value =
+      error instanceof Error && error.message
+        ? error.message
+        : t("contact.form.status.error");
   }
 };
 
