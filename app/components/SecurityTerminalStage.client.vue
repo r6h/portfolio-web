@@ -25,9 +25,11 @@ import {
 } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { onMounted, onUnmounted, ref, watch } from "vue";
+import { useAccentTheme } from "~/composables/useAccentTheme";
 import { useSiteLoader } from "~/composables/useSiteLoader";
 import { useModelPreloader } from "~/composables/useModelPreloader";
 import { TERMINAL_MODEL_URL } from "~/utils/modelUrls";
+import { hexToRgbTriplet } from "~/utils/theme";
 
 const canvasRef = ref<HTMLCanvasElement | null>(null);
 const stageRef = ref<HTMLElement | null>(null);
@@ -42,6 +44,32 @@ let prefersReducedMotion = false;
 
 const { isExperienceReady } = useSiteLoader();
 const { preloadModel } = useModelPreloader();
+const { accentHex } = useAccentTheme();
+
+let accentMaterials: Array<MeshPhysicalMaterial & { userData: { accentUniform?: { value: Color } } }> = [];
+let shellMaterial: MeshBasicMaterial | null = null;
+let rimLight: PointLight | null = null;
+let underLight: PointLight | null = null;
+let fillLight: PointLight | null = null;
+
+const makeAccentColor = (value = accentHex.value) => {
+  const { r, g, b } = hexToRgbTriplet(value);
+  const color = new Color().setRGB(r / 255, g / 255, b / 255);
+  color.offsetHSL(0.045, 0.12, 0.04);
+  return color;
+};
+const applyAccentTone = (value: string) => {
+  const accentColor = makeAccentColor(value);
+  rimLight?.color.set(accentColor);
+  underLight?.color.set(accentColor);
+  fillLight?.color.set(accentColor);
+  shellMaterial?.color.set(accentColor);
+
+  for (const material of accentMaterials) {
+    material.emissive.set(accentColor);
+    material.userData.accentUniform?.value.set(accentColor);
+  }
+};
 
 const disposeMaterial = (material: Material | Material[]) => {
   const materials = Array.isArray(material) ? material : [material];
@@ -65,14 +93,15 @@ const createAccentMaterial = (sourceMaterial: Material | Material[]) => {
     color: new Color("#cfd7c5"),
     roughness: 0.5,
     metalness: 0.16,
-    emissive: new Color("#ccff00"),
-    emissiveIntensity: 0.11,
+    emissive: makeAccentColor(),
+    emissiveIntensity: 0.12,
     clearcoat: 0.64,
     clearcoatRoughness: 0.36,
   });
 
   material.onBeforeCompile = (shader) => {
-    shader.uniforms.accentColor = { value: new Color("#ccff00") };
+    shader.uniforms.accentColor = { value: makeAccentColor() };
+    material.userData.accentUniform = shader.uniforms.accentColor;
     shader.fragmentShader = shader.fragmentShader.replace(
       "#include <common>",
       "#include <common>\nuniform vec3 accentColor;",
@@ -81,7 +110,7 @@ const createAccentMaterial = (sourceMaterial: Material | Material[]) => {
       "#include <color_fragment>",
       `#include <color_fragment>
       float grayValue = dot(diffuseColor.rgb, vec3(0.299, 0.587, 0.114));
-      diffuseColor.rgb = mix(vec3(grayValue), vec3(grayValue) * accentColor, 0.68);`,
+      diffuseColor.rgb = mix(vec3(grayValue), accentColor, 0.64);`,
     );
     shader.fragmentShader = shader.fragmentShader.replace(
       "#include <emissivemap_fragment>",
@@ -103,15 +132,16 @@ const applyAccentMaterials = (model: Group) => {
     object.material = material;
     object.castShadow = false;
     object.receiveShadow = false;
+    accentMaterials.push(material as MeshPhysicalMaterial & { userData: { accentUniform?: { value: Color } } });
   });
 };
 
 const buildAccentShell = (model: Group) => {
   const shell = model.clone(true);
-  const shellMaterial = new MeshBasicMaterial({
-    color: new Color("#ccff00"),
+  shellMaterial = new MeshBasicMaterial({
+    color: makeAccentColor(),
     transparent: true,
-    opacity: 0.28,
+    opacity: 0.26,
     side: BackSide,
     depthWrite: false,
     blending: AdditiveBlending,
@@ -133,9 +163,10 @@ const fitModel = (model: Group) => {
   bounds.getSize(size);
   bounds.getCenter(center);
 
-  const widthTarget = 4.8;
-  const heightTarget = 2.7;
-  const scale = Math.min(widthTarget / Math.max(size.x, 1), heightTarget / Math.max(size.y, 1)) * 0.88;
+  const isCompactStage = typeof window !== "undefined" && window.innerWidth < 768;
+  const widthTarget = isCompactStage ? 3.65 : 4.8;
+  const heightTarget = isCompactStage ? 2.12 : 2.7;
+  const scale = Math.min(widthTarget / Math.max(size.x, 1), heightTarget / Math.max(size.y, 1)) * (isCompactStage ? 0.74 : 0.88);
 
   model.scale.setScalar(scale);
   model.position.set(-center.x * scale, -center.y * scale, -center.z * scale);
@@ -167,15 +198,15 @@ onMounted(async () => {
   keyLight.position.set(4.8, 4.1, 7.2);
   scene.add(keyLight);
 
-  const rimLight = new PointLight(0xccff00, 13, 16, 2);
+  rimLight = new PointLight(makeAccentColor().getHex(), 13, 16, 2);
   rimLight.position.set(-5.6, 2.4, 4.8);
   scene.add(rimLight);
 
-  const underLight = new PointLight(0xccff00, 5.2, 14, 2);
+  underLight = new PointLight(makeAccentColor().getHex(), 5.2, 14, 2);
   underLight.position.set(0, -4.6, 2.4);
   scene.add(underLight);
 
-  const fillLight = new PointLight(0xc8fff0, 2.4, 14, 2);
+  fillLight = new PointLight(makeAccentColor().getHex(), 2.4, 14, 2);
   fillLight.position.set(0, 1.6, 6.4);
   scene.add(fillLight);
 
@@ -192,6 +223,7 @@ onMounted(async () => {
   shell.rotation.copy(model.rotation);
   rotationPivot.add(shell);
   rotationPivot.add(model);
+  applyAccentTone(accentHex.value);
 
   const resize = () => {
     if (!renderer) return;
@@ -205,6 +237,10 @@ onMounted(async () => {
   resizeObserver = new ResizeObserver(resize);
   resizeObserver.observe(stage);
   resize();
+
+  watch(accentHex, (value) => {
+    applyAccentTone(value);
+  }, { immediate: true });
 
   const startLoop = () => {
     if (rafId || !stageVisible || prefersReducedMotion || !isExperienceReady.value) return;
@@ -302,5 +338,11 @@ onUnmounted(() => {
   height: 100%;
   display: block;
   z-index: 1;
+}
+
+@media (max-width: 767px) {
+  .terminal-stage {
+    min-height: 12rem;
+  }
 }
 </style>

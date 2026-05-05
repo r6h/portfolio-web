@@ -3,6 +3,13 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --accent-hex: #ccff00;
+    --accent-rgb: 204 255 0;
+  }
+}
+
+@layer base {
   /* Lenis Smooth Scroll Recommended CSS */
   html.lenis,
   html.lenis body {
@@ -181,7 +188,7 @@
   display: inline-block;
   width: 0.12em;
   height: 0.74em;
-  background: #ccff00;
+  background: rgb(var(--accent-rgb));
   box-shadow: 0 0 0 1px #050505;
   opacity: 0;
   align-self: flex-end;
@@ -201,8 +208,8 @@
   width: 100%;
   height: 100%;
   border-radius: inherit;
-  background: #ccff00;
-  box-shadow: 0 0 24px rgb(204 255 0 / 0.7);
+  background: rgb(var(--accent-rgb));
+  box-shadow: 0 0 24px rgb(var(--accent-rgb) / 0.7);
 }
 
 .custom-cursor-text {
@@ -287,7 +294,7 @@
 
 .signal-orb {
   position: absolute;
-  border: 1px solid rgb(204 255 0 / 0.28);
+  border: 1px solid rgb(var(--accent-rgb) / 0.28);
   border-radius: 9999px;
   filter: blur(0.2px);
   opacity: 0.85;
@@ -311,7 +318,7 @@
 
 .intro-mark {
   color: #ededed;
-  background: linear-gradient(transparent 58%, rgb(204 255 0 / 0.24) 58%);
+  background: linear-gradient(transparent 58%, rgb(var(--accent-rgb) / 0.24) 58%);
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
 }
@@ -341,7 +348,7 @@
   overflow: hidden;
   border: 1px solid #333333;
   background:
-    radial-gradient(circle at 50% 50%, rgb(204 255 0 / 0.08), transparent 58%),
+    radial-gradient(circle at 50% 50%, rgb(var(--accent-rgb) / 0.08), transparent 58%),
     linear-gradient(90deg, rgb(237 237 237 / 0.05) 1px, transparent 1px),
     #050505;
   background-size:
@@ -392,7 +399,7 @@
 
 .visual-rag {
   background:
-    radial-gradient(circle at 55% 42%, rgb(204 255 0 / 0.12), transparent 18rem),
+    radial-gradient(circle at 55% 42%, rgb(var(--accent-rgb) / 0.12), transparent 18rem),
     linear-gradient(rgb(237 237 237 / 0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgb(237 237 237 / 0.04) 1px, transparent 1px),
     #050505;
@@ -421,7 +428,7 @@
 
 .rag-node circle {
   fill: #050505;
-  stroke: #ccff00;
+  stroke: rgb(var(--accent-rgb));
   stroke-width: 2;
 }
 
@@ -439,7 +446,7 @@
 }
 
 .rag-label {
-  fill: #ccff00;
+  fill: rgb(var(--accent-rgb));
   font-size: 12px;
   text-anchor: start;
 }
@@ -455,6 +462,12 @@
 .showcase-filter-rail {
   border-top: 1px solid rgb(51 51 51 / 0.85);
   border-bottom: 1px solid rgb(51 51 51 / 0.85);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.showcase-filter-rail::-webkit-scrollbar {
+  display: none;
 }
 
 .featured-track {
@@ -467,19 +480,19 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgb(204 255 0 / 0.35);
+  border: 1px solid rgb(var(--accent-rgb) / 0.35);
   padding: 0.85rem 1rem;
   font-family: "Geist Mono", monospace;
   font-size: 0.78rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: #ccff00;
+  color: rgb(var(--accent-rgb));
   transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease;
 }
 
 .showcase-skip-button:hover {
-  border-color: #ccff00;
-  background: #ccff00;
+  border-color: rgb(var(--accent-rgb));
+  background: rgb(var(--accent-rgb));
   color: #050505;
 }
 
@@ -543,7 +556,7 @@
 
 .security-section {
   background:
-    linear-gradient(90deg, rgb(204 255 0 / 0.08), transparent 26%),
+    linear-gradient(90deg, rgb(var(--accent-rgb) / 0.08), transparent 26%),
     linear-gradient(180deg, rgb(5 5 5), rgb(7 10 8));
 }
 
@@ -573,7 +586,7 @@
 .security-trace-cell span {
   display: inline-block;
   margin-bottom: 0.7rem;
-  color: #ccff00;
+  color: rgb(var(--accent-rgb));
   font-family: "Geist Mono", monospace;
   font-size: 0.72rem;
   letter-spacing: 0.24em;
@@ -588,7 +601,7 @@
 
 .approach-section {
   background:
-    linear-gradient(90deg, transparent 0 49.95%, rgb(204 255 0 / 0.22) 49.95% 50.05%, transparent 50.05%),
+    linear-gradient(90deg, transparent 0 49.95%, rgb(var(--accent-rgb) / 0.22) 49.95% 50.05%, transparent 50.05%),
     #050505;
 }
 
@@ -650,7 +663,7 @@ html[lang="es"] .machine-cell span {
 }
 
 .machine-cell-accent {
-  background: #ccff00;
+  background: rgb(var(--accent-rgb));
   color: #050505;
 }
 
@@ -683,7 +696,7 @@ html[lang="es"] .machine-cell span {
   font-size: 0.68rem;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: #ccff00;
+  color: rgb(var(--accent-rgb));
 }
 
 .availability-status::before {
@@ -691,8 +704,8 @@ html[lang="es"] .machine-cell span {
   width: 0.55rem;
   height: 0.55rem;
   border-radius: 9999px;
-  background: #ccff00;
-  box-shadow: 0 0 18px rgb(204 255 0 / 0.5);
+  background: rgb(var(--accent-rgb));
+  box-shadow: 0 0 18px rgb(var(--accent-rgb) / 0.5);
 }
 
 .availability-card {
@@ -730,8 +743,8 @@ html[lang="es"] .machine-cell span {
 }
 
 .availability-card-accent {
-  background: #ccff00;
-  border-color: #ccff00;
+  background: rgb(var(--accent-rgb));
+  border-color: rgb(var(--accent-rgb));
 }
 
 .availability-card-accent span,
@@ -766,13 +779,13 @@ html[lang="es"] .machine-cell span {
 .inquiry-form input:focus,
 .inquiry-form select:focus,
 .inquiry-form textarea:focus {
-  border-color: #ccff00;
+  border-color: rgb(var(--accent-rgb));
   background: #080808;
 }
 
 .inquiry-submit {
-  border: 1px solid #ccff00;
-  background: #ccff00;
+  border: 1px solid rgb(var(--accent-rgb));
+  background: rgb(var(--accent-rgb));
   padding: 1rem;
   color: #050505;
   font-size: 0.78rem;
@@ -784,7 +797,34 @@ html[lang="es"] .machine-cell span {
 
 .inquiry-submit:hover {
   background: #050505;
-  color: #ccff00;
+  color: rgb(var(--accent-rgb));
+}
+
+.inquiry-submit:disabled {
+  cursor: wait;
+  opacity: 0.74;
+}
+
+.inquiry-status {
+  border: 1px solid #333333;
+  background: rgb(7 7 7 / 0.96);
+  padding: 0.95rem 1rem;
+  font-family: "Geist Mono", monospace;
+  font-size: 0.68rem;
+  line-height: 1.55;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #9ba39a;
+}
+
+.inquiry-status-success {
+  border-color: rgb(var(--accent-rgb));
+  color: rgb(var(--accent-rgb));
+}
+
+.inquiry-status-error {
+  border-color: #7a2d2d;
+  color: #ff8f8f;
 }
 
 @keyframes heroCursorReveal {
@@ -845,12 +885,51 @@ html[lang="es"] .machine-cell span {
     border-right: 0;
   }
 
+  .filter-button {
+    padding: 0.82rem 1rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+  }
+
+  .showcase-filter-rail {
+    padding-right: 1.25rem;
+  }
+
+  .showcase-filter-button {
+    font-size: 0.72rem;
+  }
+
+  .showcase-skip-button,
+  .showcase-skip-button-local {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.74rem;
+    letter-spacing: 0.18em;
+  }
+
   .showcase-viewport {
     overflow-x: auto;
   }
 
   .featured-track {
     width: auto;
+  }
+
+  .showcase-card {
+    min-height: auto;
+  }
+
+  .showcase-meta-copy {
+    font-size: 0.84rem;
+    line-height: 1.65;
+  }
+
+  .stage-placeholder-tall {
+    min-height: 17rem;
+  }
+
+  .stage-placeholder-wide {
+    min-height: 12rem;
   }
 
   .availability-card p {

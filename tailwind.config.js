@@ -16,7 +16,7 @@ module.exports = {
         primary: "#EDEDED",
         secondary: "#9BA39A",
         border: "#333333",
-        accent: "#CCFF00", // Acid Green
+        accent: "rgb(var(--accent-rgb) / <alpha-value>)",
       },
       fontFamily: {
         sans: ["Satoshi", "sans-serif"],

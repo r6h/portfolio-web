@@ -5,13 +5,25 @@
       id="top"
       class="blueprint-section hero-shell relative flex min-h-svh w-full items-end overflow-hidden border-b border-border px-5 pb-10 pt-28 md:px-12 md:pb-14"
     >
-      <canvas ref="heroCanvas" class="hero-canvas absolute inset-0" aria-hidden="true" />
-      <div class="hero-haze hero-haze-left absolute z-[1] pointer-events-none" aria-hidden="true" />
-      <div class="hero-haze hero-haze-right absolute z-[1] pointer-events-none" aria-hidden="true" />
+      <canvas
+        ref="heroCanvas"
+        class="hero-canvas absolute inset-0"
+        aria-hidden="true"
+      />
+      <div
+        class="hero-haze hero-haze-left absolute z-[1] pointer-events-none"
+        aria-hidden="true"
+      />
+      <div
+        class="hero-haze hero-haze-right absolute z-[1] pointer-events-none"
+        aria-hidden="true"
+      />
 
       <div class="relative z-10 grid w-full grid-cols-12 gap-4">
         <div class="col-span-12">
-          <p class="mb-5 font-mono text-xs uppercase tracking-[0.32em] text-accent md:text-sm">
+          <p
+            class="mb-5 font-mono text-xs uppercase tracking-[0.32em] text-accent md:text-sm"
+          >
             {{ t("hero.eyebrow") }}
           </p>
           <h1
@@ -22,7 +34,8 @@
             </span>
             <span class="hero-type-line hero-type-kernel">
               <span class="hero-type-text hero-kernel-text">
-                {{ typedHero.kernel }}<span class="hero-cursor" aria-hidden="true" />
+                {{ typedHero.kernel
+                }}<span class="hero-cursor" aria-hidden="true" />
               </span>
             </span>
           </h1>
@@ -31,7 +44,9 @@
         <div
           class="col-span-12 mt-8 border-t border-border pt-5 md:col-span-5 md:mt-10"
         >
-          <p class="font-mono text-xs uppercase leading-relaxed tracking-[0.16em] text-secondary md:whitespace-nowrap md:text-[0.73rem] md:leading-none md:tracking-[0.24em]">
+          <p
+            class="font-mono text-xs uppercase leading-relaxed tracking-[0.16em] text-secondary md:whitespace-nowrap md:text-[0.73rem] md:leading-none md:tracking-[0.24em]"
+          >
             {{ t("hero.role") }}
           </p>
         </div>
@@ -40,23 +55,39 @@
           <p class="max-w-xl text-xl leading-snug text-primary md:text-3xl">
             {{ t("hero.intro") }}
           </p>
-          <div class="mt-8 flex flex-wrap gap-3 font-mono text-xs uppercase tracking-[0.22em]">
-            <a class="blueprint-button" href="#work">{{ t("hero.ctaShowcase") }}</a>
-            <a class="blueprint-button blueprint-button-accent" href="#contact">{{ t("hero.ctaContact") }}</a>
+          <div
+            class="mt-8 flex flex-wrap gap-3 font-mono text-xs uppercase tracking-[0.22em]"
+          >
+            <a class="blueprint-button" href="#work">{{
+              t("hero.ctaShowcase")
+            }}</a>
+            <a
+              class="blueprint-button blueprint-button-accent"
+              href="#contact"
+              >{{ t("hero.ctaContact") }}</a
+            >
           </div>
         </div>
       </div>
     </section>
 
-    <section class="intro-section blueprint-section border-b border-border px-5 py-24 md:px-12 md:py-36">
+    <section
+      class="intro-section blueprint-section border-b border-border px-5 py-24 md:px-12 md:py-36"
+    >
       <div class="grid grid-cols-12 gap-4">
         <div class="col-span-12 md:col-span-3">
-          <p class="font-mono text-xs uppercase tracking-[0.28em] text-secondary">
+          <p
+            class="font-mono text-xs uppercase tracking-[0.28em] text-secondary"
+          >
             {{ t("intro.eyebrow") }}
           </p>
           <div ref="seraphimMountTrigger" class="mt-8">
             <SeraphimStage v-if="isSeraphimStageMounted" />
-            <div v-else class="stage-placeholder stage-placeholder-tall" aria-hidden="true" />
+            <div
+              v-else
+              class="stage-placeholder stage-placeholder-tall"
+              aria-hidden="true"
+            />
           </div>
         </div>
         <div
@@ -65,10 +96,12 @@
           <div class="overflow-hidden pb-[0.12em]">
             <p class="intro-text will-change-transform">
               {{ t("intro.line1") }}
-              <span class="text-accent">{{ t("intro.line1Accent1") }}</span>,
-              <span class="text-accent">{{ t("intro.line1Accent2") }}</span>,
+              <span class="text-accent">{{ t("intro.line1Accent1") }}</span
+              >, <span class="text-accent">{{ t("intro.line1Accent2") }}</span
+              >,
               {{ t("intro.line1Join") }}
-              <span class="text-accent">{{ t("intro.line1Accent3") }}</span>.
+              <span class="text-accent">{{ t("intro.line1Accent3") }}</span
+              >.
             </p>
           </div>
           <div class="overflow-hidden pb-[0.12em]">
@@ -95,14 +128,24 @@
       <div ref="showcasePinStage" class="showcase-pin-stage">
         <div class="mb-8 grid grid-cols-12 gap-4">
           <div class="col-span-12 md:col-span-4">
-            <p class="font-mono text-xs uppercase tracking-[0.28em] text-secondary">{{ t("showcase.eyebrow") }}</p>
-            <h2 class="mt-5 text-5xl font-black uppercase leading-none tracking-[-0.06em] md:text-7xl">
+            <p
+              class="font-mono text-xs uppercase tracking-[0.28em] text-secondary"
+            >
+              {{ t("showcase.eyebrow") }}
+            </p>
+            <h2
+              class="mt-5 text-5xl font-black uppercase leading-none tracking-[-0.06em] md:text-7xl"
+            >
               {{ t("showcase.title") }}
             </h2>
           </div>
           <div class="col-span-12 self-end md:col-span-8">
-            <div class="mb-5 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-              <p class="showcase-description max-w-xl font-mono text-xs uppercase leading-relaxed tracking-[0.18em] text-secondary">
+            <div
+              class="mb-5 flex flex-col gap-4 md:flex-row md:items-start md:justify-between"
+            >
+              <p
+                class="showcase-description max-w-xl font-mono text-xs uppercase leading-relaxed tracking-[0.18em] text-secondary"
+              >
                 {{ t("showcase.description") }}
               </p>
               <button
@@ -113,13 +156,17 @@
                 {{ t("showcase.skip") }}
               </button>
             </div>
-            <div class="showcase-filter-rail sticky top-16 z-20 flex flex-wrap items-center justify-between gap-x-6 gap-y-3 bg-background/90 py-3 backdrop-blur">
+            <div
+              class="showcase-filter-rail sticky top-16 z-20 flex items-center gap-2 overflow-x-auto bg-background/90 py-3 backdrop-blur md:flex-wrap md:justify-between md:gap-x-6 md:gap-y-3 md:overflow-visible"
+            >
               <button
                 v-for="filter in filters"
                 :key="`showcase-${filter.id}`"
                 type="button"
-                class="filter-button showcase-filter-button shrink-0"
-                :class="{ 'filter-button-active': showcaseFilter === filter.id }"
+                class="filter-button showcase-filter-button shrink-0 whitespace-nowrap"
+                :class="{
+                  'filter-button-active': showcaseFilter === filter.id,
+                }"
                 @click="setShowcaseFilter(filter.id)"
               >
                 [ {{ filter.label }} ]
@@ -136,17 +183,25 @@
             <article
               v-for="(project, index) in filteredFeaturedProjects"
               :key="project.title"
-              class="featured-card showcase-card grid min-h-[760px] w-[86vw] max-w-[1280px] shrink-0 snap-start grid-cols-12 content-center gap-4 border border-border bg-background px-5 py-10 md:w-[calc(100vw-8rem)] md:px-8 lg:px-10"
+              class="featured-card showcase-card grid min-h-[680px] w-[90vw] max-w-[1280px] shrink-0 snap-start grid-cols-12 content-start gap-4 border border-border bg-background px-4 py-8 md:min-h-[760px] md:w-[calc(100vw-8rem)] md:content-center md:px-8 md:py-10 lg:px-10"
             >
-              <div class="col-span-12 mb-4 flex items-center justify-between font-mono text-xs uppercase tracking-[0.28em] text-secondary">
-                <span>[ Featured {{ String(index + 1).padStart(2, "0") }} ]</span>
-                <span class="hidden text-accent md:block">{{ project.signal }}</span>
+              <div
+                class="col-span-12 mb-4 flex items-center justify-between font-mono text-xs uppercase tracking-[0.28em] text-secondary"
+              >
+                <span
+                  >[ Featured {{ String(index + 1).padStart(2, "0") }} ]</span
+                >
+                <span class="hidden text-accent md:block">{{
+                  project.signal
+                }}</span>
               </div>
 
               <div class="col-span-12 md:col-span-6 lg:col-span-7">
                 <div
-                  class="project-visual group relative h-[44vh] min-h-72 overflow-hidden border border-border"
-                  :class="project.media ? 'project-visual-media' : project.visual"
+                  class="project-visual group relative h-[32vh] min-h-[14rem] overflow-hidden border border-border md:h-[44vh] md:min-h-72"
+                  :class="
+                    project.media ? 'project-visual-media' : project.visual
+                  "
                 >
                   <template v-if="project.mediaType === 'video'">
                     <video
@@ -172,11 +227,24 @@
                     />
                   </template>
                   <template v-else-if="project.key === 'ragChatbot'">
-                    <svg class="rag-svg" viewBox="0 0 900 520" role="img" :aria-label="t('projects.ragChatbot.svgLabel')">
+                    <svg
+                      class="rag-svg"
+                      viewBox="0 0 900 520"
+                      role="img"
+                      :aria-label="t('projects.ragChatbot.svgLabel')"
+                    >
                       <defs>
                         <linearGradient id="ragLine" x1="0" x2="1">
-                          <stop offset="0%" stop-color="#ccff00" stop-opacity="0.95" />
-                          <stop offset="100%" stop-color="#00f0ff" stop-opacity="0.75" />
+                          <stop
+                            offset="0%"
+                            :stop-color="accentHex"
+                            stop-opacity="0.95"
+                          />
+                          <stop
+                            offset="100%"
+                            stop-color="#00f0ff"
+                            stop-opacity="0.75"
+                          />
                         </linearGradient>
                         <filter id="ragGlow">
                           <feGaussianBlur stdDeviation="4" result="blur" />
@@ -187,8 +255,12 @@
                         </filter>
                       </defs>
                       <g class="rag-links" filter="url(#ragGlow)">
-                        <path d="M135 126 C260 80 340 168 438 214 S650 302 744 230" />
-                        <path d="M156 374 C260 330 330 360 438 214 S612 130 770 132" />
+                        <path
+                          d="M135 126 C260 80 340 168 438 214 S650 302 744 230"
+                        />
+                        <path
+                          d="M156 374 C260 330 330 360 438 214 S612 130 770 132"
+                        />
                         <path d="M438 214 C432 300 482 356 612 396" />
                       </g>
                       <g class="rag-node rag-query">
@@ -215,63 +287,115 @@
                         <circle cx="612" cy="396" r="26" />
                         <text x="612" y="402">Reply</text>
                       </g>
-                      <text class="rag-label" x="64" y="468">{{ t("projects.ragChatbot.svgFooter") }}</text>
+                      <text class="rag-label" x="64" y="468">
+                        {{ t("projects.ragChatbot.svgFooter") }}
+                      </text>
                     </svg>
                   </template>
                   <template v-else>
-                    <div class="visual-placeholder absolute inset-0 flex flex-col justify-between p-5 font-mono uppercase tracking-[0.24em]">
-                      <div class="flex justify-between border-b border-border pb-3 text-[10px] text-secondary">
+                    <div
+                      class="visual-placeholder absolute inset-0 flex flex-col justify-between p-5 font-mono uppercase tracking-[0.24em]"
+                    >
+                      <div
+                        class="flex justify-between border-b border-border pb-3 text-[10px] text-secondary"
+                      >
                         <span>{{ project.module }}</span>
                         <span>{{ project.metric }}</span>
                       </div>
-                      <div class="text-sm text-primary">{{ t("showcase.placeholder") }}</div>
-                      <div class="text-[10px] leading-relaxed text-secondary">{{ project.caption }}</div>
+                      <div class="text-sm text-primary">
+                        {{ t("showcase.placeholder") }}
+                      </div>
+                      <div class="text-[10px] leading-relaxed text-secondary">
+                        {{ project.caption }}
+                      </div>
                     </div>
                   </template>
                 </div>
               </div>
 
-              <div class="col-span-12 flex flex-col justify-end md:col-span-6 lg:col-span-5">
-                <h2 class="max-w-[12ch] text-4xl font-black uppercase leading-none tracking-[-0.055em] md:text-6xl">
+              <div
+                class="col-span-12 flex flex-col justify-end md:col-span-6 lg:col-span-5"
+              >
+                <h2
+                  class="max-w-[12ch] text-[2.35rem] font-black uppercase leading-[0.92] tracking-[-0.055em] md:text-6xl md:leading-none"
+                >
                   {{ project.title }}
                 </h2>
-                <div class="mt-5 flex flex-wrap gap-3 font-mono text-xs uppercase tracking-[0.16em]">
-                  <span class="border border-border px-3 py-2 text-secondary">{{ t("showcase.track") }}: {{ project.categoryLabel }}</span>
-                  <span v-if="project.stack" class="border border-border px-3 py-2 text-accent">{{ t("showcase.stack") }}: {{ project.stack }}</span>
+                <div
+                  class="mt-5 flex flex-wrap gap-3 font-mono text-xs uppercase tracking-[0.16em]"
+                >
+                  <span class="border border-border px-3 py-2 text-secondary"
+                    >{{ t("showcase.track") }}:
+                    {{ project.categoryLabel }}</span
+                  >
+                  <span
+                    v-if="project.stack"
+                    class="border border-border px-3 py-2 text-accent"
+                    >{{ t("showcase.stack") }}: {{ project.stack }}</span
+                  >
                 </div>
 
-                <p class="mt-8 max-w-xl text-lg leading-relaxed text-primary/88 md:text-xl">
+                <p
+                  class="mt-6 max-w-xl text-base leading-relaxed text-primary/88 md:mt-8 md:text-xl"
+                >
                   {{ project.description }}
                 </p>
 
-              <div class="mt-10 grid gap-7 font-mono text-xs leading-relaxed text-primary/85 md:grid-cols-2">
-                <div>
-                  <span class="mb-3 block border-b border-border pb-2 uppercase tracking-[0.22em] text-secondary">{{ t("showcase.role") }}</span>
-                  <p class="showcase-meta-copy">{{ project.role }}</p>
+                <div
+                  class="mt-8 grid gap-5 font-mono text-xs leading-relaxed text-primary/85 md:mt-10 md:gap-7 md:grid-cols-2"
+                >
+                  <div>
+                    <span
+                      class="mb-3 block border-b border-border pb-2 uppercase tracking-[0.22em] text-secondary"
+                      >{{ t("showcase.role") }}</span
+                    >
+                    <p class="showcase-meta-copy">{{ project.role }}</p>
+                  </div>
+                  <div>
+                    <span
+                      class="mb-3 block border-b border-border pb-2 uppercase tracking-[0.22em] text-secondary"
+                      >{{ t("showcase.focus") }}</span
+                    >
+                    <p class="showcase-meta-copy">{{ project.focus }}</p>
+                  </div>
                 </div>
-                <div>
-                  <span class="mb-3 block border-b border-border pb-2 uppercase tracking-[0.22em] text-secondary">{{ t("showcase.focus") }}</span>
-                  <p class="showcase-meta-copy">{{ project.focus }}</p>
-                </div>
-              </div>
               </div>
             </article>
           </div>
         </div>
         <div class="mt-5 flex items-center justify-end gap-4">
-          <button type="button" class="showcase-skip-button showcase-skip-button-local" @click="skipShowcase">
+          <button
+            type="button"
+            class="showcase-skip-button showcase-skip-button-local"
+            @click="skipShowcase"
+          >
             {{ t("showcase.continueBelow") }}
           </button>
         </div>
       </div>
 
-      <div id="work-index" ref="showcaseAfter" class="showcase-more-panel mt-10 border border-border">
-        <div class="grid gap-6 p-5 md:grid-cols-[minmax(0,1fr)_auto] md:items-end md:p-7">
+      <div
+        id="work-index"
+        ref="showcaseAfter"
+        class="showcase-more-panel mt-10 border border-border"
+      >
+        <div
+          class="grid gap-6 p-5 md:grid-cols-[minmax(0,1fr)_auto] md:items-end md:p-7"
+        >
           <div>
-            <p class="font-mono text-[10px] uppercase tracking-[0.24em] text-secondary">
-              {{ t("showcase.indexCount", { count: filteredProjects.length, track: activeTrackLabel }) }}
+            <p
+              class="font-mono text-[10px] uppercase tracking-[0.24em] text-secondary"
+            >
+              {{
+                t("showcase.indexCount", {
+                  count: filteredProjects.length,
+                  track: activeTrackLabel,
+                })
+              }}
             </p>
-            <p class="mt-3 max-w-2xl text-lg leading-relaxed text-primary md:text-2xl">
+            <p
+              class="mt-3 max-w-2xl text-lg leading-relaxed text-primary md:text-2xl"
+            >
               {{ t("showcase.indexDescription") }}
             </p>
           </div>
@@ -280,12 +404,17 @@
             class="blueprint-button justify-center md:min-w-56"
             @click="isAllWorkExpanded = !isAllWorkExpanded"
           >
-            {{ isAllWorkExpanded ? t("showcase.collapse") : t("showcase.seeAll") }}
+            {{
+              isAllWorkExpanded ? t("showcase.collapse") : t("showcase.seeAll")
+            }}
           </button>
         </div>
 
         <Transition name="index-reveal">
-          <div v-if="isAllWorkExpanded" class="border-t border-border px-5 pb-5 md:px-7 md:pb-7">
+          <div
+            v-if="isAllWorkExpanded"
+            class="border-t border-border px-5 pb-5 md:px-7 md:pb-7"
+          >
             <div class="showcase-index-list">
               <a
                 v-for="project in filteredProjects"
@@ -293,13 +422,19 @@
                 href="#contact"
                 class="showcase-index-row group grid grid-cols-12 gap-4 border-b border-border py-5 transition-colors hover:bg-accent hover:text-background"
               >
-                <span class="col-span-12 text-2xl font-black uppercase tracking-[-0.035em] md:col-span-4">
+                <span
+                  class="col-span-12 text-2xl font-black uppercase tracking-[-0.035em] md:col-span-4"
+                >
                   {{ project.title }}
                 </span>
-                <span class="col-span-12 font-mono text-sm leading-relaxed text-secondary transition-colors group-hover:text-background md:col-span-7">
+                <span
+                  class="col-span-12 font-mono text-sm leading-relaxed text-secondary transition-colors group-hover:text-background md:col-span-7"
+                >
                   {{ project.description }}
                 </span>
-                <span class="col-span-12 text-right font-mono text-xs uppercase tracking-[0.24em] md:col-span-1">
+                <span
+                  class="col-span-12 text-right font-mono text-xs uppercase tracking-[0.24em] md:col-span-1"
+                >
                   ↗
                 </span>
               </a>
@@ -313,39 +448,78 @@
       id="security"
       class="case-section blueprint-section security-section relative overflow-hidden border-b border-border px-5 py-24 md:px-12 md:py-36"
     >
-      <div class="security-grid absolute inset-0 opacity-60" aria-hidden="true" />
+      <div
+        class="security-grid absolute inset-0 opacity-60"
+        aria-hidden="true"
+      />
       <div class="relative z-10 grid grid-cols-12 gap-4">
         <div class="col-span-12 md:col-span-4 md:flex md:h-full md:flex-col">
-          <p class="font-mono text-xs uppercase tracking-[0.28em] text-secondary">
+          <p
+            class="font-mono text-xs uppercase tracking-[0.28em] text-secondary"
+          >
             {{ t("security.eyebrow") }}
           </p>
-          <div ref="securityMountTrigger" class="mt-8 flex flex-1 items-center justify-center md:mt-0">
-            <SecurityTerminalStage v-if="isSecurityStageMounted" class="w-full max-w-[22rem]" />
-            <div v-else class="stage-placeholder stage-placeholder-wide w-full max-w-[22rem]" aria-hidden="true" />
+          <div
+            ref="securityMountTrigger"
+            class="mt-8 flex flex-1 items-center justify-center md:mt-0 md:mx-0"
+          >
+            <SecurityTerminalStage
+              v-if="isSecurityStageMounted"
+              class="security-stage-shell w-screen max-w-none -mx-5 md:mx-0 md:w-full md:max-w-[22rem]"
+            />
+            <div
+              v-else
+              class="stage-placeholder stage-placeholder-wide security-stage-shell w-screen max-w-none -mx-5 md:mx-0 md:w-full md:max-w-[22rem]"
+              aria-hidden="true"
+            />
           </div>
         </div>
         <div class="col-span-12 md:col-span-7 md:col-start-6">
-          <div class="mb-8 inline-flex border border-accent/50 px-4 py-2 font-mono text-xs uppercase tracking-[0.28em] text-accent">
+          <div
+            class="mb-8 inline-flex border border-accent/50 px-4 py-2 font-mono text-xs uppercase tracking-[0.28em] text-accent"
+          >
             {{ t("security.badge") }}
           </div>
-          <h2 class="decrypt-title text-5xl font-black uppercase leading-none tracking-[-0.06em] text-primary md:text-8xl">
+          <h2
+            class="decrypt-title text-5xl font-black uppercase leading-none tracking-[-0.06em] text-primary md:text-8xl"
+          >
             {{ t("security.title") }}
           </h2>
           <div class="security-panel mt-12 border border-border">
             <div class="grid gap-0 md:grid-cols-12">
-              <aside class="border-b border-border p-5 md:col-span-4 md:border-b-0 md:border-r">
-                <p class="mb-6 font-mono text-xs uppercase tracking-[0.24em] text-secondary">{{ t("security.vector") }}</p>
-                <dl class="space-y-5 font-mono text-sm leading-relaxed text-primary/85">
+              <aside
+                class="border-b border-border p-5 md:col-span-4 md:border-b-0 md:border-r"
+              >
+                <p
+                  class="mb-6 font-mono text-xs uppercase tracking-[0.24em] text-secondary"
+                >
+                  {{ t("security.vector") }}
+                </p>
+                <dl
+                  class="space-y-5 font-mono text-sm leading-relaxed text-primary/85"
+                >
                   <div>
-                    <dt class="text-[10px] uppercase tracking-[0.22em] text-secondary">{{ t("security.target") }}</dt>
+                    <dt
+                      class="text-[10px] uppercase tracking-[0.22em] text-secondary"
+                    >
+                      {{ t("security.target") }}
+                    </dt>
                     <dd>{{ t("security.targetValue") }}</dd>
                   </div>
                   <div>
-                    <dt class="text-[10px] uppercase tracking-[0.22em] text-secondary">{{ t("security.class") }}</dt>
+                    <dt
+                      class="text-[10px] uppercase tracking-[0.22em] text-secondary"
+                    >
+                      {{ t("security.class") }}
+                    </dt>
                     <dd>{{ t("security.classValue") }}</dd>
                   </div>
                   <div>
-                    <dt class="text-[10px] uppercase tracking-[0.22em] text-secondary">{{ t("security.recognition") }}</dt>
+                    <dt
+                      class="text-[10px] uppercase tracking-[0.22em] text-secondary"
+                    >
+                      {{ t("security.recognition") }}
+                    </dt>
                     <dd>{{ t("security.recognitionValue") }}</dd>
                   </div>
                 </dl>
@@ -356,15 +530,27 @@
                 </p>
                 <div class="mt-8 grid gap-8 md:grid-cols-2">
                   <div>
-                    <p class="mb-3 font-mono text-xs uppercase tracking-[0.24em] text-accent">{{ t("security.method") }}</p>
-                    <ul class="space-y-3 font-mono text-sm leading-relaxed text-primary/85">
+                    <p
+                      class="mb-3 font-mono text-xs uppercase tracking-[0.24em] text-accent"
+                    >
+                      {{ t("security.method") }}
+                    </p>
+                    <ul
+                      class="space-y-3 font-mono text-sm leading-relaxed text-primary/85"
+                    >
                       <li>{{ t("security.methodItem1") }}</li>
                       <li>{{ t("security.methodItem2") }}</li>
                     </ul>
                   </div>
                   <div>
-                    <p class="mb-3 font-mono text-xs uppercase tracking-[0.24em] text-accent">{{ t("security.outcome") }}</p>
-                    <ul class="space-y-3 font-mono text-sm leading-relaxed text-primary/85">
+                    <p
+                      class="mb-3 font-mono text-xs uppercase tracking-[0.24em] text-accent"
+                    >
+                      {{ t("security.outcome") }}
+                    </p>
+                    <ul
+                      class="space-y-3 font-mono text-sm leading-relaxed text-primary/85"
+                    >
                       <li>{{ t("security.outcomeItem1") }}</li>
                       <li>{{ t("security.outcomeItem2") }}</li>
                     </ul>
@@ -387,19 +573,31 @@
               </div>
             </div>
           </div>
-          <a class="mt-8 inline-flex font-mono text-xs uppercase tracking-[0.26em] text-accent hover:text-primary" href="#contact">
+          <a
+            class="mt-8 inline-flex font-mono text-xs uppercase tracking-[0.26em] text-accent hover:text-primary"
+            href="#contact"
+          >
             {{ t("security.fullWriteup") }}
           </a>
         </div>
       </div>
     </section>
 
-    <section class="approach-section blueprint-section border-b border-border px-5 py-20 md:px-12 md:py-28">
+    <section
+      class="approach-section blueprint-section border-b border-border px-5 py-20 md:px-12 md:py-28"
+    >
       <div class="grid grid-cols-12 gap-4">
         <div class="col-span-12 md:col-span-5">
-          <p class="font-mono text-xs uppercase tracking-[0.28em] text-secondary">{{ t("approach.eyebrow") }}</p>
-          <h2 class="mt-6 text-6xl font-black uppercase leading-[0.82] tracking-[-0.065em] md:text-8xl">
-            {{ t("approach.title.line1") }}<br />{{ t("approach.title.line2") }}<br />{{ t("approach.title.line3") }}
+          <p
+            class="font-mono text-xs uppercase tracking-[0.28em] text-secondary"
+          >
+            {{ t("approach.eyebrow") }}
+          </p>
+          <h2
+            class="mt-6 text-6xl font-black uppercase leading-[0.82] tracking-[-0.065em] md:text-8xl"
+          >
+            {{ t("approach.title.line1") }}<br />{{ t("approach.title.line2")
+            }}<br />{{ t("approach.title.line3") }}
           </h2>
         </div>
         <div class="col-span-12 mt-10 md:col-span-7 md:mt-0">
@@ -424,7 +622,11 @@
               </div>
             </div>
             <div class="mt-6 divide-y divide-border border-y border-border">
-              <p v-for="proof in proofItems" :key="proof" class="py-5 font-mono text-sm uppercase tracking-[0.22em] text-primary">
+              <p
+                v-for="proof in proofItems"
+                :key="proof"
+                class="py-5 font-mono text-sm uppercase tracking-[0.22em] text-primary"
+              >
                 / {{ t(proof) }}
               </p>
             </div>
@@ -439,7 +641,11 @@
     >
       <div class="grid grid-cols-12 gap-4">
         <div class="col-span-12 md:col-span-3">
-          <p class="font-mono text-xs uppercase tracking-[0.28em] text-secondary">{{ t("contact.eyebrow") }}</p>
+          <p
+            class="font-mono text-xs uppercase tracking-[0.28em] text-secondary"
+          >
+            {{ t("contact.eyebrow") }}
+          </p>
           <div class="availability-side mt-6">
             <span class="availability-status">{{ t("contact.status") }}</span>
             <p class="mt-4 max-w-xs text-sm leading-relaxed text-primary/82">
@@ -462,10 +668,16 @@
               <p>{{ t("contact.card3") }}</p>
             </div>
           </div>
-          <h2 class="max-w-4xl text-4xl font-black uppercase leading-[0.92] tracking-[-0.06em] text-primary md:text-6xl">
-            {{ t("contact.titleLine1") }}<br class="hidden md:block" />{{ t("contact.titleLine2") }}
+          <h2
+            class="max-w-4xl text-4xl font-black uppercase leading-[0.92] tracking-[-0.06em] text-primary md:text-6xl"
+          >
+            {{ t("contact.titleLine1") }}<br class="hidden md:block" />{{
+              t("contact.titleLine2")
+            }}
           </h2>
-          <p class="mt-3 max-w-2xl font-mono text-sm tracking-[0.08em] text-secondary md:text-base">
+          <p
+            class="mt-3 max-w-2xl font-mono text-sm tracking-[0.08em] text-secondary md:text-base"
+          >
             {{ t("contact.subtitle") }}
           </p>
           <div ref="magneticLinks" class="mt-8 flex flex-wrap gap-3">
@@ -478,32 +690,86 @@
               {{ t(link.labelKey) }}
             </a>
           </div>
-          <form class="inquiry-form mt-14 grid gap-3 font-mono" @submit.prevent="submitInquiry">
+          <form
+            class="inquiry-form mt-14 grid gap-3 font-mono"
+            @submit.prevent="submitInquiry"
+          >
             <div class="grid gap-3 md:grid-cols-2">
               <label>
                 <span>{{ t("contact.form.name") }}</span>
-                <input v-model="inquiry.name" required type="text" autocomplete="name" />
+                <input
+                  v-model="inquiry.name"
+                  required
+                  type="text"
+                  autocomplete="name"
+                />
               </label>
               <label>
                 <span>{{ t("contact.form.email") }}</span>
-                <input v-model="inquiry.email" required type="email" autocomplete="email" />
+                <input
+                  v-model="inquiry.email"
+                  required
+                  type="email"
+                  autocomplete="email"
+                />
               </label>
             </div>
             <label>
               <span>{{ t("contact.form.projectType") }}</span>
               <select v-model="inquiry.type">
-                <option v-for="type in inquiryTypes" :key="type.id" :value="type.id">{{ type.label }}</option>
+                <option
+                  v-for="type in inquiryTypes"
+                  :key="type.id"
+                  :value="type.id"
+                >
+                  {{ type.label }}
+                </option>
               </select>
             </label>
             <label>
               <span>{{ t("contact.form.inquiry") }}</span>
-              <textarea v-model="inquiry.message" required rows="5" :placeholder="t('contact.form.placeholder')" />
+              <textarea
+                v-model="inquiry.message"
+                required
+                rows="5"
+                :placeholder="t('contact.form.placeholder')"
+              />
             </label>
-            <button class="inquiry-submit" type="submit">{{ t("contact.form.submit") }}</button>
+            <label class="hidden" aria-hidden="true">
+              <span>Website</span>
+              <input
+                v-model="inquiry.honeypot"
+                tabindex="-1"
+                autocomplete="off"
+                type="text"
+              />
+            </label>
+            <button
+              class="inquiry-submit"
+              type="submit"
+              :disabled="contactSubmissionState === 'sending'"
+            >
+              {{ contactSubmitLabel }}
+            </button>
+            <p
+              v-if="contactSubmissionMessage"
+              class="inquiry-status"
+              :class="{
+                'inquiry-status-success':
+                  contactSubmissionState === 'success',
+                'inquiry-status-error': contactSubmissionState === 'error',
+              }"
+              role="status"
+              aria-live="polite"
+            >
+              {{ contactSubmissionMessage }}
+            </p>
           </form>
         </div>
       </div>
-      <p class="absolute bottom-5 left-5 right-5 font-mono text-[10px] uppercase tracking-[0.24em] text-secondary md:left-12 md:right-12">
+      <p
+        class="absolute bottom-5 left-5 right-5 font-mono text-[10px] uppercase tracking-[0.24em] text-secondary md:left-12 md:right-12"
+      >
         {{ t("contact.footer") }}
       </p>
     </section>
@@ -511,14 +777,28 @@
 </template>
 
 <script setup lang="ts">
-import { computed, defineAsyncComponent, nextTick, onMounted, onUnmounted, reactive, ref, watch } from "vue";
+import {
+  computed,
+  defineAsyncComponent,
+  nextTick,
+  onMounted,
+  onUnmounted,
+  reactive,
+  ref,
+  watch,
+} from "vue";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { useAccentTheme } from "~/composables/useAccentTheme";
 import { useModelPreloader } from "~/composables/useModelPreloader";
 import { useSiteLoader } from "~/composables/useSiteLoader";
 import { SERAPHIM_MODEL_URL, TERMINAL_MODEL_URL } from "~/utils/modelUrls";
 
-const SeraphimStage = defineAsyncComponent(() => import("~/components/SeraphimStage.client.vue"));
-const SecurityTerminalStage = defineAsyncComponent(() => import("~/components/SecurityTerminalStage.client.vue"));
+const SeraphimStage = defineAsyncComponent(
+  () => import("~/components/SeraphimStage.client.vue"),
+);
+const SecurityTerminalStage = defineAsyncComponent(
+  () => import("~/components/SecurityTerminalStage.client.vue"),
+);
 
 const heroCanvas = ref<HTMLCanvasElement | null>(null);
 const heroSection = ref<HTMLElement | null>(null);
@@ -533,6 +813,7 @@ const securityMountTrigger = ref<HTMLElement | null>(null);
 const isSeraphimStageMounted = ref(false);
 const isSecurityStageMounted = ref(false);
 const { t } = useI18n();
+const { accentHex, accentRgba } = useAccentTheme();
 const typedHero = reactive({
   roger: "",
   kernel: "",
@@ -636,7 +917,7 @@ const proofItems = [
 ] as const;
 
 const contactLinks = [
-  { labelKey: "contact.links.email", href: "mailto:hello@rogerkernel.dev" },
+  { labelKey: "contact.links.email", href: "mailto:contact@roger.ac" },
   { labelKey: "contact.links.github", href: "https://github.com/" },
 ] as const;
 
@@ -647,50 +928,73 @@ const inquiryTypes = computed(() => [
   { id: "other", label: t("contact.form.types.other") },
 ]);
 
+const contactSubmissionState = ref<"idle" | "sending" | "success" | "error">(
+  "idle",
+);
+const contactSubmissionMessage = ref("");
+
+const contactSubmitLabel = computed(() =>
+  contactSubmissionState.value === "sending"
+    ? t("contact.form.sending")
+    : t("contact.form.submit"),
+);
+
 const inquiry = reactive({
   name: "",
   email: "",
   type: "backend",
   message: "",
+  honeypot: "",
 });
 
-const filters = computed(() => filterDefs.map((filter) => ({
-  id: filter.id,
-  label: t(filter.key),
-})));
+const filters = computed(() =>
+  filterDefs.map((filter) => ({
+    id: filter.id,
+    label: t(filter.key),
+  })),
+);
 
 const categoryLabel = (category: string) => t(`showcase.filters.${category}`);
 
-const featuredProjects = computed(() => featuredProjectDefs.map((project) => ({
-  ...project,
-  title: t(`projects.${project.key}.title`),
-  signal: t(`projects.${project.key}.signal`),
-  module: t(`projects.${project.key}.module`),
-  metric: t(`projects.${project.key}.metric`),
-  caption: t(`projects.${project.key}.caption`),
-  description: t(`projects.${project.key}.description`),
-  role: t(`projects.${project.key}.role`),
-  focus: t(`projects.${project.key}.focus`),
-  categoryLabel: categoryLabel(project.category),
-})));
+const featuredProjects = computed(() =>
+  featuredProjectDefs.map((project) => ({
+    ...project,
+    title: t(`projects.${project.key}.title`),
+    signal: t(`projects.${project.key}.signal`),
+    module: t(`projects.${project.key}.module`),
+    metric: t(`projects.${project.key}.metric`),
+    caption: t(`projects.${project.key}.caption`),
+    description: t(`projects.${project.key}.description`),
+    role: t(`projects.${project.key}.role`),
+    focus: t(`projects.${project.key}.focus`),
+    categoryLabel: categoryLabel(project.category),
+  })),
+);
 
-const allProjects = computed(() => allProjectDefs.map((project) => ({
-  ...project,
-  title: project.key === "markdownParser"
-    ? t("projects.markdownParser.indexTitle")
-    : t(`projects.${project.key}.title`),
-  description: t(`projects.${project.key}.description`),
-  categoryLabel: categoryLabel(project.category),
-})));
+const allProjects = computed(() =>
+  allProjectDefs.map((project) => ({
+    ...project,
+    title:
+      project.key === "markdownParser"
+        ? t("projects.markdownParser.indexTitle")
+        : t(`projects.${project.key}.title`),
+    description: t(`projects.${project.key}.description`),
+    categoryLabel: categoryLabel(project.category),
+  })),
+);
 
 const filteredFeaturedProjects = computed(() => {
   if (showcaseFilter.value === "all") return featuredProjects.value;
-  return featuredProjects.value.filter((project) => project.category === showcaseFilter.value);
+  return featuredProjects.value.filter(
+    (project) => project.category === showcaseFilter.value,
+  );
 });
 
 const filteredProjects = computed(() => {
   if (showcaseFilter.value === "all") return allProjects.value;
-  return allProjects.value.filter((project) => project.category === showcaseFilter.value);
+  return allProjects.value.filter(
+    (project) => project.category === showcaseFilter.value,
+  );
 });
 
 const activeTrackLabel = computed(() => {
@@ -708,11 +1012,13 @@ const setShowcaseFilter = async (filter: string) => {
   }
   refreshScrollTrigger();
   window.requestAnimationFrame(() => {
-    const lenis = (window as Window & {
-      __rkLenis?: {
-        scrollTo: (target: number, options?: Record<string, unknown>) => void;
-      };
-    }).__rkLenis;
+    const lenis = (
+      window as Window & {
+        __rkLenis?: {
+          scrollTo: (target: number, options?: Record<string, unknown>) => void;
+        };
+      }
+    ).__rkLenis;
     if (lenis) {
       lenis.scrollTo(preserveScrollY, { immediate: true, force: true });
       return;
@@ -721,20 +1027,50 @@ const setShowcaseFilter = async (filter: string) => {
   });
 };
 
-const submitInquiry = () => {
-  const inquiryTypeLabel = inquiryTypes.value.find((type) => type.id === inquiry.type)?.label ?? inquiry.type;
-  const subject = encodeURIComponent(`${t("contact.mail.subjectPrefix")}: ${inquiryTypeLabel}`);
-  const body = encodeURIComponent(
-    [
-      `${t("contact.mail.name")}: ${inquiry.name}`,
-      `${t("contact.mail.email")}: ${inquiry.email}`,
-      `${t("contact.mail.type")}: ${inquiryTypeLabel}`,
-      "",
-      inquiry.message,
-    ].join("\n"),
-  );
+const submitInquiry = async () => {
+  if (contactSubmissionState.value === "sending") return;
+  const inquiryTypeLabel =
+    inquiryTypes.value.find((type) => type.id === inquiry.type)?.label ??
+    inquiry.type;
+  contactSubmissionState.value = "sending";
+  contactSubmissionMessage.value = "";
 
-  window.location.href = `mailto:hello@rogerkernel.dev?subject=${subject}&body=${body}`;
+  try {
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: inquiry.name.trim(),
+        email: inquiry.email.trim(),
+        type: inquiry.type,
+        typeLabel: inquiryTypeLabel,
+        message: inquiry.message.trim(),
+        honeypot: inquiry.honeypot,
+      }),
+    });
+
+    const payload = (await response.json().catch(() => null)) as
+      | { ok?: boolean; error?: string }
+      | null;
+
+    if (!response.ok || !payload?.ok) {
+      throw new Error(payload?.error ?? t("contact.form.status.error"));
+    }
+
+    inquiry.name = "";
+    inquiry.email = "";
+    inquiry.type = "backend";
+    inquiry.message = "";
+    inquiry.honeypot = "";
+    contactSubmissionState.value = "success";
+    contactSubmissionMessage.value = t("contact.form.status.success");
+  } catch (error) {
+    console.error("Contact form submission failed:", error);
+    contactSubmissionState.value = "error";
+    contactSubmissionMessage.value = t("contact.form.status.error");
+  }
 };
 
 let ctx: { revert: () => void } | undefined;
@@ -743,7 +1079,9 @@ let heroTimeouts: number[] = [];
 let heroResizeHandler: (() => void) | undefined;
 let heroObserver: IntersectionObserver | null = null;
 let heroVisible = true;
-let showcaseMedia: { add: (...args: any[]) => any; revert: () => void } | undefined;
+let showcaseMedia:
+  | { add: (...args: any[]) => any; revert: () => void }
+  | undefined;
 let deferredStageObservers: IntersectionObserver[] = [];
 const SHOWCASE_HEADER_OFFSET = 96;
 const FEATURED_VIDEO_URLS = [
@@ -754,10 +1092,17 @@ const FEATURED_VIDEO_URLS = [
 let pageExperienceStarted = false;
 let heroAssetMarkedLoaded = false;
 let pageMotionMarkedLoaded = false;
-let gsapModule: typeof import("gsap")["default"] | null = null;
-let scrollTriggerModule: typeof import("gsap/ScrollTrigger")["default"] | null = null;
+let gsapModule: (typeof import("gsap"))["default"] | null = null;
+let scrollTriggerModule:
+  | (typeof import("gsap/ScrollTrigger"))["default"]
+  | null = null;
 
-const { isExperienceReady, isHeroIntroReady, markAssetsLoaded, registerAssets } = useSiteLoader();
+const {
+  isExperienceReady,
+  isHeroIntroReady,
+  markAssetsLoaded,
+  registerAssets,
+} = useSiteLoader();
 const { preloadModel } = useModelPreloader();
 const videoPromises = new Map<string, Promise<void>>();
 
@@ -807,10 +1152,8 @@ const preloadVideo = (src: string) => {
 const ensureGsap = async () => {
   if (gsapModule && scrollTriggerModule) return;
 
-  const [{ default: gsapLib }, { default: scrollTriggerLib }] = await Promise.all([
-    import("gsap"),
-    import("gsap/ScrollTrigger"),
-  ]);
+  const [{ default: gsapLib }, { default: scrollTriggerLib }] =
+    await Promise.all([import("gsap"), import("gsap/ScrollTrigger")]);
 
   gsapLib.registerPlugin(scrollTriggerLib);
   gsapModule = gsapLib;
@@ -855,16 +1198,21 @@ const mountDeferredStage = (
 const skipShowcase = () => {
   if (!showcaseAfter.value) return;
 
-  const targetTop = window.scrollY + showcaseAfter.value.getBoundingClientRect().top - SHOWCASE_HEADER_OFFSET;
+  const targetTop =
+    window.scrollY +
+    showcaseAfter.value.getBoundingClientRect().top -
+    SHOWCASE_HEADER_OFFSET;
   const nextScrollTop = Math.max(targetTop, 0);
   const isDesktop = window.matchMedia("(min-width: 768px)").matches;
-  const lenis = (window as Window & {
-    __rkLenis?: {
-      stop: () => void;
-      start: () => void;
-      scrollTo: (target: number, options?: Record<string, unknown>) => void;
-    };
-  }).__rkLenis;
+  const lenis = (
+    window as Window & {
+      __rkLenis?: {
+        stop: () => void;
+        start: () => void;
+        scrollTo: (target: number, options?: Record<string, unknown>) => void;
+      };
+    }
+  ).__rkLenis;
 
   if (isDesktop && lenis) {
     lenis.stop();
@@ -899,8 +1247,12 @@ onMounted(async () => {
   registerAssets(7);
 
   void Promise.allSettled([
-    preloadModel("seraphim-model", () => new GLTFLoader().loadAsync(SERAPHIM_MODEL_URL)),
-    preloadModel("terminal-model", () => new GLTFLoader().loadAsync(TERMINAL_MODEL_URL)),
+    preloadModel("seraphim-model", () =>
+      new GLTFLoader().loadAsync(SERAPHIM_MODEL_URL),
+    ),
+    preloadModel("terminal-model", () =>
+      new GLTFLoader().loadAsync(TERMINAL_MODEL_URL),
+    ),
     ...FEATURED_VIDEO_URLS.map((src) => preloadVideo(src)),
   ]).then((results) => {
     for (const result of results) {
@@ -920,15 +1272,23 @@ onMounted(async () => {
   const gsap = gsapModule;
   let renderTopology: ((time: number) => void) | null = null;
   const startHeroLoop = () => {
-    if (heroRaf || !heroVisible || !renderTopology || !isExperienceReady.value) return;
+    if (heroRaf || !heroVisible || !renderTopology || !isExperienceReady.value)
+      return;
     heroRaf = window.requestAnimationFrame(renderTopology);
   };
 
-  const typeSequence = (value: string, key: "roger" | "kernel", startDelay: number) => {
+  const typeSequence = (
+    value: string,
+    key: "roger" | "kernel",
+    startDelay: number,
+  ) => {
     for (const [index, char] of [...value].entries()) {
-      const timeoutId = window.setTimeout(() => {
-        typedHero[key] += char;
-      }, startDelay + index * 105);
+      const timeoutId = window.setTimeout(
+        () => {
+          typedHero[key] += char;
+        },
+        startDelay + index * 105,
+      );
       heroTimeouts.push(timeoutId);
     }
   };
@@ -966,7 +1326,9 @@ onMounted(async () => {
       let pixelRatioCap = 1.25;
 
       const resizeCanvas = () => {
-        pixelRatioCap = window.matchMedia("(max-width: 767px)").matches ? 1.05 : 1.25;
+        pixelRatioCap = window.matchMedia("(max-width: 767px)").matches
+          ? 1.05
+          : 1.25;
         const ratio = Math.min(window.devicePixelRatio || 1, pixelRatioCap);
         renderWidth = Math.max(canvas.clientWidth, 1);
         renderHeight = Math.max(canvas.clientHeight, 1);
@@ -984,24 +1346,52 @@ onMounted(async () => {
         context.setTransform(ratio, 0, 0, ratio, 0, 0);
       };
 
-      const fieldIndex = (row: number, col: number) => (row * cols) + col;
+      const fieldIndex = (row: number, col: number) => row * cols + col;
 
-      const sampleField = (x: number, y: number, time: number, width: number, height: number) => {
+      const sampleField = (
+        x: number,
+        y: number,
+        time: number,
+        width: number,
+        height: number,
+      ) => {
         const nx = x / width;
         const ny = y / height;
         let value =
-          Math.sin(nx * 8.4 + Math.sin(ny * 2.6 + time * 0.0001) * 1.05 + time * 0.00014) * 0.62 +
-          Math.cos(ny * 7.9 + Math.sin(nx * 2.3 - time * 0.00008) * 1.1 - time * 0.00011) * 0.56 +
+          Math.sin(
+            nx * 8.4 +
+              Math.sin(ny * 2.6 + time * 0.0001) * 1.05 +
+              time * 0.00014,
+          ) *
+            0.62 +
+          Math.cos(
+            ny * 7.9 +
+              Math.sin(nx * 2.3 - time * 0.00008) * 1.1 -
+              time * 0.00011,
+          ) *
+            0.56 +
           Math.sin((nx + ny) * 11.8 - time * 0.00009) * 0.24 +
           Math.cos((nx - ny) * 9.6 + time * 0.00007) * 0.18;
 
         for (const node of contourNodes) {
-          const cx = node.x + Math.sin(time * 0.00008 * node.speed + node.phase) * node.driftX;
-          const cy = node.y + Math.cos(time * 0.00007 * node.speed + node.phase * 1.2) * node.driftY;
+          const cx =
+            node.x +
+            Math.sin(time * 0.00008 * node.speed + node.phase) * node.driftX;
+          const cy =
+            node.y +
+            Math.cos(time * 0.00007 * node.speed + node.phase * 1.2) *
+              node.driftY;
           const dx = nx - cx;
           const dy = ny - cy;
           const distance = Math.sqrt(dx * dx + dy * dy);
-          value += node.amplitude * Math.cos(distance * node.frequency - time * 0.00013 * node.speed + node.phase) / (1 + distance * 12);
+          value +=
+            (node.amplitude *
+              Math.cos(
+                distance * node.frequency -
+                  time * 0.00013 * node.speed +
+                  node.phase,
+              )) /
+            (1 + distance * 12);
         }
 
         return value;
@@ -1039,7 +1429,10 @@ onMounted(async () => {
         const titleDx = (mx - width * 0.28) / (width * 0.34);
         const titleDy = (my - height * 0.44) / (height * 0.4);
         const titleDistance = Math.sqrt(titleDx * titleDx + titleDy * titleDy);
-        const titleFade = Math.max(0, Math.min(1, (titleDistance - 0.18) / 0.82));
+        const titleFade = Math.max(
+          0,
+          Math.min(1, (titleDistance - 0.18) / 0.82),
+        );
 
         const bodyDx = (mx - width * 0.78) / (width * 0.22);
         const bodyDy = (my - height * 0.76) / (height * 0.22);
@@ -1063,7 +1456,7 @@ onMounted(async () => {
 
         const width = renderWidth;
         const height = renderHeight;
-        const accentPulse = 0.14 + ((Math.sin(time * 0.0022) + 1) * 0.5) * 0.26;
+        const accentPulse = 0.14 + (Math.sin(time * 0.0022) + 1) * 0.5 * 0.26;
 
         context.clearRect(0, 0, width, height);
         context.lineWidth = width > 1200 ? 1.55 : 1.3;
@@ -1072,7 +1465,13 @@ onMounted(async () => {
 
         for (let row = 0; row < rows; row += 1) {
           for (let col = 0; col < cols; col += 1) {
-            fieldValues[fieldIndex(row, col)] = sampleField(col * gridSize, row * gridSize, time, width, height);
+            fieldValues[fieldIndex(row, col)] = sampleField(
+              col * gridSize,
+              row * gridSize,
+              time,
+              width,
+              height,
+            );
           }
         }
 
@@ -1089,22 +1488,63 @@ onMounted(async () => {
               const threshold = thresholds[tIndex];
               const points = [];
 
-              if ((topLeft > threshold) !== (topRight > threshold)) {
-                points.push(interpolate(x, y, topLeft, x + gridSize, y, topRight, threshold));
+              if (topLeft > threshold !== topRight > threshold) {
+                points.push(
+                  interpolate(
+                    x,
+                    y,
+                    topLeft,
+                    x + gridSize,
+                    y,
+                    topRight,
+                    threshold,
+                  ),
+                );
               }
-              if ((topRight > threshold) !== (bottomRight > threshold)) {
-                points.push(interpolate(x + gridSize, y, topRight, x + gridSize, y + gridSize, bottomRight, threshold));
+              if (topRight > threshold !== bottomRight > threshold) {
+                points.push(
+                  interpolate(
+                    x + gridSize,
+                    y,
+                    topRight,
+                    x + gridSize,
+                    y + gridSize,
+                    bottomRight,
+                    threshold,
+                  ),
+                );
               }
-              if ((bottomRight > threshold) !== (bottomLeft > threshold)) {
-                points.push(interpolate(x + gridSize, y + gridSize, bottomRight, x, y + gridSize, bottomLeft, threshold));
+              if (bottomRight > threshold !== bottomLeft > threshold) {
+                points.push(
+                  interpolate(
+                    x + gridSize,
+                    y + gridSize,
+                    bottomRight,
+                    x,
+                    y + gridSize,
+                    bottomLeft,
+                    threshold,
+                  ),
+                );
               }
-              if ((bottomLeft > threshold) !== (topLeft > threshold)) {
-                points.push(interpolate(x, y + gridSize, bottomLeft, x, y, topLeft, threshold));
+              if (bottomLeft > threshold !== topLeft > threshold) {
+                points.push(
+                  interpolate(
+                    x,
+                    y + gridSize,
+                    bottomLeft,
+                    x,
+                    y,
+                    topLeft,
+                    threshold,
+                  ),
+                );
               }
 
               if (points.length === 2) {
                 const isAccent = tIndex === 2 || tIndex === 6 || tIndex === 9;
-                const segmentAlpha = (0.16 + tIndex * 0.034) + (isAccent ? accentPulse : 0);
+                const segmentAlpha =
+                  0.16 + tIndex * 0.034 + (isAccent ? accentPulse : 0);
                 drawSegment(
                   points[0].x,
                   points[0].y,
@@ -1114,7 +1554,7 @@ onMounted(async () => {
                   height,
                   segmentAlpha,
                   isAccent
-                    ? `rgba(204,255,0,__ALPHA__)`
+                    ? accentRgba("__ALPHA__")
                     : tIndex % 3 === 0
                       ? `rgba(245,245,245,__ALPHA__)`
                       : `rgba(212,212,212,__ALPHA__)`,
@@ -1122,11 +1562,12 @@ onMounted(async () => {
               } else if (points.length === 4) {
                 const isAccent = tIndex === 2 || tIndex === 6 || tIndex === 9;
                 const strokeColor = isAccent
-                  ? `rgba(204,255,0,__ALPHA__)`
+                  ? accentRgba("__ALPHA__")
                   : tIndex % 3 === 0
                     ? `rgba(245,245,245,__ALPHA__)`
                     : `rgba(212,212,212,__ALPHA__)`;
-                const segmentAlpha = (0.14 + tIndex * 0.03) + (isAccent ? accentPulse : 0);
+                const segmentAlpha =
+                  0.14 + tIndex * 0.03 + (isAccent ? accentPulse : 0);
                 drawSegment(
                   points[0].x,
                   points[0].y,
@@ -1219,11 +1660,17 @@ onMounted(async () => {
     }
 
     showcaseMedia.add("(min-width: 768px)", () => {
-      if (!showcasePinStage.value || !showcaseViewport.value || !showcaseScroller.value) return undefined;
+      if (
+        !showcasePinStage.value ||
+        !showcaseViewport.value ||
+        !showcaseScroller.value
+      )
+        return undefined;
 
       const viewport = showcaseViewport.value;
       const track = showcaseScroller.value;
-      const getTravel = () => Math.max(track.scrollWidth - viewport.clientWidth, 0);
+      const getTravel = () =>
+        Math.max(track.scrollWidth - viewport.clientWidth, 0);
 
       gsap.set(track, { x: 0 });
 
@@ -1279,7 +1726,12 @@ onMounted(async () => {
           gsap.to(link, { x, y, duration: 0.35, ease: "power3.out" });
         });
         link.addEventListener("mouseleave", () => {
-          gsap.to(link, { x: 0, y: 0, duration: 0.7, ease: "elastic.out(1, 0.45)" });
+          gsap.to(link, {
+            x: 0,
+            y: 0,
+            duration: 0.7,
+            ease: "elastic.out(1, 0.45)",
+          });
         });
       });
     }

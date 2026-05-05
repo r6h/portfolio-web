@@ -155,6 +155,7 @@ export default {
       projectType: "Project Type",
       inquiry: "Inquiry",
       submit: "Transmit Inquiry",
+      sending: "Saving Inquiry...",
       placeholder:
         "Describe the system, constraints, timeline, and what can fail.",
       types: {
@@ -162,6 +163,10 @@ export default {
         security: "Security review",
         prototype: "Technical prototype",
         other: "Other inquiry",
+      },
+      status: {
+        success: "Message received. I’ll review it soon.",
+        error: "Could not save the inquiry. Try again in a moment.",
       },
     },
     mail: {

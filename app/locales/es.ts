@@ -156,6 +156,7 @@ export default {
       projectType: "Tipo de proyecto",
       inquiry: "Consulta",
       submit: "Enviar consulta",
+      sending: "Guardando consulta...",
       placeholder:
         "Describe el sistema, las restricciones, el plazo y qué es lo que puede fallar.",
       types: {
@@ -163,6 +164,10 @@ export default {
         security: "Revisión de seguridad",
         prototype: "Prototipo técnico",
         other: "Otra consulta",
+      },
+      status: {
+        success: "Consulta recibida. La revisaré en breve.",
+        error: "No se pudo guardar la consulta. Inténtalo de nuevo en un momento.",
       },
     },
     mail: {

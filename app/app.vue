@@ -69,7 +69,7 @@
     <!-- Custom Brutalist Cursor -->
     <div
       ref="cursorDot"
-      class="custom-cursor absolute top-0 left-0 h-2.5 w-2.5 rounded-full bg-accent pointer-events-none z-[140] hidden md:block will-change-transform shadow-[0_0_18px_rgb(204_255_0_/_0.55)]"
+      class="custom-cursor absolute top-0 left-0 h-2.5 w-2.5 rounded-full bg-accent pointer-events-none z-[140] hidden md:block will-change-transform"
       :class="{
         'custom-cursor-pointer': isCursorPointerMode,
         'custom-cursor-text-mode': isCursorTextMode,
@@ -139,6 +139,7 @@
 import { onMounted, onUnmounted, ref, watch } from "vue";
 import Lenis from "lenis";
 import { useSiteLoader } from "~/composables/useSiteLoader";
+import { useAccentTheme } from "~/composables/useAccentTheme";
 
 const cursorDot = ref<HTMLElement | null>(null);
 const isCursorPointerMode = ref(false);
@@ -176,6 +177,7 @@ const {
   progress,
   totalAssets,
 } = useSiteLoader();
+useAccentTheme();
 
 const ensureGsap = async () => {
   if (gsapModule && scrollTriggerModule) return;
@@ -414,6 +416,7 @@ body {
 
 .custom-cursor {
   border-radius: 9999px;
+  box-shadow: 0 0 18px rgb(var(--accent-rgb) / 0.55);
 }
 
 .boot-progress-track {
@@ -432,8 +435,8 @@ body {
   background:
     repeating-linear-gradient(
       90deg,
-      #ccff00 0,
-      #ccff00 22px,
+      rgb(var(--accent-rgb)) 0,
+      rgb(var(--accent-rgb)) 22px,
       #050505 22px,
       #050505 24px
     );
@@ -464,13 +467,13 @@ body {
 
 .language-switcher-button:hover,
 .language-switcher-button:focus-visible {
-  border-color: #ccff00;
+  border-color: rgb(var(--accent-rgb));
   color: #ededed;
 }
 
 .language-switcher-button-active {
-  border-color: #ccff00;
-  background: #ccff00;
+  border-color: rgb(var(--accent-rgb));
+  background: rgb(var(--accent-rgb));
   color: #050505;
 }
 

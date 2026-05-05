@@ -1,0 +1,7 @@
+name = "portfolio-web"
+compatibility_date = "2025-07-15"
+
+[[d1_databases]]
+binding = "CONTACTS_DB"
+database_name = "portfolio_contacts"
+database_id = "3aacc860-30ee-4761-b38f-82ccea315ec9"
