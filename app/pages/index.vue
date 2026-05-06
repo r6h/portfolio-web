@@ -333,6 +333,15 @@
                     class="border border-border px-3 py-2 text-accent"
                     >{{ t("showcase.stack") }}: {{ project.stack }}</span
                   >
+                  <a
+                    v-if="project.externalUrl"
+                    class="border border-border px-3 py-2 text-secondary transition-colors hover:border-accent hover:text-accent"
+                    :href="project.externalUrl"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {{ t("showcase.reference") }} ↗
+                  </a>
                 </div>
 
                 <p
@@ -842,6 +851,7 @@ const featuredProjectDefs = [
     visual: "visual-placeholder-shell",
     media: "/projects/desmoduslanding.mp4",
     mediaType: "video",
+    externalUrl: "https://desmodus.co",
   },
   {
     key: "ragChatbot",
@@ -888,6 +898,7 @@ const featuredProjectDefs = [
     visual: "visual-placeholder-shell",
     media: "/projects/writeups.png",
     mediaType: "image",
+    externalUrl: "https://r6h.github.io",
   },
 ];
 

@@ -67,6 +67,7 @@ export default {
     continueBelow: "[ Continuar abajo ]",
     track: "Área",
     stack: "Stack",
+    reference: "Referencia",
     role: "Rol",
     focus: "Enfoque",
     placeholder: "[ Placeholder visual del proyecto ]",
