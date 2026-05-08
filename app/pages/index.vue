@@ -205,14 +205,24 @@
                 >
                   <template v-if="project.mediaType === 'video'">
                     <video
+                      :ref="
+                        (element) =>
+                          registerFeaturedVideoElement(project.media, element)
+                      "
                       class="project-media"
-                      :src="project.media"
+                      :src="
+                        isFeaturedVideoPrimed(project.media)
+                          ? project.media
+                          : undefined
+                      "
                       :aria-label="project.title"
                       autoplay
                       muted
                       loop
                       playsinline
-                      preload="auto"
+                      :preload="
+                        isFeaturedVideoPrimed(project.media) ? 'auto' : 'none'
+                      "
                       disablepictureinpicture
                       controlslist="nodownload noplaybackrate noremoteplayback"
                     />
@@ -1091,12 +1101,15 @@ let showcaseMedia:
   | { add: (...args: any[]) => any; revert: () => void }
   | undefined;
 let deferredStageObservers: IntersectionObserver[] = [];
+let featuredVideoWarmupObserver: IntersectionObserver | null = null;
+let featuredVideoIdleTimer = 0;
 const SHOWCASE_HEADER_OFFSET = 96;
 const FEATURED_VIDEO_URLS = [
   "/projects/tcgterminal.mp4",
   "/projects/desmoduslanding.mp4",
   "/projects/fleetmanager.mp4",
 ] as const;
+const FEATURED_VIDEO_WARMUP_DELAY_MS = 220;
 let pageExperienceStarted = false;
 let heroAssetMarkedLoaded = false;
 let pageMotionMarkedLoaded = false;
@@ -1112,49 +1125,56 @@ const {
   registerAssets,
 } = useSiteLoader();
 const { preloadModel } = useModelPreloader();
-const videoPromises = new Map<string, Promise<void>>();
+const featuredVideoElements = new Map<string, HTMLVideoElement>();
+const primedFeaturedVideos = ref<Set<string>>(new Set());
+let featuredVideoWarmupPromise: Promise<void> | null = null;
 
-const preloadVideo = (src: string) => {
-  const existing = videoPromises.get(src);
-  if (existing) return existing;
+const isFeaturedVideoPrimed = (src: string) =>
+  primedFeaturedVideos.value.has(src);
 
-  const promise = new Promise<void>((resolve, reject) => {
-    if (typeof window === "undefined") {
-      resolve();
-      return;
+const registerFeaturedVideoElement = (
+  src: string,
+  element: Element | null | undefined,
+) => {
+  if (!(element instanceof HTMLVideoElement)) {
+    featuredVideoElements.delete(src);
+    return;
+  }
+
+  featuredVideoElements.set(src, element);
+  if (isFeaturedVideoPrimed(src)) {
+    element.preload = "auto";
+    element.load();
+  }
+};
+
+const primeFeaturedVideo = async (src: string) => {
+  if (isFeaturedVideoPrimed(src)) return;
+
+  primedFeaturedVideos.value = new Set(primedFeaturedVideos.value).add(src);
+  await nextTick();
+
+  const video = featuredVideoElements.get(src);
+  if (!video) return;
+  video.preload = "auto";
+  video.load();
+};
+
+const warmFeaturedVideos = () => {
+  if (featuredVideoWarmupPromise) return featuredVideoWarmupPromise;
+
+  featuredVideoWarmupPromise = (async () => {
+    for (const [index, src] of FEATURED_VIDEO_URLS.entries()) {
+      if (index > 0) {
+        await new Promise((resolve) =>
+          window.setTimeout(resolve, FEATURED_VIDEO_WARMUP_DELAY_MS),
+        );
+      }
+      await primeFeaturedVideo(src);
     }
+  })();
 
-    const video = document.createElement("video");
-    video.preload = "auto";
-    video.muted = true;
-    video.playsInline = true;
-    video.loop = true;
-    video.src = src;
-
-    const cleanup = () => {
-      video.removeEventListener("canplaythrough", handleReady);
-      video.removeEventListener("loadeddata", handleReady);
-      video.removeEventListener("error", handleError);
-    };
-
-    const handleReady = () => {
-      cleanup();
-      resolve();
-    };
-
-    const handleError = () => {
-      cleanup();
-      reject(new Error(`Failed to preload video: ${src}`));
-    };
-
-    video.addEventListener("canplaythrough", handleReady, { once: true });
-    video.addEventListener("loadeddata", handleReady, { once: true });
-    video.addEventListener("error", handleError, { once: true });
-    video.load();
-  });
-
-  videoPromises.set(src, promise);
-  return promise;
+  return featuredVideoWarmupPromise;
 };
 
 const ensureGsap = async () => {
@@ -1252,7 +1272,7 @@ watch(filteredFeaturedProjects, async () => {
 });
 
 onMounted(async () => {
-  registerAssets(7);
+  registerAssets(4);
 
   void Promise.allSettled([
     preloadModel("seraphim-model", () =>
@@ -1261,18 +1281,30 @@ onMounted(async () => {
     preloadModel("terminal-model", () =>
       new GLTFLoader().loadAsync(TERMINAL_MODEL_URL),
     ),
-    ...FEATURED_VIDEO_URLS.map((src) => preloadVideo(src)),
   ]).then((results) => {
     for (const result of results) {
       if (result.status === "rejected") {
         console.warn(result.reason);
       }
     }
-    markAssetsLoaded(5);
+    markAssetsLoaded(2);
   });
 
   mountDeferredStage(seraphimMountTrigger.value, isSeraphimStageMounted);
   mountDeferredStage(securityMountTrigger.value, isSecurityStageMounted);
+
+  if (showcaseSection.value && "IntersectionObserver" in window) {
+    featuredVideoWarmupObserver = new IntersectionObserver(
+      (entries) => {
+        if (!entries[0]?.isIntersecting) return;
+        void warmFeaturedVideos();
+        featuredVideoWarmupObserver?.disconnect();
+        featuredVideoWarmupObserver = null;
+      },
+      { rootMargin: "1200px 0px" },
+    );
+    featuredVideoWarmupObserver.observe(showcaseSection.value);
+  }
 
   await ensureGsap();
   if (!gsapModule) return;
@@ -1764,6 +1796,28 @@ onMounted(async () => {
     (ready) => {
       if (!ready) return;
       refreshScrollTrigger();
+
+      if (featuredVideoWarmupPromise || typeof window === "undefined") return;
+
+      const scheduleWarmup = () => {
+        featuredVideoIdleTimer = window.setTimeout(() => {
+          void warmFeaturedVideos();
+        }, 1400);
+      };
+
+      if ("requestIdleCallback" in window) {
+        (
+          window as Window & {
+            requestIdleCallback: (
+              callback: IdleRequestCallback,
+              options?: IdleRequestOptions,
+            ) => number;
+          }
+        ).requestIdleCallback(scheduleWarmup, { timeout: 2500 });
+        return;
+      }
+
+      scheduleWarmup();
     },
     { immediate: true },
   );
@@ -1785,6 +1839,9 @@ onUnmounted(() => {
     observer.disconnect();
   }
   deferredStageObservers = [];
+  featuredVideoWarmupObserver?.disconnect();
+  featuredVideoWarmupObserver = null;
+  window.clearTimeout(featuredVideoIdleTimer);
   showcaseMedia?.revert();
   ctx?.revert();
 });
