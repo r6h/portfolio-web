@@ -800,11 +800,8 @@ import {
   ref,
   watch,
 } from "vue";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { useAccentTheme } from "~/composables/useAccentTheme";
-import { useModelPreloader } from "~/composables/useModelPreloader";
 import { useSiteLoader } from "~/composables/useSiteLoader";
-import { SERAPHIM_MODEL_URL, TERMINAL_MODEL_URL } from "~/utils/modelUrls";
 
 const SeraphimStage = defineAsyncComponent(
   () => import("~/components/SeraphimStage.client.vue"),
@@ -1124,7 +1121,6 @@ const {
   markAssetsLoaded,
   registerAssets,
 } = useSiteLoader();
-const { preloadModel } = useModelPreloader();
 const featuredVideoElements = new Map<string, HTMLVideoElement>();
 const primedFeaturedVideos = ref<Set<string>>(new Set());
 let featuredVideoWarmupPromise: Promise<void> | null = null;
@@ -1272,23 +1268,7 @@ watch(filteredFeaturedProjects, async () => {
 });
 
 onMounted(async () => {
-  registerAssets(4);
-
-  void Promise.allSettled([
-    preloadModel("seraphim-model", () =>
-      new GLTFLoader().loadAsync(SERAPHIM_MODEL_URL),
-    ),
-    preloadModel("terminal-model", () =>
-      new GLTFLoader().loadAsync(TERMINAL_MODEL_URL),
-    ),
-  ]).then((results) => {
-    for (const result of results) {
-      if (result.status === "rejected") {
-        console.warn(result.reason);
-      }
-    }
-    markAssetsLoaded(2);
-  });
+  registerAssets(2);
 
   mountDeferredStage(seraphimMountTrigger.value, isSeraphimStageMounted);
   mountDeferredStage(securityMountTrigger.value, isSecurityStageMounted);
