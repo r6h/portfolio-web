@@ -2,8 +2,13 @@
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: false },
-  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/i18n"],
+  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/i18n", "@tresjs/nuxt"],
   css: ["~/assets/css/main.css"],
+  vite: {
+    optimizeDeps: {
+      include: ["three", "three/examples/jsm/loaders/GLTFLoader.js"],
+    },
+  },
   i18n: {
     strategy: "no_prefix",
     defaultLocale: "en",

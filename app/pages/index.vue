@@ -72,6 +72,7 @@
     </section>
 
     <section
+      id="intro"
       class="intro-section blueprint-section border-b border-border px-5 py-24 md:px-12 md:py-36"
     >
       <div class="grid grid-cols-12 gap-4">
@@ -81,13 +82,8 @@
           >
             {{ t("intro.eyebrow") }}
           </p>
-          <div ref="seraphimMountTrigger" class="mt-8">
-            <SeraphimStage v-if="isSeraphimStageMounted" />
-            <div
-              v-else
-              class="stage-placeholder stage-placeholder-tall"
-              aria-hidden="true"
-            />
+          <div class="mt-8">
+            <Core3D />
           </div>
         </div>
         <div
@@ -172,6 +168,11 @@
                 [ {{ filter.label }} ]
               </button>
             </div>
+            <div class="showcase-scroll-cue" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
           </div>
         </div>
 
@@ -183,7 +184,7 @@
             <article
               v-for="(project, index) in filteredFeaturedProjects"
               :key="project.title"
-              class="featured-card showcase-card grid min-h-[680px] w-[90vw] max-w-[1280px] shrink-0 snap-start grid-cols-12 content-start gap-4 border border-border bg-background px-4 py-8 md:min-h-[760px] md:w-[calc(100vw-8rem)] md:content-center md:px-8 md:py-10 lg:px-10"
+              class="featured-card showcase-card grid min-h-[680px] w-[90vw] max-w-[1280px] shrink-0 snap-start grid-cols-12 content-start gap-4 border border-border bg-background px-4 py-5 md:w-[calc(100vw-8rem)] md:content-center md:px-7 md:py-5 lg:px-9 lg:py-6"
             >
               <div
                 class="col-span-12 mb-4 flex items-center justify-between font-mono text-xs uppercase tracking-[0.28em] text-secondary"
@@ -198,7 +199,7 @@
 
               <div class="col-span-12 md:col-span-6 lg:col-span-7">
                 <div
-                  class="project-visual group relative h-[32vh] min-h-[14rem] overflow-hidden border border-border md:h-[44vh] md:min-h-72"
+                  class="project-visual group relative h-[26vh] min-h-[11.5rem] overflow-hidden border border-border md:h-[36vh] md:min-h-56 lg:h-[38vh]"
                   :class="
                     project.media ? 'project-visual-media' : project.visual
                   "
@@ -327,12 +328,12 @@
                 class="col-span-12 flex flex-col justify-end md:col-span-6 lg:col-span-5"
               >
                 <h2
-                  class="max-w-[12ch] text-[2.35rem] font-black uppercase leading-[0.92] tracking-[-0.055em] md:text-6xl md:leading-none"
+                  class="max-w-[12ch] text-[2rem] font-black uppercase leading-[0.92] tracking-[-0.055em] md:text-5xl md:leading-none lg:text-6xl"
                 >
                   {{ project.title }}
                 </h2>
                 <div
-                  class="mt-5 flex flex-wrap gap-3 font-mono text-xs uppercase tracking-[0.16em]"
+                  class="mt-5 flex flex-wrap gap-3 font-mono text-xs uppercase tracking-[0.16em] md:mt-4 md:gap-2"
                 >
                   <span class="border border-border px-3 py-2 text-secondary"
                     >{{ t("showcase.track") }}:
@@ -355,13 +356,13 @@
                 </div>
 
                 <p
-                  class="mt-6 max-w-xl text-base leading-relaxed text-primary/88 md:mt-8 md:text-xl"
+                  class="mt-4 max-w-xl text-sm leading-[1.55] text-primary/88 md:mt-5 md:text-base md:leading-relaxed lg:text-lg"
                 >
                   {{ project.description }}
                 </p>
 
                 <div
-                  class="mt-8 grid gap-5 font-mono text-xs leading-relaxed text-primary/85 md:mt-10 md:gap-7 md:grid-cols-2"
+                  class="mt-5 grid gap-4 font-mono text-xs leading-relaxed text-primary/85 md:mt-6 md:gap-4 md:grid-cols-2"
                 >
                   <div>
                     <span
@@ -381,15 +382,6 @@
               </div>
             </article>
           </div>
-        </div>
-        <div class="mt-5 flex items-center justify-end gap-4">
-          <button
-            type="button"
-            class="showcase-skip-button showcase-skip-button-local"
-            @click="skipShowcase"
-          >
-            {{ t("showcase.continueBelow") }}
-          </button>
         </div>
       </div>
 
@@ -690,13 +682,13 @@
             </div>
           </div>
           <h2
-            class="max-w-4xl text-4xl font-black uppercase leading-[0.92] tracking-[-0.06em] text-primary md:text-6xl"
+            class="contact-title max-w-4xl text-4xl font-black uppercase leading-[0.92] tracking-[-0.06em] text-primary md:text-6xl"
           >
-            <span>{{ t("contact.titleLead") }}&nbsp;</span
-            ><span class="text-accent">{{ t("contact.titleAccent") }}</span
-            >{{ t("contact.titlePunct") }}<br class="hidden md:block" /><span
-              >{{ t("contact.titleTail") }}</span
-            >
+            <span class="contact-title-lead">{{ t("contact.titleLead") }}</span>
+            <span class="text-accent">{{ t("contact.titleAccent") }}</span
+            >{{ t("contact.titlePunct") }}
+            <br class="hidden md:block" />
+            <span class="contact-title-tail">{{ t("contact.titleTail") }}</span>
           </h2>
           <p
             class="mt-3 max-w-2xl font-mono text-sm tracking-[0.08em] text-secondary md:text-base"
@@ -803,8 +795,8 @@ import {
 import { useAccentTheme } from "~/composables/useAccentTheme";
 import { useSiteLoader } from "~/composables/useSiteLoader";
 
-const SeraphimStage = defineAsyncComponent(
-  () => import("~/components/SeraphimStage.client.vue"),
+const Core3D = defineAsyncComponent(
+  () => import("~/components/Core3D.client.vue"),
 );
 const SecurityTerminalStage = defineAsyncComponent(
   () => import("~/components/SecurityTerminalStage.client.vue"),
@@ -820,9 +812,7 @@ const showcaseSection = ref<HTMLElement | null>(null);
 const showcasePinStage = ref<HTMLElement | null>(null);
 const showcaseAfter = ref<HTMLElement | null>(null);
 const magneticLinks = ref<HTMLElement | null>(null);
-const seraphimMountTrigger = ref<HTMLElement | null>(null);
 const securityMountTrigger = ref<HTMLElement | null>(null);
-const isSeraphimStageMounted = ref(false);
 const isSecurityStageMounted = ref(false);
 const { t } = useI18n();
 const { accentHex, accentRgba } = useAccentTheme();
@@ -1194,7 +1184,7 @@ const updateScrollTrigger = () => {
 
 const mountDeferredStage = (
   target: HTMLElement | null,
-  flag: typeof isSeraphimStageMounted,
+  flag: typeof isSecurityStageMounted,
 ) => {
   if (!target || flag.value) {
     flag.value = true;
@@ -1270,7 +1260,6 @@ watch(filteredFeaturedProjects, async () => {
 onMounted(async () => {
   registerAssets(2);
 
-  mountDeferredStage(seraphimMountTrigger.value, isSeraphimStageMounted);
   mountDeferredStage(securityMountTrigger.value, isSecurityStageMounted);
 
   if (showcaseSection.value && "IntersectionObserver" in window) {
