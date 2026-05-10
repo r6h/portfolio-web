@@ -104,7 +104,6 @@
             >
           </nav>
           <div class="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.22em] md:text-xs">
-            <span class="hidden text-secondary md:inline">{{ t("app.languageSwitcher.label") }}</span>
             <button
               class="language-switcher-button"
               :class="{ 'language-switcher-button-active': locale === 'en' }"

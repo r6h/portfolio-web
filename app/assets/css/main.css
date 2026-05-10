@@ -732,6 +732,14 @@ html[lang="es"] .machine-cell span {
   line-height: 1.65;
 }
 
+.contact-email-link {
+  word-break: break-word;
+}
+
+.contact-link-button {
+  justify-content: center;
+}
+
 .availability-status {
   display: inline-flex;
   align-items: center;

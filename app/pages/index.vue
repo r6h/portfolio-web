@@ -83,7 +83,7 @@
             {{ t("intro.eyebrow") }}
           </p>
           <div class="mt-8">
-            <Core3D />
+            <CircuitStage />
           </div>
         </div>
         <div
@@ -664,6 +664,22 @@
             <p class="mt-4 max-w-xs text-sm leading-relaxed text-primary/82">
               {{ t("contact.statusBody") }}
             </p>
+            <a
+              class="contact-email-link mt-6 inline-flex font-mono text-sm tracking-[0.12em] text-accent transition-colors hover:text-primary"
+              href="mailto:contact@roger.ac"
+            >
+              contact@roger.ac
+            </a>
+            <div ref="magneticLinks" class="mt-6 flex flex-wrap gap-3">
+              <a
+                v-for="link in contactLinks"
+                :key="link.labelKey"
+                class="contact-link-button magnetic-link inline-flex items-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.22em] text-primary transition-colors hover:border-accent hover:text-accent"
+                :href="link.href"
+              >
+                {{ t(link.labelKey) }}
+              </a>
+            </div>
           </div>
         </div>
         <div class="col-span-12 mt-16 md:col-span-8 md:col-start-5 md:mt-0">
@@ -695,16 +711,6 @@
           >
             {{ t("contact.subtitle") }}
           </p>
-          <div ref="magneticLinks" class="mt-8 flex flex-wrap gap-3">
-            <a
-              v-for="link in contactLinks"
-              :key="link.labelKey"
-              class="contact-link-button magnetic-link inline-flex items-center border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.22em] text-primary transition-colors hover:border-accent hover:text-accent"
-              :href="link.href"
-            >
-              {{ t(link.labelKey) }}
-            </a>
-          </div>
           <form
             class="inquiry-form mt-14 grid gap-3 font-mono"
             @submit.prevent="submitInquiry"
@@ -795,8 +801,8 @@ import {
 import { useAccentTheme } from "~/composables/useAccentTheme";
 import { useSiteLoader } from "~/composables/useSiteLoader";
 
-const Core3D = defineAsyncComponent(
-  () => import("~/components/Core3D.client.vue"),
+const CircuitStage = defineAsyncComponent(
+  () => import("~/components/CircuitStage.client.vue"),
 );
 const SecurityTerminalStage = defineAsyncComponent(
   () => import("~/components/SecurityTerminalStage.client.vue"),
@@ -1711,18 +1717,6 @@ onMounted(async () => {
         tween.kill();
         gsap.set(track, { clearProps: "transform" });
       };
-    });
-
-    gsap.from(".decrypt-title", {
-      y: 24,
-      letterSpacing: "0.08em",
-      duration: 0.8,
-      ease: "power3.out",
-      clearProps: "letterSpacing,transform",
-      scrollTrigger: {
-        trigger: ".case-section",
-        start: "top 68%",
-      },
     });
 
     if (magneticLinks.value && window.matchMedia("(pointer: fine)").matches) {
